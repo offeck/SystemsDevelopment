@@ -10,7 +10,7 @@ Playlist::Playlist(const std::string& name)   //consturctor
 // Students must fix this in Phase 1
 // Nir: create copy constructors. Do we need to declare them in h?
 Playlist::~Playlist() {   //destructor
-    #ifdef DEBUG
+    // #ifdef DEBUG
     std::cout << "Destroying playlist: " << playlist_name << std::endl;
     // Nir's code: delete tracks.
     // option 1:
@@ -25,7 +25,7 @@ Playlist::~Playlist() {   //destructor
     remove_track(current->track->get_title());
     delete current;
     }
-    #endif
+    // #endif
 }
 
 void Playlist::add_track(AudioTrack* track) {
@@ -35,7 +35,7 @@ void Playlist::add_track(AudioTrack* track) {
     }
 
     // Create new node - this allocates memory!
-    PlaylistNode* new_node = new PlaylistNode(track);  //need to delete**************************
+    PlaylistNode* new_node = new PlaylistNode(track);
 
     // Add to front of list
     new_node->next = head;
@@ -44,7 +44,6 @@ void Playlist::add_track(AudioTrack* track) {
 
     std::cout << "Added '" << track->get_title() << "' to playlist '" 
               << playlist_name << "'" << std::endl;
-    // Tair: delete track? Nir: delete new node?
 }
 
 void Playlist::remove_track(const std::string& title) {
@@ -77,8 +76,6 @@ void Playlist::remove_track(const std::string& title) {
     } else {
         std::cout << "Track '" << title << "' not found in playlist" << std::endl;
     }
-    // delete current;
-    // delete prev;
 }
 
 void Playlist::display() const {
