@@ -8,7 +8,7 @@ Playlist::Playlist(const std::string& name)   //consturctor
 }
 // TODO: Fix memory leaks!
 // Students must fix this in Phase 1
-// Nir: crete copy constructors. Do we need to declare them in h?
+// Nir: create copy constructors. Do we need to declare them in h?
 Playlist::~Playlist() {   //destructor
     #ifdef DEBUG
     std::cout << "Destroying playlist: " << playlist_name << std::endl;
@@ -25,7 +25,7 @@ Playlist::~Playlist() {   //destructor
     remove_track(current->track->get_title());
     delete current;
     }
-    //#endif
+    #endif
 }
 
 void Playlist::add_track(AudioTrack* track) {
