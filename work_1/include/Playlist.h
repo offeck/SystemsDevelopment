@@ -20,6 +20,7 @@ struct PlaylistNode {
     PlaylistNode* next;
 
     PlaylistNode(AudioTrack* t) : track(t), next(nullptr) {}
+    // Nir: destructor
     ~PlaylistNode() = default;
 };
 

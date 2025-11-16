@@ -5,12 +5,12 @@
 // Include all our classes
 #include "AudioTrack.h"
 #include "MP3Track.h"
-#include "WAVTrack.h"
 #include "Playlist.h"
+#include "WAVTrack.h"
 // Phase 4 orchestrator
-#include "DJSession.h"
-#include "DJLibraryService.h"
 #include "DJControllerService.h"
+#include "DJLibraryService.h"
+#include "DJSession.h"
 #include "MixingEngineService.h"
 #include "PointerWrapper.h"
 /**

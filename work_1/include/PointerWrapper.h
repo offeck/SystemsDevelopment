@@ -17,6 +17,7 @@ template<typename T>
 class PointerWrapper {
 private:
     T* ptr;  // Raw pointer to the managed object
+    // Nir: reference counter* just like Meni did
 
 public:
     // ========== CONSTRUCTION AND DESTRUCTION ==========
@@ -29,7 +30,7 @@ public:
     /**
      * Constructor from raw pointer - wraps the pointer
      */
-    explicit PointerWrapper(T* p) : ptr(p) {}
+    explicit PointerWrapper(T* p) : ptr(p) {}  // Nir: add reference count = 0.
 
     /**
      * TODO: Implement destructor
@@ -86,7 +87,7 @@ public:
     /**
      * TODO: Implement arrow operator
      * HINT: How do you access members of the wrapped object?
-     * What safety checks should you perform?
+     * What safety checks should you perform? Nir: I would add notEmpty
      */
     T* operator->() const {
         return nullptr;

@@ -8,10 +8,24 @@ Playlist::Playlist(const std::string& name)
 }
 // TODO: Fix memory leaks!
 // Students must fix this in Phase 1
+// Nir: crete copy constructors. Do we need to declare them in h?
 Playlist::~Playlist() {
-    #ifdef DEBUG
+    //#ifdef DEBUG
     std::cout << "Destroying playlist: " << playlist_name << std::endl;
-    #endif
+    // Nir's code: delete tracks.
+    // option 1:
+    // while (this->head != nullptr) {
+    //    PlaylistNode* nextNode = head->next;
+    //    delete head;
+    //    this->head = nextNode;
+    //}
+    // option 2: delete using remove track method
+    while (track_count > 0){
+    PlaylistNode* current = head;
+    remove_track(current->track->get_title());
+    delete current;
+    }
+    //#endif
 }
 
 void Playlist::add_track(AudioTrack* track) {
@@ -30,9 +44,11 @@ void Playlist::add_track(AudioTrack* track) {
 
     std::cout << "Added '" << track->get_title() << "' to playlist '" 
               << playlist_name << "'" << std::endl;
+    // Tair: delete track? Nir: delete new node?
 }
 
 void Playlist::remove_track(const std::string& title) {
+    // make them both pointers
     PlaylistNode* current = head;
     PlaylistNode* prev = nullptr;
 
@@ -44,10 +60,15 @@ void Playlist::remove_track(const std::string& title) {
 
     if (current) {
         // Remove from linked list
+        // Nir added the deletes
         if (prev) {
             prev->next = current->next;
+            // delete current or make it reference
+            delete current;
         } else {
+            // same
             head = current->next;
+            delete current;
         }
 
         track_count--;
@@ -56,6 +77,8 @@ void Playlist::remove_track(const std::string& title) {
     } else {
         std::cout << "Track '" << title << "' not found in playlist" << std::endl;
     }
+    // delete current;
+    // delete prev;
 }
 
 void Playlist::display() const {
@@ -66,6 +89,7 @@ void Playlist::display() const {
     int index = 1;
 
     while (current) {
+        // not sure how to handle vector
         std::vector<std::string> artists = current->track->get_artists();
         std::string artist_list;
 
@@ -84,7 +108,7 @@ void Playlist::display() const {
         current = current->next;
         index++;
     }
-
+    // delete current;
     if (track_count == 0) {
         std::cout << "(Empty playlist)" << std::endl;
     }
