@@ -16,19 +16,19 @@
  */
 
 struct PlaylistNode {
-    AudioTrack* track; 
-    PlaylistNode* next;
+    AudioTrack* track;   //field which is a pointer to "AudioTrack" (a song)
+    PlaylistNode* next;  // field which points to the next node (or nullptr if it's last)
 
-    PlaylistNode(AudioTrack* t) : track(t), next(nullptr) {}
-    // Nir: destructor
-    ~PlaylistNode() = default;
+    PlaylistNode(AudioTrack* t) : track(t), next(nullptr) {} //constuctor: gets a pointer "t" to AudioTrack and initialize it in t. 
+    // initialize next with null. 
+    ~PlaylistNode() = default;  //destructor (default)
 };
 
 class Playlist {
 private:
-    PlaylistNode* head;
-    std::string playlist_name;
-    int track_count;
+    PlaylistNode* head;  //field - first node on the playlist
+    std::string playlist_name;  //field- playlist name
+    int track_count; //field - saves how many songs 
 
 public:
     /**
@@ -63,7 +63,7 @@ public:
      * @return Number of tracks in the playlist
      */
     int get_track_count() const { return track_count; }
-    const std::string& get_name() const { return playlist_name; }
+    const std::string& get_name() const { return playlist_name; }  //returns a referance to the name (string)
 
     /**
      * @param title Title of the track to find
@@ -85,7 +85,7 @@ public:
     /**
      * Get all tracks as a vector
      */
-    std::vector<AudioTrack*> getTracks() const;
+    std::vector<AudioTrack*> getTracks() const; //returns a vector of pointers to all the songs
 
 };
 
