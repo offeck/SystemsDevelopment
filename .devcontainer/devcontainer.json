@@ -1,36 +1,25 @@
 {
-	"name": "SPL-Ubuntu",
-	"build": {
-		"dockerfile": "Dockerfile"
+	"name": "BGU SPL Student Workspace",
+	"image": "ghcr.io/bguspl/student-env:latest",
+	"remoteUser": "spl",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cpptools-extension-pack",
+				"vscjava.vscode-java-pack",
+				"ms-python.python",
+				"mtxr.sqltools",
+				"mtxr.sqltools-driver-sqlite",
+				"ms-vsliveshare.vsliveshare"
+			],
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "bash"
+			}
+		}
 	},
-		// Add the IDs of extensions you want installed when the container is created.
-		"extensions": [
-			"ms-vscode.cpptools-extension-pack",
-			"vscode-icons-team.vscode-icons",
-			"2gua.rainbow-brackets",
-			"vscjava.vscode-java-pack",
-			"jeff-hykin.better-cpp-syntax", 
-			"ms-vscode.makefile-tools",
-			"ms-python.python",
-			"natqe.reload",
-			"cschlosser.doxdocgen",
-			"ms-vsliveshare.vsliveshare"
-		],
-		// Uncomment when using a ptrace-based debugger like C++, Go, and Rust
-		"runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"],
-
-	// Features to add to the dev container. More info: https://containers.dev/implementors/features.
-	// "features": {},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "gcc -v",
-
-	// Configure tool-specific properties.
-	// "customizations": {},
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+	"mounts": [
+		"source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+	],
+	"workspaceFolder": "/workspace",
+	"postCreateCommand": "bash -lc 'if [ -f requirements.txt ]; then pip install -r requirements.txt; fi; echo \"\"; echo \"═══════════════════════════════════════════════════════════\"; echo \"  Welcome to BGU SPL Student Env (v${STUDENT_ENV_VERSION})\"; echo \"═══════════════════════════════════════════════════════════\"; echo \"\"; echo \"Available tools:\"; echo \"  • C/C++: gcc-13, g++-13, clang, cmake\"; echo \"  • Java: OpenJDK 21 (Temurin)\"; echo \"  • Python: 3.12\"; echo \"  • SQLite: sqlite3\"; echo \"\"; echo \"✅ Container is ready! Happy coding! 🚀\"; echo \"\"'"
 }
