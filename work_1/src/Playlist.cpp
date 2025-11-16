@@ -2,13 +2,13 @@
 #include "AudioTrack.h"
 #include <iostream>
 #include <algorithm>
-Playlist::Playlist(const std::string& name) 
+Playlist::Playlist(const std::string& name)   //consturctor
     : head(nullptr), playlist_name(name), track_count(0) {
     std::cout << "Created playlist: " << name << std::endl;
 }
 // TODO: Fix memory leaks!
 // Students must fix this in Phase 1
-Playlist::~Playlist() {
+Playlist::~Playlist() {  //destructor
     #ifdef DEBUG
     std::cout << "Destroying playlist: " << playlist_name << std::endl;
     #endif
@@ -21,7 +21,7 @@ void Playlist::add_track(AudioTrack* track) {
     }
 
     // Create new node - this allocates memory!
-    PlaylistNode* new_node = new PlaylistNode(track);
+    PlaylistNode* new_node = new PlaylistNode(track);  //need to delete**************************
 
     // Add to front of list
     new_node->next = head;
