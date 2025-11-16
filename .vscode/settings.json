@@ -1,0 +1,25 @@
+{
+    // C++ specific settings
+    "C_Cpp.intelliSenseEngine": "default",
+    "C_Cpp.autocomplete": "disabled",
+    "C_Cpp.errorSquiggles": "enabled",
+    
+    // File associations
+    "files.associations": {
+        "*.h": "cpp",
+        "*.cpp": "cpp",
+        "*.txt": "plaintext"
+    },
+    
+    // Disable telemetry and online features
+    "telemetry.telemetryLevel": "off",
+    "workbench.enableExperiments": false,
+    
+    // Build and debug settings
+    "files.eol": "\n",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    
+    // Terminal settings
+    "terminal.integrated.defaultProfile.linux": "fish"
+}
