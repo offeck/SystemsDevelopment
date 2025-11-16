@@ -20,10 +20,9 @@ Playlist::~Playlist() {   //destructor
     //    this->head = nextNode;
     //}
     // option 2: delete using remove track method
-    while (track_count > 0){
-    PlaylistNode* current = head;
-    remove_track(current->track->get_title());
-    delete current;
+    std::vector<AudioTrack*> tracks = getTracks();
+    for (AudioTrack* track : tracks) {
+        remove_track(track->get_title());
     }
     // #endif
 }
