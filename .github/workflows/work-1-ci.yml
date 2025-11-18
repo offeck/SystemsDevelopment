@@ -1,0 +1,48 @@
+name: work_1 checks
+
+on:
+  push:
+    paths:
+      - "work_1/**"
+      - ".github/workflows/work-1-ci.yml"
+  pull_request:
+    paths:
+      - "work_1/**"
+      - ".github/workflows/work-1-ci.yml"
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: work_1
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install build and leak-check dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential valgrind
+
+      - name: Clean workspace (per Final Integration Test in the PDF)
+        run: make clean
+
+      - name: Build debug artifacts for the test harness
+        run: make debug
+
+      - name: Run non-interactive harness and compare to expected output (test_output.txt)
+        run: |
+          ./bin/dj_manager | tee actual_output.txt
+          diff -u test_output.txt actual_output.txt
+
+      - name: Memory leak check with valgrind (PDF Section 8 Final Integration Test)
+        run: |
+          make clean
+          make test-leaks
+
+      - name: Build release binary (ready for interactive -I/-A mode)
+        run: |
+          make clean
+          make release
