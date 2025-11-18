@@ -17,7 +17,11 @@ void MP3Track::load() {
               << "\" at " << bitrate << " kbps...\n";
     // TODO: Implement MP3 loading with format-specific operations
     // NOTE: Use exactly 2 spaces before the arrow (→) character
-    
+    if(has_id3_tags) {
+        std::cout << "Processing ID3 metadata (artist info, album art, etc.)..." << art;
+    } else {
+        std::cout << "  → No ID3 tags present.\n";
+    }
 }
 
 void MP3Track::analyze_beatgrid() {

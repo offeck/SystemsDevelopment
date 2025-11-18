@@ -37,7 +37,6 @@ AudioTrack::~AudioTrack() {
     #endif
     // Your code here...
     delete[] waveform_data;
-    // Incomplete
 }
 
 AudioTrack::AudioTrack(const AudioTrack& other)
@@ -89,7 +88,13 @@ AudioTrack::AudioTrack(AudioTrack&& other) noexcept {
     std::cout << "AudioTrack move constructor called for: " << other.title << std::endl;
     #endif
     // Your code here...
-    // I dont know what to put here
+    title = std::move(other.title);
+    artists = std::move(other.artists);
+    duration_seconds = other.duration_seconds;
+    bpm = other.bpm;
+    waveform_size = other.waveform_size;
+    waveform_data = other.waveform_data;
+    other.waveform_data = nullptr;
 }
 
 AudioTrack& AudioTrack::operator=(AudioTrack&& other) noexcept {
@@ -99,6 +104,21 @@ AudioTrack& AudioTrack::operator=(AudioTrack&& other) noexcept {
     std::cout << "AudioTrack move assignment called for: " << other.title << std::endl;
     #endif
     // Your code here...
+    if (this != &other) {
+        // Clean up existing data
+        delete[] waveform_data;
+
+        // Move data from other
+        title = std::move(other.title);
+        artists = std::move(other.artists);
+        duration_seconds = other.duration_seconds;
+        bpm = other.bpm;
+        waveform_size = other.waveform_size;
+        waveform_data = other.waveform_data;
+
+        // Leave other in a valid state
+        other.waveform_data = nullptr;
+    }
     return *this;
 }
 
