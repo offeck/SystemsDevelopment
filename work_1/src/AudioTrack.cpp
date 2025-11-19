@@ -67,7 +67,6 @@ AudioTrack& AudioTrack::operator=(const AudioTrack& other) {
     // Your code here...
     if (this != &other) {
         // Clean up existing data
-        // Nir: Is that all? Shouldn't we delete everything?
         delete[] waveform_data;
         
         // Copy data from other
