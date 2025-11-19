@@ -37,7 +37,6 @@ AudioTrack::~AudioTrack() {
     #endif
     // Your code here...
     delete[] waveform_data;
-    // Incomplete
 }
 
 AudioTrack::AudioTrack(const AudioTrack& other)
@@ -97,7 +96,7 @@ AudioTrack::AudioTrack(AudioTrack&& other) noexcept {
         bpm = std::move(other.bpm);
         waveform_size = std::move(other.waveform_size);
         waveform_data = other.waveform_data;
-            // Leave other in a valid state
+        // Leave other in a valid state
         other.waveform_data = nullptr;
         other.waveform_size = 0;
    }
