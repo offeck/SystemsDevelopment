@@ -37,7 +37,24 @@ double WAVTrack::get_quality_score() const {
     // TODO: Implement WAV quality scoring
     // NOTE: Use exactly 2 spaces before each arrow (→) character
     // NOTE: Cast beats to integer when printing
-    return 0.0; // Replace with your implementation
+    double base_rate_score = 70.0;
+    if (sample_rate >= 44100) {
+        base_rate_score += 10;
+    }
+    if (sample_rate >= 96000) {
+        base_rate_score += 5;
+    }
+    if (bit_depth >= 16) {
+        base_rate_score += 10;
+    }
+    if (bit_depth >= 24) {
+        base_rate_score += 5;
+    }
+    if (base_rate_score > 100.0) {
+        base_rate_score = 100.0;
+    }
+    return base_rate_score;
+    
 }
 
 PointerWrapper<AudioTrack> WAVTrack::clone() const {
