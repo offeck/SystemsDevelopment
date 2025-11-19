@@ -67,8 +67,9 @@ AudioTrack& AudioTrack::operator=(const AudioTrack& other) {
     // Your code here...
     if (this != &other) {
         // Clean up existing data
+        // Nir: Is that all? Shouldn't we delete everything?
         delete[] waveform_data;
-
+        
         // Copy data from other
         title = other.title;
         artists = other.artists;
@@ -89,7 +90,19 @@ AudioTrack::AudioTrack(AudioTrack&& other) noexcept {
     std::cout << "AudioTrack move constructor called for: " << other.title << std::endl;
     #endif
     // Your code here...
-    // I dont know what to put here
+    // Nir's code:
+    if (this != &other) {
+        title = std::move(other.title);
+        artists = std::move(other.artists);
+        duration_seconds = std::move(other.duration_seconds);
+        bpm = std::move(other.bpm);
+        waveform_size = std::move(other.waveform_size);
+        waveform_data = std::move(other.waveform_data);
+
+            // Leave other in a valid state
+        other.waveform_data = nullptr;
+        other.waveform_size = 0;
+   }
 }
 
 AudioTrack& AudioTrack::operator=(AudioTrack&& other) noexcept {
@@ -99,6 +112,23 @@ AudioTrack& AudioTrack::operator=(AudioTrack&& other) noexcept {
     std::cout << "AudioTrack move assignment called for: " << other.title << std::endl;
     #endif
     // Your code here...
+    // Nir's code:
+    if (this != &other) {
+        // Clean up existing data
+        delete[] waveform_data;
+
+        // Move data from other
+        title = std::move(other.title);
+        artists = std::move(other.artists);
+        duration_seconds = std::move(other.duration_seconds);
+        bpm = std::move(other.bpm);
+        waveform_size = std::move(other.waveform_size);
+        waveform_data = std::move(other.waveform_data);
+
+        // Leave other in a valid state
+        other.waveform_data = nullptr;
+        other.waveform_size = 0;
+    }
     return *this;
 }
 
