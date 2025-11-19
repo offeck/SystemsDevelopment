@@ -37,7 +37,6 @@ AudioTrack::~AudioTrack() {
     #endif
     // Your code here...
     delete[] waveform_data;
-    // Incomplete
 }
 
 AudioTrack::AudioTrack(const AudioTrack& other)
