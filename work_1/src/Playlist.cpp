@@ -2,15 +2,15 @@
 #include "AudioTrack.h"
 #include <iostream>
 #include <algorithm>
-Playlist::Playlist(const std::string& name) 
+Playlist::Playlist(const std::string& name)   //consturctor
     : head(nullptr), playlist_name(name), track_count(0) {
     std::cout << "Created playlist: " << name << std::endl;
 }
 // TODO: Fix memory leaks!
 // Students must fix this in Phase 1
-// Nir: crete copy constructors. Do we need to declare them in h?
-Playlist::~Playlist() {
-    //#ifdef DEBUG
+// Nir: create copy constructors. Do we need to declare them in h?
+Playlist::~Playlist() {   //destructor
+    // #ifdef DEBUG
     std::cout << "Destroying playlist: " << playlist_name << std::endl;
     // Nir's code: delete tracks.
     // option 1:
@@ -20,12 +20,11 @@ Playlist::~Playlist() {
     //    this->head = nextNode;
     //}
     // option 2: delete using remove track method
-    while (track_count > 0){
-    PlaylistNode* current = head;
-    remove_track(current->track->get_title());
-    delete current;
+    std::vector<AudioTrack*> tracks = getTracks();
+    for (AudioTrack* track : tracks) {
+        remove_track(track->get_title());
     }
-    //#endif
+    // #endif
 }
 
 void Playlist::add_track(AudioTrack* track) {
@@ -44,10 +43,8 @@ void Playlist::add_track(AudioTrack* track) {
 
     std::cout << "Added '" << track->get_title() << "' to playlist '" 
               << playlist_name << "'" << std::endl;
-    // Tair: delete track? 
 }
-// Nir: I want  to create a remove_all_tracks function to use in destructor and copy operator=.
-// preferbly private, and will .
+
 void Playlist::remove_track(const std::string& title) {
     // make them both pointers
     PlaylistNode* current = head;
@@ -78,8 +75,6 @@ void Playlist::remove_track(const std::string& title) {
     } else {
         std::cout << "Track '" << title << "' not found in playlist" << std::endl;
     }
-    // delete current;
-    // delete prev;
 }
 
 void Playlist::display() const {
