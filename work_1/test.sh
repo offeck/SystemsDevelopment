@@ -230,15 +230,16 @@ test_memory_leaks() {
         ./bin/dj_manager > /dev/null 2> "$valgrind_output"
     local exit_code=$?
     
-    # Check for memory leaks
-    if grep -q "definitely lost: 0 bytes" "$valgrind_output" && \
-       grep -q "indirectly lost: 0 bytes" "$valgrind_output"; then
+    # Check for memory leaks - either "0 bytes" for each category OR "no leaks are possible"
+    if grep -q "All heap blocks were freed -- no leaks are possible" "$valgrind_output" || \
+       (grep -q "definitely lost: 0 bytes" "$valgrind_output" && \
+        grep -q "indirectly lost: 0 bytes" "$valgrind_output"); then
         print_result "No memory leaks detected" 1
     else
         print_result "No memory leaks detected" 0
         echo ""
         echo -e "${YELLOW}--- Valgrind Output ---${NC}"
-        grep -E "(definitely|indirectly|possibly) lost:" "$valgrind_output"
+        grep -E "(definitely|indirectly|possibly) lost:|no leaks" "$valgrind_output"
         echo ""
     fi
     
