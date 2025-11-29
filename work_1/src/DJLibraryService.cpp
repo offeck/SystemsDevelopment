@@ -17,11 +17,9 @@ void DJLibraryService::buildLibrary(const std::vector<SessionConfig::TrackInfo>&
     //Todo: Implement buildLibrary method
     int count = 0;
     for (const auto& track_info : library_tracks) {
-        PointerWrapper<AudioTrack> track_ptr;
-
         if (track_info.type == "MP3") {
             bool has_tags = (track_info.extra_param2 != 0);
-            track_ptr = PointerWrapper<AudioTrack>(new MP3Track(
+            library.push_back(new MP3Track(
                 track_info.title,
                 track_info.artists,
                 track_info.duration_seconds,
@@ -29,12 +27,11 @@ void DJLibraryService::buildLibrary(const std::vector<SessionConfig::TrackInfo>&
                 track_info.extra_param1, // bitrate
                 has_tags
             ));
-            library.push_back(track_ptr.operator->());
             std::cout << "MP3: MP3Track created: " << track_info.extra_param1 << " kbps\n";
             count++;
         } else if (track_info.type == "WAV") {
             bool is_stereo = (track_info.extra_param2 != 0);
-            track_ptr = PointerWrapper<AudioTrack>(new WAVTrack(
+            library.push_back(new WAVTrack(
                 track_info.title,
                 track_info.artists,
                 track_info.duration_seconds,
@@ -42,7 +39,6 @@ void DJLibraryService::buildLibrary(const std::vector<SessionConfig::TrackInfo>&
                 track_info.extra_param1, // sample_rate
                 is_stereo
             ));
-            library.push_back(track_ptr.operator->());
             std::cout << "WAV: WAVTrack created: " << track_info.extra_param1 << " Hz/" << track_info.extra_param2 << " bit\n";
             count++;
         } else {
