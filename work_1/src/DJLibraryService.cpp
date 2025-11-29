@@ -88,9 +88,10 @@ AudioTrack* DJLibraryService::findTrack(const std::string& track_title) {
 
 void DJLibraryService::loadPlaylistFromIndices(const std::string& playlist_name, 
                                                const std::vector<int>& track_indices) {
-    // Your implementation here
     std::cout << "[INFO] Loading playlist: " << playlist_name << std::endl;
+    
     Playlist new_playlist(playlist_name);
+    
     for (int index : track_indices) {
         if (index < 1 || index > static_cast<int>(library.size())) {
             std::cout << "[WARNING ] Invalid track index: " << index << std::endl;
@@ -103,11 +104,14 @@ void DJLibraryService::loadPlaylistFromIndices(const std::string& playlist_name,
         }
         track->load();
         track->analyze_beatgrid();
+        std::string track_title = track->get_title(); // Get title before releasing ownership
         new_playlist.add_track(track.release()); // Transfer ownership to playlist
-        std::cout << "Added '" << track->get_title() << "' to playlist '" << playlist_name << "'\n";
     }
     std::cout << "[INFO] Playlist loaded: " << playlist_name 
               << " (" << new_playlist.get_track_count() << " tracks)" << std::endl;
+    
+    // Move the playlist - transfer ownership without copying
+    playlist = std::move(new_playlist);
 }
 /**
  * TODO: Implement getTrackTitles method
@@ -116,7 +120,8 @@ void DJLibraryService::loadPlaylistFromIndices(const std::string& playlist_name,
 std::vector<std::string> DJLibraryService::getTrackTitles() const {
     std::vector<std::string> titles;
     // Iterate through the playlist and collect titles
-    for (const auto& track_ptr : library) {
+    std::vector<AudioTrack*> tracks = playlist.getTracks();
+    for (const auto& track_ptr : tracks) {
         titles.push_back(track_ptr->get_title());
     }
     return titles;
