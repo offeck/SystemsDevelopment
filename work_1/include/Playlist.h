@@ -42,6 +42,18 @@ public:
     ~Playlist();
 
     /**
+     * Copy Constructor - Rule of 3
+     * Creates a deep copy of the playlist
+     */
+    Playlist(const Playlist& other);
+
+    /**
+     * Copy Assignment Operator - Rule of 3
+     * Creates a deep copy of the playlist
+     */
+    Playlist& operator=(const Playlist& other);
+
+    /**
      * Add a track to the playlist
      * @param track Pointer to AudioTrack to add
      */
