@@ -44,8 +44,8 @@ AudioTrack::AudioTrack(const AudioTrack& other)
       artists(other.artists),
       duration_seconds(other.duration_seconds),
       bpm(other.bpm),
-      waveform_size(other.waveform_size),
-      waveform_data(nullptr) {
+      waveform_data(nullptr),
+      waveform_size(other.waveform_size) {
     // Deep copy waveform_data in body if needed
     #ifdef DEBUG
     std::cout << "AudioTrack copy constructor called for: " << other.title << std::endl;
@@ -82,24 +82,20 @@ AudioTrack& AudioTrack::operator=(const AudioTrack& other) {
     return *this;
 }
 
-AudioTrack::AudioTrack(AudioTrack&& other) noexcept {
+AudioTrack::AudioTrack(AudioTrack&& other) noexcept
+    : title(std::move(other.title)),
+      artists(std::move(other.artists)),
+      duration_seconds(other.duration_seconds),
+      bpm(other.bpm),
+      waveform_data(other.waveform_data),
+      waveform_size(other.waveform_size) {
     // TODO: Implement the move constructor
     #ifdef DEBUG
-    std::cout << "AudioTrack move constructor called for: " << other.title << std::endl;
+    std::cout << "AudioTrack move constructor called for: " << title << std::endl;
     #endif
-    // Your code here...
-    // Nir's code:
-    if (this != &other) {
-        title = std::move(other.title);
-        artists = std::move(other.artists);
-        duration_seconds = std::move(other.duration_seconds);
-        bpm = std::move(other.bpm);
-        waveform_size = std::move(other.waveform_size);
-        waveform_data = other.waveform_data;
-        // Leave other in a valid state
-        other.waveform_data = nullptr;
-        other.waveform_size = 0;
-   }
+    // Leave other in a valid state
+    other.waveform_data = nullptr;
+    other.waveform_size = 0;
 }
 
 AudioTrack& AudioTrack::operator=(AudioTrack&& other) noexcept {
