@@ -3,6 +3,7 @@
 #include "PointerWrapper.h"
 #include <iostream>
 #include <algorithm>
+#include <utility>
 Playlist::Playlist(const std::string& name)   //consturctor
     : head(nullptr), playlist_name(name), track_count(0) {
     std::cout << "Created playlist: " << name << std::endl;
@@ -59,6 +60,43 @@ Playlist& Playlist::operator=(const Playlist& other) {
     return *this;
 }
 
+// Move Constructor
+Playlist::Playlist(Playlist&& other) noexcept
+    : head(other.head),
+      playlist_name(std::move(other.playlist_name)),
+      track_count(other.track_count) {
+    std::cout << "Move constructor called for playlist: " << playlist_name << std::endl;
+
+    other.head = nullptr;
+    other.track_count = 0;
+}
+
+// Move Assignment Operator
+Playlist& Playlist::operator=(Playlist&& other) noexcept {
+    std::cout << "Move assignment called for playlist: " << playlist_name << std::endl;
+
+    if (this != &other) {
+        // Release current resources
+        while (head != nullptr) {
+            PlaylistNode* next = head->next;
+            delete head->track;
+            delete head;
+            head = next;
+        }
+
+        // Transfer ownership
+        head = other.head;
+        playlist_name = std::move(other.playlist_name);
+        track_count = other.track_count;
+
+        // Leave other in valid state
+        other.head = nullptr;
+        other.track_count = 0;
+    }
+
+    return *this;
+}
+
 // TODO: Fix memory leaks!
 // Students must fix this in Phase 1
 // Nir: create copy constructors. Do we need to declare them in h?
@@ -86,8 +124,7 @@ void Playlist::add_track(AudioTrack* track) {
     head = new_node;
     track_count++;
 
-    std::cout << "Added '" << track->get_title() << "' to playlist '" 
-              << playlist_name << "'" << std::endl;
+    std::cout << "Added '" << track->get_title() << "' to playlist '" << playlist_name << "'\n";
 }
 
 void Playlist::remove_track(const std::string& title) {

@@ -54,6 +54,18 @@ public:
     Playlist& operator=(const Playlist& other);
 
     /**
+     * Move Constructor - Rule of 5
+     * Transfers ownership of playlist resources
+     */
+    Playlist(Playlist&& other) noexcept;
+
+    /**
+     * Move Assignment Operator - Rule of 5
+     * Transfers ownership of playlist resources
+     */
+    Playlist& operator=(Playlist&& other) noexcept;
+
+    /**
      * Add a track to the playlist
      * @param track Pointer to AudioTrack to add
      */

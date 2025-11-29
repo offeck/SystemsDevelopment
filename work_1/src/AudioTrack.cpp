@@ -40,17 +40,17 @@ AudioTrack::~AudioTrack() {
 }
 
 AudioTrack::AudioTrack(const AudioTrack& other)
-{
-    // TODO: Implement the copy constructor
+    : title(other.title),          // Initialization in list
+      artists(other.artists),
+      duration_seconds(other.duration_seconds),
+      bpm(other.bpm),
+      waveform_size(other.waveform_size),
+      waveform_data(nullptr) {
+    // Deep copy waveform_data in body if needed
     #ifdef DEBUG
     std::cout << "AudioTrack copy constructor called for: " << other.title << std::endl;
     #endif
     // Your code here...
-    title = other.title;
-    artists = other.artists;
-    duration_seconds = other.duration_seconds;
-    bpm = other.bpm;
-    waveform_size = other.waveform_size;
     waveform_data = new double[waveform_size];
     for (size_t i = 0; i < other.waveform_size; ++i) {
         waveform_data[i] = other.waveform_data[i];
