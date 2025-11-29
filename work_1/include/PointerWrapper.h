@@ -65,7 +65,7 @@ public:
      * What should happen to the source wrapper after the move?
      */
     PointerWrapper(PointerWrapper&& other) noexcept {
-        ptr(other.ptr);
+        ptr = std::move(other.ptr);
         other.ptr = nullptr;
     }
 
