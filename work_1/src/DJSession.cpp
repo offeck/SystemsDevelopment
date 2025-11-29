@@ -153,8 +153,35 @@ void DJSession::simulate_dj_performance() {
     std::cout << "Cache Capacity: " << session_config.controller_cache_size << " slots (LRU policy)" << std::endl;
     std::cout << "\n--- Processing Tracks ---" << std::endl;
 
-    std::cout << "TODO: Implement the DJ performance simulation workflow here." << std::endl;
-    // Your implementation here
+    if (play_all){
+        for (const auto& playlist : session_config.playlists) {
+            load_playlist(playlist.first);
+            for (const auto& track_title : track_titles) {
+                stats.tracks_processed++;
+                load_track_to_controller(track_title);
+                load_track_to_mixer_deck(track_title);
+            }
+        }
+    }
+    else{ 
+        std::string selected_playlist = display_playlist_menu_from_config();
+        if (selected_playlist.empty()) {
+            std::cout << "No playlist selected. Exiting session." << std::endl;
+            return;
+        }
+        
+        if (!load_playlist(selected_playlist)) {
+            std::cerr << "[ERROR] Failed to load playlist '" << selected_playlist << "'. Aborting session." << std::endl;
+            return;
+        }
+        
+        // 4. Process each track in the selected playlist
+        for (const auto& track_title : track_titles) {
+            stats.tracks_processed++;
+            load_track_to_controller(track_title);
+            load_track_to_mixer_deck(track_title);
+        }
+    }
 }
 
 
