@@ -104,9 +104,26 @@ int DJSession::load_track_to_controller(const std::string& track_name) {
  */
 bool DJSession::load_track_to_mixer_deck(const std::string& track_title) {
     std::cout << "[System] Delegating track transfer to MixingEngineService for: " << track_title << std::endl;
-    // your implementation here
-    return false; // Placeholder
+    AudioTrack* cached_track = controller_service.getTrackFromCache(track_title);
+    if (!cached_track) {
+        std::cerr << "[ERROR] Track '" << track_title << "' not found in cache." << std::endl;
+        stats.errors++;
+        return false;
+    }
+    
+    int result = mixing_service.loadTrackToDeck(*cached_track);
+    if (result == 0){
+        stats.deck_loads_a++;
+    } else if (result == 1) {
+        stats.deck_loads_b++;
+    } else if (result == -1) {
+        stats.errors++;
+        return false;   
+    }
+    return true;
 }
+    
+    
 
 /**
  * @brief Main simulation loop that orchestrates the DJ performance session.
