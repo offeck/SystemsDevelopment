@@ -24,6 +24,43 @@ MixingEngineService::~MixingEngineService() {
         }
     }
 }
+// Copy assignment operator
+MixingEngineService& MixingEngineService::operator=(const MixingEngineService& other){
+    if (this != &other) {
+        // Clean up existing decks
+        for (size_t i = 0; i < 2; ++i) {
+            if (decks[i] != nullptr) {
+                delete decks[i];
+                decks[i] = nullptr;
+            }
+        }
+        // Copy decks from other
+        for (size_t i = 0; i < 2; ++i) {
+            if (other.decks[i] != nullptr) {
+                decks[i] = other.decks[i]->clone().release(); // Deep copy using clone
+            } else {
+                decks[i] = nullptr;
+            }
+        }
+        active_deck = other.active_deck;
+        auto_sync = other.auto_sync;
+        bpm_tolerance = other.bpm_tolerance;
+    }
+    return *this;
+}
+// copy constructor
+MixingEngineService::MixingEngineService(const MixingEngineService& other)
+    : decks(), active_deck(other.active_deck), auto_sync(other.auto_sync), bpm_tolerance(other.bpm_tolerance)
+{
+    for (size_t i = 0; i < 2; ++i) {
+        if (other.decks[i] != nullptr) {
+            decks[i] = other.decks[i]->clone().release(); // Deep copy using clone
+        } else {
+            decks[i] = nullptr;
+        }
+    }
+}
+
 
 
 /**
