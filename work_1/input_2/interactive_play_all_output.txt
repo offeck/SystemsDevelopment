@@ -12,116 +12,338 @@ BPM Tolerance: 14 BPM
 Auto Sync: enabled
 Cache Size: 4 slots
 [INFO] Building track library from config...
+AudioTrack created: Right Back by 
+Yuri Kane 
 MP3Track created: 256 kbps
+AudioTrack created: Concrete Angel by 
+Gareth Emery 
 WAVTrack created: 44100Hz/24bit
+AudioTrack created: Saving Light by 
+Gareth Emery STANDERWICK 
 MP3Track created: 320 kbps
+AudioTrack created: No One On Earth by 
+Above & Beyond 
 MP3Track created: 256 kbps
+AudioTrack created: Lighter Than Air by 
+MaRLo Feenixpawl 
 MP3Track created: 192 kbps
+AudioTrack created: Tuvan by 
+Gaia (NL) 
 MP3Track created: 192 kbps
+AudioTrack created: Anahera by 
+Ferry Corsten pres. Gouryella 
 MP3Track created: 256 kbps
+AudioTrack created: U by 
+Gareth Emery 
 WAVTrack created: 96000Hz/16bit
+AudioTrack created: Southern Sun by 
+Paul Oakenfold 
 MP3Track created: 192 kbps
+AudioTrack created: Take This by 
+Bryan Kearney Out Of The Dust 
 MP3Track created: 192 kbps
+AudioTrack created: Intense by 
+Armin van Buuren 
 MP3Track created: 320 kbps
+AudioTrack created: Destination (ASOT 2024 Anthem) by 
+Armin van Buuren Ferry Corsten Rank 1 Ruben de Ronde 
 MP3Track created: 320 kbps
+AudioTrack created: What Took You So Long by 
+Armin van Buuren Gryffin 
 MP3Track created: 320 kbps
+AudioTrack created: Just As You Are by 
+Rising Star 
 MP3Track created: 320 kbps
+AudioTrack created: The Air I Breathe by 
+Richard Durand Christina Novelli 
 MP3Track created: 320 kbps
+AudioTrack created: For All Time by 
+Armin van Buuren Aly & Fila 
 MP3Track created: 192 kbps
+AudioTrack created: We Control The Sunlight by 
+Aly & Fila 
 MP3Track created: 192 kbps
+AudioTrack created: Blueprint by 
+Ferry Corsten 
 MP3Track created: 256 kbps
+AudioTrack created: Homeward by 
+Ferry Corsten 
 MP3Track created: 192 kbps
+AudioTrack created: We're Not Going Home by 
+Ferry Corsten Ilan Bluestone 
 MP3Track created: 192 kbps
+AudioTrack created: Lemme Take You by 
+Ferry Corsten 
 MP3Track created: 320 kbps
+AudioTrack created: Bloodstream by 
+Ferry Corsten Ruben de Ronde 
 WAVTrack created: 48000Hz/16bit
+AudioTrack created: Rock Your Body Rock by 
+Ferry Corsten 
 MP3Track created: 256 kbps
+AudioTrack created: Voema by 
+Ferry Corsten 
 MP3Track created: 192 kbps
+AudioTrack created: Not Coming Down by 
+Ferry Corsten 
 MP3Track created: 192 kbps
+AudioTrack created: Mo Chara by 
+Ferry Corsten Ciaran McAuley 
 MP3Track created: 256 kbps
+AudioTrack created: Brain Box by 
+Ferry Corsten 
 MP3Track created: 192 kbps
+AudioTrack created: Sweet Sorrow by 
+Ferry Corsten 
 MP3Track created: 256 kbps
+AudioTrack created: Ligaya by 
+Ferry Corsten pres. Gouryella 
 MP3Track created: 256 kbps
+AudioTrack created: Drum's A Weapon by 
+Ferry Corsten 
 WAVTrack created: 48000Hz/16bit
+AudioTrack created: Black Thunderclouds (Lost Frequencies 2025 Intro) by 
+Lost Frequencies Tom Odell vs. LSD Sia Diplo Labrinth 
 MP3Track created: 256 kbps
+AudioTrack created: ID1 by 
+Lost Frequencies 
 WAVTrack created: 44100Hz/16bit
+AudioTrack created: Sun Is Shining by 
+Lost Frequencies 
 MP3Track created: 256 kbps
+AudioTrack created: Are You With Me by 
+Lost Frequencies 
 WAVTrack created: 44100Hz/24bit
+AudioTrack created: Worry About Me by 
+Ellie Goulding blackbear 
 MP3Track created: 256 kbps
+AudioTrack created: ID2 by 
+ID 
 WAVTrack created: 44100Hz/16bit
+AudioTrack created: Love Is The Only Thing by 
+Lost Frequencies 
 WAVTrack created: 48000Hz/16bit
+AudioTrack created: Kick The Nation by 
+Lost Frequencies Pickle 
 WAVTrack created: 48000Hz/16bit
+AudioTrack created: Summer Skies (I Love To Cry) by 
+Lost Frequencies Argy 
 MP3Track created: 256 kbps
+AudioTrack created: Kesariya by 
+Pritam Arijit Singh 
 WAVTrack created: 48000Hz/16bit
+AudioTrack created: Head Down by 
+Lost Frequencies 
 MP3Track created: 256 kbps
+AudioTrack created: The Feeling by 
+Lost Frequencies 
 WAVTrack created: 48000Hz/16bit
+AudioTrack created: Just Wanna Know by 
+Lost Frequencies Declan J Donovan 
 MP3Track created: 192 kbps
+AudioTrack created: Let Me Blow Ya Mind (Netsky Bootleg) by 
+Eve 
 WAVTrack created: 48000Hz/16bit
+AudioTrack created: Where Are You Now by 
+Lost Frequencies 
 MP3Track created: 320 kbps
+AudioTrack created: Voodoo People by 
+The Prodigy 
 MP3Track created: 256 kbps
+AudioTrack created: Freestyler (Rock The Microphone) by 
+Lost Frequencies Bomfunk MC's 
 MP3Track created: 192 kbps
+AudioTrack created: High Hopes by 
+Agents Of Time Lost Frequencies 
 WAVTrack created: 96000Hz/24bit
+AudioTrack created: Reality by 
+Lost Frequencies 
 MP3Track created: 256 kbps
+AudioTrack created: Black Friday (Pretty Like The Sun) by 
+Lost Frequencies 
 MP3Track created: 256 kbps
+AudioTrack created: Innerbloom (RUMPUS Edit) by 
+RÜFÜS DU SOL 
 MP3Track created: 320 kbps
+AudioTrack created: Timeless by 
+The Weeknd Playboi Carti 
 MP3Track created: 256 kbps
+AudioTrack created: Sweet Disposition (A Moment A Love) by 
+Lost Frequencies The Temper Trap 
 MP3Track created: 320 kbps
+AudioTrack created: Dance In The Sunlight (Deluxe Version) by 
+Lost Frequencies 
 MP3Track created: 256 kbps
+AudioTrack created: ENEMY by 
+Third ≡ Party Mark Roma 
 WAVTrack created: 44100Hz/24bit
+AudioTrack created: Starlight (Keep Me Afloat) by 
+Martin Garrix DubVision 
 MP3Track created: 256 kbps
+AudioTrack created: Together by 
+Martin Garrix Matisse Sadko 
 MP3Track created: 320 kbps
+AudioTrack created: Lions In The Wild (Acappella) by 
+Martin Garrix Third ≡ Party 
 MP3Track created: 256 kbps
+AudioTrack created: Nation vs. Won't Let You Go vs. Miracle vs. Callin by 
+Third ≡ Party Arias vs. Martin Garrix Matisse Sadko John Martin vs. Calvin Harris Ellie Goulding vs. Sebastian Ingrosso Alesso 
 MP3Track created: 192 kbps
+AudioTrack created: Calling by 
+Sebastian Ingrosso Alesso 
 MP3Track created: 256 kbps
+AudioTrack created: Nation by 
+Third ≡ Party Arias 
 MP3Track created: 320 kbps
+AudioTrack created: Won't Let You Go by 
+Martin Garrix Matisse Sadko 
 MP3Track created: 320 kbps
+AudioTrack created: Miracle (Acappella) by 
+Calvin Harris Ellie Goulding 
 MP3Track created: 256 kbps
+AudioTrack created: Empty by 
+Martin Garrix DubVision 
 MP3Track created: 320 kbps
+AudioTrack created: Arrival by 
+Third ≡ Party 
 MP3Track created: 320 kbps
+AudioTrack created: Move by 
+Adam Port Stryv 
 MP3Track created: 256 kbps
+AudioTrack created: Sweet Nothing (Acappella) by 
+Calvin Harris 
 MP3Track created: 256 kbps
+AudioTrack created: Believe by 
+Third ≡ Party 
 WAVTrack created: 44100Hz/24bit
+AudioTrack created: Higher by 
+Matisse Sadko 
 MP3Track created: 320 kbps
+AudioTrack created: Follow Your Heart by 
+DubVision 
 MP3Track created: 192 kbps
+AudioTrack created: Breathe by 
+The Prodigy 
 WAVTrack created: 48000Hz/24bit
+AudioTrack created: Atom (MORGANJ Edit) by 
+Nari Milani 
 MP3Track created: 256 kbps
+AudioTrack created: Take Me There by 
+SICK INDIVIDUALS Matisse Sadko Third ≡ Party 
 MP3Track created: 256 kbps
+AudioTrack created: Verve vs. Somebody That I Used To Know (Matisse Sadko Edit) by 
+Matisse Sadko vs. Gotye Kimbra 
 MP3Track created: 256 kbps
+AudioTrack created: Somebody That I Used To Know (Acappella) by 
+Gotye 
 MP3Track created: 192 kbps
+AudioTrack created: Verve by 
+Matisse Sadko 
 MP3Track created: 256 kbps
+AudioTrack created: Hero vs. Escape (DubVision Mashup) by 
+Martin Garrix JVKE DubVision vs. Kx5 Hayla John Summit 
 WAVTrack created: 44100Hz/24bit
+AudioTrack created: Escape by 
+Kx5 
 MP3Track created: 256 kbps
+AudioTrack created: Hero by 
+Martin Garrix JVKE 
 MP3Track created: 192 kbps
+AudioTrack created: Where You Are (Acappella) by 
+John Summit 
 MP3Track created: 320 kbps
+AudioTrack created: Lions In The Wild by 
+Martin Garrix Third ≡ Party 
 WAVTrack created: 96000Hz/24bit
+AudioTrack created: ID3 by 
+Matisse Sadko 
 MP3Track created: 256 kbps
+AudioTrack created: The Sun Always Shines On T.V. by 
+a-ha 
 MP3Track created: 192 kbps
+AudioTrack created: ID4 by 
+Matisse Sadko Vion Konger 
 MP3Track created: 256 kbps
+AudioTrack created: Now That I've Found You (Acappella) by 
+Martin Garrix 
 MP3Track created: 320 kbps
+AudioTrack created: Committed To Sparkle Motion vs. A Sky Full Of Stars (Dubvision Edit) by 
+Discopolis Dubvision vs. Coldplay 
 WAVTrack created: 96000Hz/24bit
+AudioTrack created: A Sky Full Of Stars by 
+Coldplay 
 MP3Track created: 256 kbps
+AudioTrack created: Committed To Sparkle Motion by 
+Discopolis 
 WAVTrack created: 48000Hz/16bit
+AudioTrack created: Harmony vs. Underneath It All (Matisse Sadko Mashup) by 
+Matisse Sadko vs. Mike Posner 
 WAVTrack created: 44100Hz/24bit
+AudioTrack created: Underneath It All by 
+Mike Posner 
 WAVTrack created: 44100Hz/24bit
+AudioTrack created: Harmony by 
+Matisse Sadko 
 WAVTrack created: 96000Hz/24bit
+AudioTrack created: Rise Again vs. In The Name Of Love (DubVision Mashup) by 
+DubVision vs. Martin Garrix Bebe Rexha 
 MP3Track created: 192 kbps
+AudioTrack created: In The Name Of Love (Acappella) by 
+Martin Garrix Bebe Rexha 
 MP3Track created: 256 kbps
+AudioTrack created: Rise Again by 
+DubVision 
 WAVTrack created: 48000Hz/24bit
+AudioTrack created: Keep On Loving You vs. Lions In The Wild (Third Party Mashup) by 
+Martin Garrix Third ≡ Party Max McElligott 
 MP3Track created: 320 kbps
+AudioTrack created: Keep On Loving You by 
+Third ≡ Party 
 WAVTrack created: 44100Hz/24bit
+AudioTrack created: Cinema (Acappella) by 
+Benny Benassi 
 MP3Track created: 256 kbps
+AudioTrack created: Don't You Worry Child vs. New Memories vs. Live Forever (AFROJACK Edit) by 
+Swedish House Mafia John Martin vs. DubVision AFROJACK vs. Third ≡ Party Max McElligott 
 MP3Track created: 192 kbps
+AudioTrack created: Don't You Worry Child by 
+Swedish House Mafia 
 WAVTrack created: 44100Hz/16bit
+AudioTrack created: Live Forever by 
+Third ≡ Party 
 WAVTrack created: 96000Hz/24bit
+AudioTrack created: New Memories by 
+DubVision AFROJACK 
 MP3Track created: 320 kbps
+AudioTrack created: Himalaya vs. Rolling In The Deep (Matisse Sadko Mashup) by 
+Matisse Sadko vs. Adele 
 WAVTrack created: 44100Hz/16bit
+AudioTrack created: Rolling In The Deep (Acappella) by 
+Adele 
 MP3Track created: 320 kbps
+AudioTrack created: Himalaya by 
+Matisse Sadko 
 MP3Track created: 320 kbps
+AudioTrack created: Sweet Dreams (Are Made of This) by 
+Eurythmics 
 MP3Track created: 320 kbps
+AudioTrack created: Sex Love  Water by 
+Armin van Buuren 
 WAVTrack created: 44100Hz/24bit
+AudioTrack created: Mia by 
+David Tort 
 MP3Track created: 256 kbps
+AudioTrack created: Wake Me Up (Acappella) by 
+Avicii 
 WAVTrack created: 44100Hz/24bit
+AudioTrack created: Wherever You Are by 
+Martin Garrix DubVision 
 MP3Track created: 256 kbps
+AudioTrack created: Carry You by 
+Martin Garrix Third ≡ Party 
 WAVTrack created: 44100Hz/16bit
+AudioTrack created: Butterflies by 
+Martin Garrix Matisse Sadko 
 MP3Track created: 320 kbps
 [INFO] Track library built: 111 tracks loaded
 
@@ -134,6 +356,7 @@ Cache Capacity: 4 slots (LRU policy)
 [System] Loading playlist: armin_van_buuren_ASOT_1250
 [INFO] Loading playlist: armin_van_buuren_ASOT_1250
 Created playlist: armin_van_buuren_ASOT_1250
+AudioTrack copy constructor called for: Right Back
 [MP3Track::load] Loading MP3: "Right Back" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -141,12 +364,14 @@ Created playlist: armin_van_buuren_ASOT_1250
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Right Back"
   → Estimated beats: 779  → Compression precision factor: 0.8
 Added 'Right Back' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Concrete Angel
 [WAVTrack::load] Loading WAV: "Concrete Angel" at 44100Hz/24bit (uncompressed)...
   → Estimated file size: 80967600 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Concrete Angel"
   → Estimated beats: 622  → Precision factor: 1 (uncompressed audio)
 Added 'Concrete Angel' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Saving Light
 [MP3Track::load] Loading MP3: "Saving Light" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -154,6 +379,7 @@ Added 'Concrete Angel' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Saving Light"
   → Estimated beats: 634  → Compression precision factor: 1
 Added 'Saving Light' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: No One On Earth
 [MP3Track::load] Loading MP3: "No One On Earth" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -161,6 +387,7 @@ Added 'Saving Light' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "No One On Earth"
   → Estimated beats: 605  → Compression precision factor: 0.8
 Added 'No One On Earth' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Lighter Than Air
 [MP3Track::load] Loading MP3: "Lighter Than Air" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -168,6 +395,7 @@ Added 'No One On Earth' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Lighter Than Air"
   → Estimated beats: 582  → Compression precision factor: 0.6
 Added 'Lighter Than Air' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Tuvan
 [MP3Track::load] Loading MP3: "Tuvan" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -175,6 +403,7 @@ Added 'Lighter Than Air' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Tuvan"
   → Estimated beats: 597  → Compression precision factor: 0.6
 Added 'Tuvan' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Anahera
 [MP3Track::load] Loading MP3: "Anahera" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -182,12 +411,14 @@ Added 'Tuvan' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Anahera"
   → Estimated beats: 931  → Compression precision factor: 0.8
 Added 'Anahera' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: U
 [WAVTrack::load] Loading WAV: "U" at 96000Hz/16bit (uncompressed)...
   → Estimated file size: 84864000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "U"
   → Estimated beats: 504  → Precision factor: 1 (uncompressed audio)
 Added 'U' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Southern Sun
 [MP3Track::load] Loading MP3: "Southern Sun" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -195,6 +426,7 @@ Added 'U' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Southern Sun"
   → Estimated beats: 569  → Compression precision factor: 0.6
 Added 'Southern Sun' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Take This
 [MP3Track::load] Loading MP3: "Take This" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -202,6 +434,7 @@ Added 'Southern Sun' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Take This"
   → Estimated beats: 625  → Compression precision factor: 0.6
 Added 'Take This' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Intense
 [MP3Track::load] Loading MP3: "Intense" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -209,6 +442,7 @@ Added 'Take This' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Intense"
   → Estimated beats: 714  → Compression precision factor: 1
 Added 'Intense' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Destination (ASOT 2024 Anthem)
 [MP3Track::load] Loading MP3: "Destination (ASOT 2024 Anthem)" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -216,6 +450,7 @@ Added 'Intense' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Destination (ASOT 2024 Anthem)"
   → Estimated beats: 858  → Compression precision factor: 1
 Added 'Destination (ASOT 2024 Anthem)' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: What Took You So Long
 [MP3Track::load] Loading MP3: "What Took You So Long" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -223,6 +458,7 @@ Added 'Destination (ASOT 2024 Anthem)' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "What Took You So Long"
   → Estimated beats: 589  → Compression precision factor: 1
 Added 'What Took You So Long' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Just As You Are
 [MP3Track::load] Loading MP3: "Just As You Are" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -230,6 +466,7 @@ Added 'What Took You So Long' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Just As You Are"
   → Estimated beats: 470  → Compression precision factor: 1
 Added 'Just As You Are' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: The Air I Breathe
 [MP3Track::load] Loading MP3: "The Air I Breathe" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -237,6 +474,7 @@ Added 'Just As You Are' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "The Air I Breathe"
   → Estimated beats: 694  → Compression precision factor: 1
 Added 'The Air I Breathe' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: For All Time
 [MP3Track::load] Loading MP3: "For All Time" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -244,6 +482,7 @@ Added 'The Air I Breathe' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "For All Time"
   → Estimated beats: 933  → Compression precision factor: 0.6
 Added 'For All Time' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: We Control The Sunlight
 [MP3Track::load] Loading MP3: "We Control The Sunlight" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -251,6 +490,7 @@ Added 'For All Time' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "We Control The Sunlight"
   → Estimated beats: 853  → Compression precision factor: 0.6
 Added 'We Control The Sunlight' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Blueprint
 [MP3Track::load] Loading MP3: "Blueprint" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -258,6 +498,7 @@ Added 'We Control The Sunlight' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Blueprint"
   → Estimated beats: 676  → Compression precision factor: 0.8
 Added 'Blueprint' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Homeward
 [MP3Track::load] Loading MP3: "Homeward" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -265,6 +506,7 @@ Added 'Blueprint' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Homeward"
   → Estimated beats: 734  → Compression precision factor: 0.6
 Added 'Homeward' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: We're Not Going Home
 [MP3Track::load] Loading MP3: "We're Not Going Home" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -272,6 +514,7 @@ Added 'Homeward' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "We're Not Going Home"
   → Estimated beats: 635  → Compression precision factor: 0.6
 Added 'We're Not Going Home' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Lemme Take You
 [MP3Track::load] Loading MP3: "Lemme Take You" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -279,12 +522,14 @@ Added 'We're Not Going Home' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Lemme Take You"
   → Estimated beats: 821  → Compression precision factor: 1
 Added 'Lemme Take You' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Bloodstream
 [WAVTrack::load] Loading WAV: "Bloodstream" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 68352000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Bloodstream"
   → Estimated beats: 801  → Precision factor: 1 (uncompressed audio)
 Added 'Bloodstream' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Rock Your Body Rock
 [MP3Track::load] Loading MP3: "Rock Your Body Rock" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -292,6 +537,7 @@ Added 'Bloodstream' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Rock Your Body Rock"
   → Estimated beats: 714  → Compression precision factor: 0.8
 Added 'Rock Your Body Rock' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Voema
 [MP3Track::load] Loading MP3: "Voema" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -299,6 +545,7 @@ Added 'Rock Your Body Rock' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Voema"
   → Estimated beats: 574  → Compression precision factor: 0.6
 Added 'Voema' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Not Coming Down
 [MP3Track::load] Loading MP3: "Not Coming Down" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -306,6 +553,7 @@ Added 'Voema' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Not Coming Down"
   → Estimated beats: 699  → Compression precision factor: 0.6
 Added 'Not Coming Down' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Mo Chara
 [MP3Track::load] Loading MP3: "Mo Chara" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -313,6 +561,7 @@ Added 'Not Coming Down' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Mo Chara"
   → Estimated beats: 660  → Compression precision factor: 0.8
 Added 'Mo Chara' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Brain Box
 [MP3Track::load] Loading MP3: "Brain Box" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -320,6 +569,7 @@ Added 'Mo Chara' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Brain Box"
   → Estimated beats: 747  → Compression precision factor: 0.6
 Added 'Brain Box' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Sweet Sorrow
 [MP3Track::load] Loading MP3: "Sweet Sorrow" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -327,6 +577,7 @@ Added 'Brain Box' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Sweet Sorrow"
   → Estimated beats: 707  → Compression precision factor: 0.8
 Added 'Sweet Sorrow' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Ligaya
 [MP3Track::load] Loading MP3: "Ligaya" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -334,6 +585,7 @@ Added 'Sweet Sorrow' to playlist 'armin_van_buuren_ASOT_1250'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Ligaya"
   → Estimated beats: 660  → Compression precision factor: 0.8
 Added 'Ligaya' to playlist 'armin_van_buuren_ASOT_1250'
+AudioTrack copy constructor called for: Drum's A Weapon
 [WAVTrack::load] Loading WAV: "Drum's A Weapon" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 46080000 bytes
   → Fast loading due to uncompressed format.
@@ -341,15 +593,20 @@ Added 'Ligaya' to playlist 'armin_van_buuren_ASOT_1250'
   → Estimated beats: 520  → Precision factor: 1 (uncompressed audio)
 Added 'Drum's A Weapon' to playlist 'armin_van_buuren_ASOT_1250'
 [INFO] Playlist loaded: armin_van_buuren_ASOT_1250 (30 tracks)
+Move assignment called for playlist: 
+Destroying playlist: 
 
 --- Processing: Drum's A Weapon ---
 [System] Loading track 'Drum's A Weapon' to controller...
 [Cache MISS] Cloning track into cache: Drum's A Weapon
+AudioTrack copy constructor called for: Drum's A Weapon
 [WAVTrack::load] Loading WAV: "Drum's A Weapon" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 46080000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Drum's A Weapon"
   → Estimated beats: 520  → Precision factor: 1 (uncompressed audio)
+Move constructor called for: 0x7fffb4c34000
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Drum's A Weapon' to cache.
 
 === Cache Status ===
@@ -362,6 +619,7 @@ Added 'Drum's A Weapon' to playlist 'armin_van_buuren_ASOT_1250'
 [System] Delegating track transfer to MixingEngineService for: Drum's A Weapon
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Drum's A Weapon
 [Deck Switch] Target deck: 1
 [WAVTrack::load] Loading WAV: "Drum's A Weapon" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 46080000 bytes
@@ -380,12 +638,15 @@ Active Deck: 1
 --- Processing: Ligaya ---
 [System] Loading track 'Ligaya' to controller...
 [Cache MISS] Cloning track into cache: Ligaya
+AudioTrack copy constructor called for: Ligaya
 [MP3Track::load] Loading MP3: "Ligaya" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Ligaya"
   → Estimated beats: 660  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Ligaya' to cache.
 
 === Cache Status ===
@@ -398,6 +659,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Ligaya
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Ligaya
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Ligaya" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -405,9 +667,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Ligaya"
   → Estimated beats: 660  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 123 to 126
 [Load Complete] 'Ligaya' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Drum's A Weapon)
+AudioTrack destructor called for: Drum's A Weapon
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -419,12 +681,15 @@ Active Deck: 0
 --- Processing: Sweet Sorrow ---
 [System] Loading track 'Sweet Sorrow' to controller...
 [Cache MISS] Cloning track into cache: Sweet Sorrow
+AudioTrack copy constructor called for: Sweet Sorrow
 [MP3Track::load] Loading MP3: "Sweet Sorrow" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Sweet Sorrow"
   → Estimated beats: 707  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Sweet Sorrow' to cache.
 
 === Cache Status ===
@@ -437,6 +702,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Sweet Sorrow
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Sweet Sorrow
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "Sweet Sorrow" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -444,9 +710,9 @@ Active Deck: 0
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Sweet Sorrow"
   → Estimated beats: 707  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 133 to 129
 [Load Complete] 'Sweet Sorrow' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Ligaya)
+AudioTrack destructor called for: Ligaya
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -458,12 +724,15 @@ Active Deck: 1
 --- Processing: Brain Box ---
 [System] Loading track 'Brain Box' to controller...
 [Cache MISS] Cloning track into cache: Brain Box
+AudioTrack copy constructor called for: Brain Box
 [MP3Track::load] Loading MP3: "Brain Box" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Brain Box"
   → Estimated beats: 747  → Compression precision factor: 0.6
+Move constructor called for: 0x7fffb4c34000
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Brain Box' to cache.
 
 === Cache Status ===
@@ -476,6 +745,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Brain Box
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Brain Box
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Brain Box" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -483,9 +753,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Brain Box"
   → Estimated beats: 747  → Compression precision factor: 0.6
-[Sync BPM] Syncing BPM from 130 to 129
 [Load Complete] 'Brain Box' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Sweet Sorrow)
+AudioTrack destructor called for: Sweet Sorrow
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -497,14 +767,18 @@ Active Deck: 0
 --- Processing: Mo Chara ---
 [System] Loading track 'Mo Chara' to controller...
 [Cache MISS] Cloning track into cache: Mo Chara
+AudioTrack copy constructor called for: Mo Chara
 [MP3Track::load] Loading MP3: "Mo Chara" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Mo Chara"
   → Estimated beats: 660  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b7de10
+AudioTrack destructor called for: Drum's A Weapon
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Mo Chara' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -516,6 +790,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Mo Chara
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Mo Chara
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "Mo Chara" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -523,9 +798,9 @@ Active Deck: 0
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Mo Chara"
   → Estimated beats: 660  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 127 to 128
 [Load Complete] 'Mo Chara' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Brain Box)
+AudioTrack destructor called for: Brain Box
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -537,14 +812,18 @@ Active Deck: 1
 --- Processing: Not Coming Down ---
 [System] Loading track 'Not Coming Down' to controller...
 [Cache MISS] Cloning track into cache: Not Coming Down
+AudioTrack copy constructor called for: Not Coming Down
 [MP3Track::load] Loading MP3: "Not Coming Down" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Not Coming Down"
   → Estimated beats: 699  → Compression precision factor: 0.6
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b81df0
+AudioTrack destructor called for: Ligaya
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Not Coming Down' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -556,6 +835,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Not Coming Down
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Not Coming Down
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Not Coming Down" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -563,9 +843,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Not Coming Down"
   → Estimated beats: 699  → Compression precision factor: 0.6
-[Sync BPM] Syncing BPM from 132 to 130
 [Load Complete] 'Not Coming Down' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Mo Chara)
+AudioTrack destructor called for: Mo Chara
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -577,14 +857,18 @@ Active Deck: 0
 --- Processing: Voema ---
 [System] Loading track 'Voema' to controller...
 [Cache MISS] Cloning track into cache: Voema
+AudioTrack copy constructor called for: Voema
 [MP3Track::load] Loading MP3: "Voema" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Voema"
   → Estimated beats: 574  → Compression precision factor: 0.6
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b7fe00
+AudioTrack destructor called for: Sweet Sorrow
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Voema' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -596,6 +880,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Voema
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Voema
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "Voema" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -603,9 +888,9 @@ Active Deck: 0
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Voema"
   → Estimated beats: 574  → Compression precision factor: 0.6
-[Sync BPM] Syncing BPM from 121 to 125
 [Load Complete] 'Voema' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Not Coming Down)
+AudioTrack destructor called for: Not Coming Down
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -617,14 +902,18 @@ Active Deck: 1
 --- Processing: Rock Your Body Rock ---
 [System] Loading track 'Rock Your Body Rock' to controller...
 [Cache MISS] Cloning track into cache: Rock Your Body Rock
+AudioTrack copy constructor called for: Rock Your Body Rock
 [MP3Track::load] Loading MP3: "Rock Your Body Rock" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Rock Your Body Rock"
   → Estimated beats: 714  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b83e10
+AudioTrack destructor called for: Brain Box
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Rock Your Body Rock' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -636,6 +925,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Rock Your Body Rock
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Rock Your Body Rock
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Rock Your Body Rock" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -643,9 +933,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Rock Your Body Rock"
   → Estimated beats: 714  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 126 to 125
 [Load Complete] 'Rock Your Body Rock' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Voema)
+AudioTrack destructor called for: Voema
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -657,13 +947,17 @@ Active Deck: 0
 --- Processing: Bloodstream ---
 [System] Loading track 'Bloodstream' to controller...
 [Cache MISS] Cloning track into cache: Bloodstream
+AudioTrack copy constructor called for: Bloodstream
 [WAVTrack::load] Loading WAV: "Bloodstream" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 68352000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Bloodstream"
   → Estimated beats: 801  → Precision factor: 1 (uncompressed audio)
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b85e30
+AudioTrack destructor called for: Mo Chara
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Bloodstream' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -675,15 +969,16 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Bloodstream
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Bloodstream
 [Deck Switch] Target deck: 1
 [WAVTrack::load] Loading WAV: "Bloodstream" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 68352000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Bloodstream"
   → Estimated beats: 801  → Precision factor: 1 (uncompressed audio)
-[Sync BPM] Syncing BPM from 135 to 130
 [Load Complete] 'Bloodstream' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Rock Your Body Rock)
+AudioTrack destructor called for: Rock Your Body Rock
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -695,14 +990,18 @@ Active Deck: 1
 --- Processing: Lemme Take You ---
 [System] Loading track 'Lemme Take You' to controller...
 [Cache MISS] Cloning track into cache: Lemme Take You
+AudioTrack copy constructor called for: Lemme Take You
 [MP3Track::load] Loading MP3: "Lemme Take You" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Lemme Take You"
   → Estimated beats: 821  → Compression precision factor: 1
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b87e20
+AudioTrack destructor called for: Not Coming Down
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Lemme Take You' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -714,6 +1013,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Lemme Take You
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Lemme Take You
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Lemme Take You" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -721,9 +1021,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Lemme Take You"
   → Estimated beats: 821  → Compression precision factor: 1
-[Sync BPM] Syncing BPM from 122 to 126
 [Load Complete] 'Lemme Take You' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Bloodstream)
+AudioTrack destructor called for: Bloodstream
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -735,14 +1035,18 @@ Active Deck: 0
 --- Processing: We're Not Going Home ---
 [System] Loading track 'We're Not Going Home' to controller...
 [Cache MISS] Cloning track into cache: We're Not Going Home
+AudioTrack copy constructor called for: We're Not Going Home
 [MP3Track::load] Loading MP3: "We're Not Going Home" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "We're Not Going Home"
   → Estimated beats: 635  → Compression precision factor: 0.6
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b7de10
+AudioTrack destructor called for: Voema
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'We're Not Going Home' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -754,6 +1058,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: We're Not Going Home
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: We're Not Going Home
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "We're Not Going Home" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -761,9 +1066,9 @@ Active Deck: 0
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "We're Not Going Home"
   → Estimated beats: 635  → Compression precision factor: 0.6
-[Sync BPM] Syncing BPM from 132 to 129
 [Load Complete] 'We're Not Going Home' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Lemme Take You)
+AudioTrack destructor called for: Lemme Take You
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -775,14 +1080,18 @@ Active Deck: 1
 --- Processing: Homeward ---
 [System] Loading track 'Homeward' to controller...
 [Cache MISS] Cloning track into cache: Homeward
+AudioTrack copy constructor called for: Homeward
 [MP3Track::load] Loading MP3: "Homeward" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Homeward"
   → Estimated beats: 734  → Compression precision factor: 0.6
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b81df0
+AudioTrack destructor called for: Rock Your Body Rock
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Homeward' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -794,6 +1103,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Homeward
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Homeward
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Homeward" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -801,9 +1111,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Homeward"
   → Estimated beats: 734  → Compression precision factor: 0.6
-[Sync BPM] Syncing BPM from 136 to 132
 [Load Complete] 'Homeward' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (We're Not Going Home)
+AudioTrack destructor called for: We're Not Going Home
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -815,14 +1125,18 @@ Active Deck: 0
 --- Processing: Blueprint ---
 [System] Loading track 'Blueprint' to controller...
 [Cache MISS] Cloning track into cache: Blueprint
+AudioTrack copy constructor called for: Blueprint
 [MP3Track::load] Loading MP3: "Blueprint" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Blueprint"
   → Estimated beats: 676  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b7fe00
+AudioTrack destructor called for: Bloodstream
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Blueprint' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -834,6 +1148,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Blueprint
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Blueprint
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "Blueprint" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -841,9 +1156,9 @@ Active Deck: 0
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Blueprint"
   → Estimated beats: 676  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 130 to 131
 [Load Complete] 'Blueprint' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Homeward)
+AudioTrack destructor called for: Homeward
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -855,14 +1170,18 @@ Active Deck: 1
 --- Processing: We Control The Sunlight ---
 [System] Loading track 'We Control The Sunlight' to controller...
 [Cache MISS] Cloning track into cache: We Control The Sunlight
+AudioTrack copy constructor called for: We Control The Sunlight
 [MP3Track::load] Loading MP3: "We Control The Sunlight" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "We Control The Sunlight"
   → Estimated beats: 853  → Compression precision factor: 0.6
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b83e10
+AudioTrack destructor called for: Lemme Take You
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'We Control The Sunlight' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -874,6 +1193,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: We Control The Sunlight
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: We Control The Sunlight
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "We Control The Sunlight" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -881,9 +1201,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "We Control The Sunlight"
   → Estimated beats: 853  → Compression precision factor: 0.6
-[Sync BPM] Syncing BPM from 121 to 126
 [Load Complete] 'We Control The Sunlight' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Blueprint)
+AudioTrack destructor called for: Blueprint
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -895,14 +1215,18 @@ Active Deck: 0
 --- Processing: For All Time ---
 [System] Loading track 'For All Time' to controller...
 [Cache MISS] Cloning track into cache: For All Time
+AudioTrack copy constructor called for: For All Time
 [MP3Track::load] Loading MP3: "For All Time" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "For All Time"
   → Estimated beats: 933  → Compression precision factor: 0.6
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b85e30
+AudioTrack destructor called for: We're Not Going Home
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'For All Time' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -914,6 +1238,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: For All Time
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: For All Time
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "For All Time" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -921,9 +1246,9 @@ Active Deck: 0
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "For All Time"
   → Estimated beats: 933  → Compression precision factor: 0.6
-[Sync BPM] Syncing BPM from 133 to 129
 [Load Complete] 'For All Time' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (We Control The Sunlight)
+AudioTrack destructor called for: We Control The Sunlight
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -935,14 +1260,18 @@ Active Deck: 1
 --- Processing: The Air I Breathe ---
 [System] Loading track 'The Air I Breathe' to controller...
 [Cache MISS] Cloning track into cache: The Air I Breathe
+AudioTrack copy constructor called for: The Air I Breathe
 [MP3Track::load] Loading MP3: "The Air I Breathe" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "The Air I Breathe"
   → Estimated beats: 694  → Compression precision factor: 1
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b87e20
+AudioTrack destructor called for: Homeward
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'The Air I Breathe' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -954,6 +1283,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: The Air I Breathe
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: The Air I Breathe
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "The Air I Breathe" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -961,9 +1291,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "The Air I Breathe"
   → Estimated beats: 694  → Compression precision factor: 1
-[Sync BPM] Syncing BPM from 124 to 126
 [Load Complete] 'The Air I Breathe' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (For All Time)
+AudioTrack destructor called for: For All Time
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -975,14 +1305,18 @@ Active Deck: 0
 --- Processing: Just As You Are ---
 [System] Loading track 'Just As You Are' to controller...
 [Cache MISS] Cloning track into cache: Just As You Are
+AudioTrack copy constructor called for: Just As You Are
 [MP3Track::load] Loading MP3: "Just As You Are" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Just As You Are"
   → Estimated beats: 470  → Compression precision factor: 1
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b7de10
+AudioTrack destructor called for: Blueprint
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Just As You Are' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -994,6 +1328,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Just As You Are
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Just As You Are
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "Just As You Are" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1001,9 +1336,10 @@ Active Deck: 0
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Just As You Are"
   → Estimated beats: 470  → Compression precision factor: 1
-[Sync BPM] Syncing BPM from 139 to 132
+[Sync BPM] Syncing BPM from 139 to 131
 [Load Complete] 'Just As You Are' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (The Air I Breathe)
+AudioTrack destructor called for: The Air I Breathe
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -1015,14 +1351,18 @@ Active Deck: 1
 --- Processing: What Took You So Long ---
 [System] Loading track 'What Took You So Long' to controller...
 [Cache MISS] Cloning track into cache: What Took You So Long
+AudioTrack copy constructor called for: What Took You So Long
 [MP3Track::load] Loading MP3: "What Took You So Long" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "What Took You So Long"
   → Estimated beats: 589  → Compression precision factor: 1
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b81df0
+AudioTrack destructor called for: We Control The Sunlight
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'What Took You So Long' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1034,6 +1374,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: What Took You So Long
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: What Took You So Long
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "What Took You So Long" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1041,9 +1382,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "What Took You So Long"
   → Estimated beats: 589  → Compression precision factor: 1
-[Sync BPM] Syncing BPM from 125 to 128
 [Load Complete] 'What Took You So Long' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Just As You Are)
+AudioTrack destructor called for: Just As You Are
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -1055,14 +1396,18 @@ Active Deck: 0
 --- Processing: Destination (ASOT 2024 Anthem) ---
 [System] Loading track 'Destination (ASOT 2024 Anthem)' to controller...
 [Cache MISS] Cloning track into cache: Destination (ASOT 2024 Anthem)
+AudioTrack copy constructor called for: Destination (ASOT 2024 Anthem)
 [MP3Track::load] Loading MP3: "Destination (ASOT 2024 Anthem)" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Destination (ASOT 2024 Anthem)"
   → Estimated beats: 858  → Compression precision factor: 1
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b7fe00
+AudioTrack destructor called for: For All Time
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Destination (ASOT 2024 Anthem)' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1074,6 +1419,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Destination (ASOT 2024 Anthem)
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Destination (ASOT 2024 Anthem)
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "Destination (ASOT 2024 Anthem)" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1081,9 +1427,9 @@ Active Deck: 0
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Destination (ASOT 2024 Anthem)"
   → Estimated beats: 858  → Compression precision factor: 1
-[Sync BPM] Syncing BPM from 137 to 132
 [Load Complete] 'Destination (ASOT 2024 Anthem)' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (What Took You So Long)
+AudioTrack destructor called for: What Took You So Long
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -1095,14 +1441,18 @@ Active Deck: 1
 --- Processing: Intense ---
 [System] Loading track 'Intense' to controller...
 [Cache MISS] Cloning track into cache: Intense
+AudioTrack copy constructor called for: Intense
 [MP3Track::load] Loading MP3: "Intense" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Intense"
   → Estimated beats: 714  → Compression precision factor: 1
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b83e10
+AudioTrack destructor called for: The Air I Breathe
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Intense' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1114,6 +1464,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Intense
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Intense
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Intense" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1121,9 +1472,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Intense"
   → Estimated beats: 714  → Compression precision factor: 1
-[Sync BPM] Syncing BPM from 128 to 130
 [Load Complete] 'Intense' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Destination (ASOT 2024 Anthem))
+AudioTrack destructor called for: Destination (ASOT 2024 Anthem)
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -1135,14 +1486,18 @@ Active Deck: 0
 --- Processing: Take This ---
 [System] Loading track 'Take This' to controller...
 [Cache MISS] Cloning track into cache: Take This
+AudioTrack copy constructor called for: Take This
 [MP3Track::load] Loading MP3: "Take This" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Take This"
   → Estimated beats: 625  → Compression precision factor: 0.6
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b85e30
+AudioTrack destructor called for: Just As You Are
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Take This' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1154,6 +1509,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Take This
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Take This
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "Take This" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1161,9 +1517,9 @@ Active Deck: 0
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Take This"
   → Estimated beats: 625  → Compression precision factor: 0.6
-[Sync BPM] Syncing BPM from 135 to 132
 [Load Complete] 'Take This' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Intense)
+AudioTrack destructor called for: Intense
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -1175,14 +1531,18 @@ Active Deck: 1
 --- Processing: Southern Sun ---
 [System] Loading track 'Southern Sun' to controller...
 [Cache MISS] Cloning track into cache: Southern Sun
+AudioTrack copy constructor called for: Southern Sun
 [MP3Track::load] Loading MP3: "Southern Sun" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Southern Sun"
   → Estimated beats: 569  → Compression precision factor: 0.6
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b87e20
+AudioTrack destructor called for: What Took You So Long
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Southern Sun' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1194,6 +1554,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Southern Sun
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Southern Sun
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Southern Sun" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1201,9 +1562,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Southern Sun"
   → Estimated beats: 569  → Compression precision factor: 0.6
-[Sync BPM] Syncing BPM from 133 to 132
 [Load Complete] 'Southern Sun' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Take This)
+AudioTrack destructor called for: Take This
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -1215,13 +1576,17 @@ Active Deck: 0
 --- Processing: U ---
 [System] Loading track 'U' to controller...
 [Cache MISS] Cloning track into cache: U
+AudioTrack copy constructor called for: U
 [WAVTrack::load] Loading WAV: "U" at 96000Hz/16bit (uncompressed)...
   → Estimated file size: 84864000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "U"
   → Estimated beats: 504  → Precision factor: 1 (uncompressed audio)
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b7de10
+AudioTrack destructor called for: Destination (ASOT 2024 Anthem)
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'U' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1233,15 +1598,16 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: U
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: U
 [Deck Switch] Target deck: 1
 [WAVTrack::load] Loading WAV: "U" at 96000Hz/16bit (uncompressed)...
   → Estimated file size: 84864000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "U"
   → Estimated beats: 504  → Precision factor: 1 (uncompressed audio)
-[Sync BPM] Syncing BPM from 137 to 134
 [Load Complete] 'U' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Southern Sun)
+AudioTrack destructor called for: Southern Sun
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -1253,14 +1619,18 @@ Active Deck: 1
 --- Processing: Anahera ---
 [System] Loading track 'Anahera' to controller...
 [Cache MISS] Cloning track into cache: Anahera
+AudioTrack copy constructor called for: Anahera
 [MP3Track::load] Loading MP3: "Anahera" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Anahera"
   → Estimated beats: 931  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b81df0
+AudioTrack destructor called for: Intense
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Anahera' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1272,6 +1642,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Anahera
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Anahera
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Anahera" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1279,9 +1650,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Anahera"
   → Estimated beats: 931  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 140 to 137
 [Load Complete] 'Anahera' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (U)
+AudioTrack destructor called for: U
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -1293,14 +1664,18 @@ Active Deck: 0
 --- Processing: Tuvan ---
 [System] Loading track 'Tuvan' to controller...
 [Cache MISS] Cloning track into cache: Tuvan
+AudioTrack copy constructor called for: Tuvan
 [MP3Track::load] Loading MP3: "Tuvan" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Tuvan"
   → Estimated beats: 597  → Compression precision factor: 0.6
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b7fe00
+AudioTrack destructor called for: Take This
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Tuvan' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1312,6 +1687,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Tuvan
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Tuvan
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "Tuvan" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1319,9 +1695,10 @@ Active Deck: 0
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Tuvan"
   → Estimated beats: 597  → Compression precision factor: 0.6
-[Sync BPM] Syncing BPM from 125 to 131
+[Sync BPM] Syncing BPM from 125 to 132
 [Load Complete] 'Tuvan' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Anahera)
+AudioTrack destructor called for: Anahera
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -1333,14 +1710,18 @@ Active Deck: 1
 --- Processing: Lighter Than Air ---
 [System] Loading track 'Lighter Than Air' to controller...
 [Cache MISS] Cloning track into cache: Lighter Than Air
+AudioTrack copy constructor called for: Lighter Than Air
 [MP3Track::load] Loading MP3: "Lighter Than Air" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Lighter Than Air"
   → Estimated beats: 582  → Compression precision factor: 0.6
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b83e10
+AudioTrack destructor called for: Southern Sun
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Lighter Than Air' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1352,6 +1733,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Lighter Than Air
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Lighter Than Air
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Lighter Than Air" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1359,9 +1741,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Lighter Than Air"
   → Estimated beats: 582  → Compression precision factor: 0.6
-[Sync BPM] Syncing BPM from 128 to 129
 [Load Complete] 'Lighter Than Air' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Tuvan)
+AudioTrack destructor called for: Tuvan
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -1373,14 +1755,18 @@ Active Deck: 0
 --- Processing: No One On Earth ---
 [System] Loading track 'No One On Earth' to controller...
 [Cache MISS] Cloning track into cache: No One On Earth
+AudioTrack copy constructor called for: No One On Earth
 [MP3Track::load] Loading MP3: "No One On Earth" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "No One On Earth"
   → Estimated beats: 605  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b85e30
+AudioTrack destructor called for: U
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'No One On Earth' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1392,6 +1778,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: No One On Earth
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: No One On Earth
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "No One On Earth" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1399,9 +1786,9 @@ Active Deck: 0
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "No One On Earth"
   → Estimated beats: 605  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 135 to 132
 [Load Complete] 'No One On Earth' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Lighter Than Air)
+AudioTrack destructor called for: Lighter Than Air
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -1413,14 +1800,18 @@ Active Deck: 1
 --- Processing: Saving Light ---
 [System] Loading track 'Saving Light' to controller...
 [Cache MISS] Cloning track into cache: Saving Light
+AudioTrack copy constructor called for: Saving Light
 [MP3Track::load] Loading MP3: "Saving Light" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Saving Light"
   → Estimated beats: 634  → Compression precision factor: 1
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b87e20
+AudioTrack destructor called for: Anahera
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Saving Light' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1432,6 +1823,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Saving Light
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Saving Light
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Saving Light" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1439,9 +1831,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Saving Light"
   → Estimated beats: 634  → Compression precision factor: 1
-[Sync BPM] Syncing BPM from 130 to 131
 [Load Complete] 'Saving Light' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (No One On Earth)
+AudioTrack destructor called for: No One On Earth
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -1453,13 +1845,17 @@ Active Deck: 0
 --- Processing: Concrete Angel ---
 [System] Loading track 'Concrete Angel' to controller...
 [Cache MISS] Cloning track into cache: Concrete Angel
+AudioTrack copy constructor called for: Concrete Angel
 [WAVTrack::load] Loading WAV: "Concrete Angel" at 44100Hz/24bit (uncompressed)...
   → Estimated file size: 80967600 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Concrete Angel"
   → Estimated beats: 622  → Precision factor: 1 (uncompressed audio)
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b7de10
+AudioTrack destructor called for: Tuvan
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Concrete Angel' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1471,15 +1867,16 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Concrete Angel
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Concrete Angel
 [Deck Switch] Target deck: 1
 [WAVTrack::load] Loading WAV: "Concrete Angel" at 44100Hz/24bit (uncompressed)...
   → Estimated file size: 80967600 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Concrete Angel"
   → Estimated beats: 622  → Precision factor: 1 (uncompressed audio)
-[Sync BPM] Syncing BPM from 122 to 126
 [Load Complete] 'Concrete Angel' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Saving Light)
+AudioTrack destructor called for: Saving Light
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -1491,14 +1888,18 @@ Active Deck: 1
 --- Processing: Right Back ---
 [System] Loading track 'Right Back' to controller...
 [Cache MISS] Cloning track into cache: Right Back
+AudioTrack copy constructor called for: Right Back
 [MP3Track::load] Loading MP3: "Right Back" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Right Back"
   → Estimated beats: 779  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b81df0
+AudioTrack destructor called for: Lighter Than Air
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Right Back' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1510,6 +1911,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Right Back
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Right Back
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Right Back" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1517,9 +1919,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Right Back"
   → Estimated beats: 779  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 125 to 125
 [Load Complete] 'Right Back' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Concrete Angel)
+AudioTrack destructor called for: Concrete Angel
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -1542,6 +1944,7 @@ Errors: 0
 [System] Loading playlist: lost_frequencies_tomorrowland_2025_w1
 [INFO] Loading playlist: lost_frequencies_tomorrowland_2025_w1
 Created playlist: lost_frequencies_tomorrowland_2025_w1
+AudioTrack copy constructor called for: Black Thunderclouds (Lost Frequencies 2025 Intro)
 [MP3Track::load] Loading MP3: "Black Thunderclouds (Lost Frequencies 2025 Intro)" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1549,12 +1952,14 @@ Created playlist: lost_frequencies_tomorrowland_2025_w1
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Black Thunderclouds (Lost Frequencies 2025 Intro)"
   → Estimated beats: 662  → Compression precision factor: 0.8
 Added 'Black Thunderclouds (Lost Frequencies 2025 Intro)' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: ID1
 [WAVTrack::load] Loading WAV: "ID1" at 44100Hz/16bit (uncompressed)...
   → Estimated file size: 48686400 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "ID1"
   → Estimated beats: 584  → Precision factor: 1 (uncompressed audio)
 Added 'ID1' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Sun Is Shining
 [MP3Track::load] Loading MP3: "Sun Is Shining" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1562,12 +1967,14 @@ Added 'ID1' to playlist 'lost_frequencies_tomorrowland_2025_w1'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Sun Is Shining"
   → Estimated beats: 533  → Compression precision factor: 0.8
 Added 'Sun Is Shining' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Are You With Me
 [WAVTrack::load] Loading WAV: "Are You With Me" at 44100Hz/24bit (uncompressed)...
   → Estimated file size: 49744800 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Are You With Me"
   → Estimated beats: 385  → Precision factor: 1 (uncompressed audio)
 Added 'Are You With Me' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Worry About Me
 [MP3Track::load] Loading MP3: "Worry About Me" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1575,24 +1982,28 @@ Added 'Are You With Me' to playlist 'lost_frequencies_tomorrowland_2025_w1'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Worry About Me"
   → Estimated beats: 576  → Compression precision factor: 0.8
 Added 'Worry About Me' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: ID2
 [WAVTrack::load] Loading WAV: "ID2" at 44100Hz/16bit (uncompressed)...
   → Estimated file size: 54860400 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "ID2"
   → Estimated beats: 679  → Precision factor: 1 (uncompressed audio)
 Added 'ID2' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Love Is The Only Thing
 [WAVTrack::load] Loading WAV: "Love Is The Only Thing" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 73152000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Love Is The Only Thing"
   → Estimated beats: 889  → Precision factor: 1 (uncompressed audio)
 Added 'Love Is The Only Thing' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Kick The Nation
 [WAVTrack::load] Loading WAV: "Kick The Nation" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 47232000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Kick The Nation"
   → Estimated beats: 541  → Precision factor: 1 (uncompressed audio)
 Added 'Kick The Nation' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Summer Skies (I Love To Cry)
 [MP3Track::load] Loading MP3: "Summer Skies (I Love To Cry)" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1600,18 +2011,21 @@ Added 'Kick The Nation' to playlist 'lost_frequencies_tomorrowland_2025_w1'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Summer Skies (I Love To Cry)"
   → Estimated beats: 781  → Compression precision factor: 0.8
 Added 'Summer Skies (I Love To Cry)' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Kesariya
 [WAVTrack::load] Loading WAV: "Kesariya" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 38400000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Kesariya"
   → Estimated beats: 460  → Precision factor: 1 (uncompressed audio)
 Added 'Kesariya' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: ID2
 [WAVTrack::load] Loading WAV: "ID2" at 44100Hz/16bit (uncompressed)...
   → Estimated file size: 54860400 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "ID2"
   → Estimated beats: 679  → Precision factor: 1 (uncompressed audio)
 Added 'ID2' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Head Down
 [MP3Track::load] Loading MP3: "Head Down" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1619,18 +2033,21 @@ Added 'ID2' to playlist 'lost_frequencies_tomorrowland_2025_w1'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Head Down"
   → Estimated beats: 711  → Compression precision factor: 0.8
 Added 'Head Down' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: The Feeling
 [WAVTrack::load] Loading WAV: "The Feeling" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 85632000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "The Feeling"
   → Estimated beats: 914  → Precision factor: 1 (uncompressed audio)
 Added 'The Feeling' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: The Feeling
 [WAVTrack::load] Loading WAV: "The Feeling" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 85632000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "The Feeling"
   → Estimated beats: 914  → Precision factor: 1 (uncompressed audio)
 Added 'The Feeling' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Just Wanna Know
 [MP3Track::load] Loading MP3: "Just Wanna Know" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1638,12 +2055,14 @@ Added 'The Feeling' to playlist 'lost_frequencies_tomorrowland_2025_w1'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Just Wanna Know"
   → Estimated beats: 944  → Compression precision factor: 0.6
 Added 'Just Wanna Know' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Let Me Blow Ya Mind (Netsky Bootleg)
 [WAVTrack::load] Loading WAV: "Let Me Blow Ya Mind (Netsky Bootleg)" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 83520000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Let Me Blow Ya Mind (Netsky Bootleg)"
   → Estimated beats: 935  → Precision factor: 1 (uncompressed audio)
 Added 'Let Me Blow Ya Mind (Netsky Bootleg)' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Where Are You Now
 [MP3Track::load] Loading MP3: "Where Are You Now" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1651,6 +2070,7 @@ Added 'Let Me Blow Ya Mind (Netsky Bootleg)' to playlist 'lost_frequencies_tomor
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Where Are You Now"
   → Estimated beats: 410  → Compression precision factor: 1
 Added 'Where Are You Now' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Where Are You Now
 [MP3Track::load] Loading MP3: "Where Are You Now" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1658,6 +2078,7 @@ Added 'Where Are You Now' to playlist 'lost_frequencies_tomorrowland_2025_w1'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Where Are You Now"
   → Estimated beats: 410  → Compression precision factor: 1
 Added 'Where Are You Now' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Voodoo People
 [MP3Track::load] Loading MP3: "Voodoo People" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1665,6 +2086,7 @@ Added 'Where Are You Now' to playlist 'lost_frequencies_tomorrowland_2025_w1'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Voodoo People"
   → Estimated beats: 782  → Compression precision factor: 0.8
 Added 'Voodoo People' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Freestyler (Rock The Microphone)
 [MP3Track::load] Loading MP3: "Freestyler (Rock The Microphone)" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1672,12 +2094,14 @@ Added 'Voodoo People' to playlist 'lost_frequencies_tomorrowland_2025_w1'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Freestyler (Rock The Microphone)"
   → Estimated beats: 512  → Compression precision factor: 0.6
 Added 'Freestyler (Rock The Microphone)' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: High Hopes
 [WAVTrack::load] Loading WAV: "High Hopes" at 96000Hz/24bit (uncompressed)...
   → Estimated file size: 139392000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "High Hopes"
   → Estimated beats: 500  → Precision factor: 1 (uncompressed audio)
 Added 'High Hopes' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Reality
 [MP3Track::load] Loading MP3: "Reality" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1685,6 +2109,7 @@ Added 'High Hopes' to playlist 'lost_frequencies_tomorrowland_2025_w1'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Reality"
   → Estimated beats: 534  → Compression precision factor: 0.8
 Added 'Reality' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Black Friday (Pretty Like The Sun)
 [MP3Track::load] Loading MP3: "Black Friday (Pretty Like The Sun)" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1692,6 +2117,7 @@ Added 'Reality' to playlist 'lost_frequencies_tomorrowland_2025_w1'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Black Friday (Pretty Like The Sun)"
   → Estimated beats: 534  → Compression precision factor: 0.8
 Added 'Black Friday (Pretty Like The Sun)' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Black Friday (Pretty Like The Sun)
 [MP3Track::load] Loading MP3: "Black Friday (Pretty Like The Sun)" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1699,6 +2125,7 @@ Added 'Black Friday (Pretty Like The Sun)' to playlist 'lost_frequencies_tomorro
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Black Friday (Pretty Like The Sun)"
   → Estimated beats: 534  → Compression precision factor: 0.8
 Added 'Black Friday (Pretty Like The Sun)' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Innerbloom (RUMPUS Edit)
 [MP3Track::load] Loading MP3: "Innerbloom (RUMPUS Edit)" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1706,6 +2133,7 @@ Added 'Black Friday (Pretty Like The Sun)' to playlist 'lost_frequencies_tomorro
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Innerbloom (RUMPUS Edit)"
   → Estimated beats: 518  → Compression precision factor: 1
 Added 'Innerbloom (RUMPUS Edit)' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Timeless
 [MP3Track::load] Loading MP3: "Timeless" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1713,6 +2141,7 @@ Added 'Innerbloom (RUMPUS Edit)' to playlist 'lost_frequencies_tomorrowland_2025
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Timeless"
   → Estimated beats: 573  → Compression precision factor: 0.8
 Added 'Timeless' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Sweet Disposition (A Moment A Love)
 [MP3Track::load] Loading MP3: "Sweet Disposition (A Moment A Love)" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1720,6 +2149,7 @@ Added 'Timeless' to playlist 'lost_frequencies_tomorrowland_2025_w1'
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Sweet Disposition (A Moment A Love)"
   → Estimated beats: 883  → Compression precision factor: 1
 Added 'Sweet Disposition (A Moment A Love)' to playlist 'lost_frequencies_tomorrowland_2025_w1'
+AudioTrack copy constructor called for: Dance In The Sunlight (Deluxe Version)
 [MP3Track::load] Loading MP3: "Dance In The Sunlight (Deluxe Version)" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
@@ -1728,18 +2158,54 @@ Added 'Sweet Disposition (A Moment A Love)' to playlist 'lost_frequencies_tomorr
   → Estimated beats: 748  → Compression precision factor: 0.8
 Added 'Dance In The Sunlight (Deluxe Version)' to playlist 'lost_frequencies_tomorrowland_2025_w1'
 [INFO] Playlist loaded: lost_frequencies_tomorrowland_2025_w1 (28 tracks)
+Move assignment called for playlist: armin_van_buuren_ASOT_1250
+AudioTrack destructor called for: Drum's A Weapon
+AudioTrack destructor called for: Ligaya
+AudioTrack destructor called for: Sweet Sorrow
+AudioTrack destructor called for: Brain Box
+AudioTrack destructor called for: Mo Chara
+AudioTrack destructor called for: Not Coming Down
+AudioTrack destructor called for: Voema
+AudioTrack destructor called for: Rock Your Body Rock
+AudioTrack destructor called for: Bloodstream
+AudioTrack destructor called for: Lemme Take You
+AudioTrack destructor called for: We're Not Going Home
+AudioTrack destructor called for: Homeward
+AudioTrack destructor called for: Blueprint
+AudioTrack destructor called for: We Control The Sunlight
+AudioTrack destructor called for: For All Time
+AudioTrack destructor called for: The Air I Breathe
+AudioTrack destructor called for: Just As You Are
+AudioTrack destructor called for: What Took You So Long
+AudioTrack destructor called for: Destination (ASOT 2024 Anthem)
+AudioTrack destructor called for: Intense
+AudioTrack destructor called for: Take This
+AudioTrack destructor called for: Southern Sun
+AudioTrack destructor called for: U
+AudioTrack destructor called for: Anahera
+AudioTrack destructor called for: Tuvan
+AudioTrack destructor called for: Lighter Than Air
+AudioTrack destructor called for: No One On Earth
+AudioTrack destructor called for: Saving Light
+AudioTrack destructor called for: Concrete Angel
+AudioTrack destructor called for: Right Back
+Destroying playlist: 
 
 --- Processing: Dance In The Sunlight (Deluxe Version) ---
 [System] Loading track 'Dance In The Sunlight (Deluxe Version)' to controller...
 [Cache MISS] Cloning track into cache: Dance In The Sunlight (Deluxe Version)
+AudioTrack copy constructor called for: Dance In The Sunlight (Deluxe Version)
 [MP3Track::load] Loading MP3: "Dance In The Sunlight (Deluxe Version)" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Dance In The Sunlight (Deluxe Version)"
   → Estimated beats: 748  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b7fe00
+AudioTrack destructor called for: No One On Earth
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Dance In The Sunlight (Deluxe Version)' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1751,6 +2217,7 @@ Added 'Dance In The Sunlight (Deluxe Version)' to playlist 'lost_frequencies_tom
 [System] Delegating track transfer to MixingEngineService for: Dance In The Sunlight (Deluxe Version)
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Dance In The Sunlight (Deluxe Version)
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "Dance In The Sunlight (Deluxe Version)" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1758,9 +2225,9 @@ Added 'Dance In The Sunlight (Deluxe Version)' to playlist 'lost_frequencies_tom
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Dance In The Sunlight (Deluxe Version)"
   → Estimated beats: 748  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 121 to 123
 [Load Complete] 'Dance In The Sunlight (Deluxe Version)' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Right Back)
+AudioTrack destructor called for: Right Back
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -1772,14 +2239,18 @@ Active Deck: 1
 --- Processing: Sweet Disposition (A Moment A Love) ---
 [System] Loading track 'Sweet Disposition (A Moment A Love)' to controller...
 [Cache MISS] Cloning track into cache: Sweet Disposition (A Moment A Love)
+AudioTrack copy constructor called for: Sweet Disposition (A Moment A Love)
 [MP3Track::load] Loading MP3: "Sweet Disposition (A Moment A Love)" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Sweet Disposition (A Moment A Love)"
   → Estimated beats: 883  → Compression precision factor: 1
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b83e10
+AudioTrack destructor called for: Saving Light
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Sweet Disposition (A Moment A Love)' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1791,6 +2262,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Sweet Disposition (A Moment A Love)
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Sweet Disposition (A Moment A Love)
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Sweet Disposition (A Moment A Love)" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1798,9 +2270,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Sweet Disposition (A Moment A Love)"
   → Estimated beats: 883  → Compression precision factor: 1
-[Sync BPM] Syncing BPM from 123 to 123
 [Load Complete] 'Sweet Disposition (A Moment A Love)' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Dance In The Sunlight (Deluxe Version))
+AudioTrack destructor called for: Dance In The Sunlight (Deluxe Version)
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -1812,14 +2284,18 @@ Active Deck: 0
 --- Processing: Timeless ---
 [System] Loading track 'Timeless' to controller...
 [Cache MISS] Cloning track into cache: Timeless
+AudioTrack copy constructor called for: Timeless
 [MP3Track::load] Loading MP3: "Timeless" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Timeless"
   → Estimated beats: 573  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b85e30
+AudioTrack destructor called for: Concrete Angel
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Timeless' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1831,6 +2307,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Timeless
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Timeless
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "Timeless" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1838,9 +2315,9 @@ Active Deck: 0
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Timeless"
   → Estimated beats: 573  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 135 to 129
 [Load Complete] 'Timeless' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Sweet Disposition (A Moment A Love))
+AudioTrack destructor called for: Sweet Disposition (A Moment A Love)
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -1852,14 +2329,18 @@ Active Deck: 1
 --- Processing: Innerbloom (RUMPUS Edit) ---
 [System] Loading track 'Innerbloom (RUMPUS Edit)' to controller...
 [Cache MISS] Cloning track into cache: Innerbloom (RUMPUS Edit)
+AudioTrack copy constructor called for: Innerbloom (RUMPUS Edit)
 [MP3Track::load] Loading MP3: "Innerbloom (RUMPUS Edit)" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Innerbloom (RUMPUS Edit)"
   → Estimated beats: 518  → Compression precision factor: 1
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b87e20
+AudioTrack destructor called for: Right Back
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Innerbloom (RUMPUS Edit)' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1871,6 +2352,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Innerbloom (RUMPUS Edit)
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Innerbloom (RUMPUS Edit)
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Innerbloom (RUMPUS Edit)" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1878,9 +2360,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Innerbloom (RUMPUS Edit)"
   → Estimated beats: 518  → Compression precision factor: 1
-[Sync BPM] Syncing BPM from 123 to 126
 [Load Complete] 'Innerbloom (RUMPUS Edit)' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Timeless)
+AudioTrack destructor called for: Timeless
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -1892,14 +2374,18 @@ Active Deck: 0
 --- Processing: Black Friday (Pretty Like The Sun) ---
 [System] Loading track 'Black Friday (Pretty Like The Sun)' to controller...
 [Cache MISS] Cloning track into cache: Black Friday (Pretty Like The Sun)
+AudioTrack copy constructor called for: Black Friday (Pretty Like The Sun)
 [MP3Track::load] Loading MP3: "Black Friday (Pretty Like The Sun)" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Black Friday (Pretty Like The Sun)"
   → Estimated beats: 534  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b6f7b0
+AudioTrack destructor called for: Dance In The Sunlight (Deluxe Version)
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Black Friday (Pretty Like The Sun)' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1911,6 +2397,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Black Friday (Pretty Like The Sun)
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Black Friday (Pretty Like The Sun)
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "Black Friday (Pretty Like The Sun)" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1918,9 +2405,10 @@ Active Deck: 0
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Black Friday (Pretty Like The Sun)"
   → Estimated beats: 534  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 140 to 133
+[Sync BPM] Syncing BPM from 140 to 131
 [Load Complete] 'Black Friday (Pretty Like The Sun)' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Innerbloom (RUMPUS Edit))
+AudioTrack destructor called for: Innerbloom (RUMPUS Edit)
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -1943,6 +2431,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Black Friday (Pretty Like The Sun)
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Black Friday (Pretty Like The Sun)
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Black Friday (Pretty Like The Sun)" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1950,9 +2439,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Black Friday (Pretty Like The Sun)"
   → Estimated beats: 534  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 140 to 136
 [Load Complete] 'Black Friday (Pretty Like The Sun)' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Black Friday (Pretty Like The Sun))
+AudioTrack destructor called for: Black Friday (Pretty Like The Sun)
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -1964,14 +2453,18 @@ Active Deck: 0
 --- Processing: Reality ---
 [System] Loading track 'Reality' to controller...
 [Cache MISS] Cloning track into cache: Reality
+AudioTrack copy constructor called for: Reality
 [MP3Track::load] Loading MP3: "Reality" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Reality"
   → Estimated beats: 534  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b81df0
+AudioTrack destructor called for: Sweet Disposition (A Moment A Love)
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Reality' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -1983,6 +2476,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Reality
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Reality
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "Reality" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -1990,8 +2484,10 @@ Active Deck: 0
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Reality"
   → Estimated beats: 534  → Compression precision factor: 0.8
+[Sync BPM] Syncing BPM from 120 to 130
 [Load Complete] 'Reality' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Black Friday (Pretty Like The Sun))
+AudioTrack destructor called for: Black Friday (Pretty Like The Sun)
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -2003,13 +2499,17 @@ Active Deck: 1
 --- Processing: High Hopes ---
 [System] Loading track 'High Hopes' to controller...
 [Cache MISS] Cloning track into cache: High Hopes
+AudioTrack copy constructor called for: High Hopes
 [WAVTrack::load] Loading WAV: "High Hopes" at 96000Hz/24bit (uncompressed)...
   → Estimated file size: 139392000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "High Hopes"
   → Estimated beats: 500  → Precision factor: 1 (uncompressed audio)
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b7fe00
+AudioTrack destructor called for: Timeless
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'High Hopes' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2021,15 +2521,16 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: High Hopes
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: High Hopes
 [Deck Switch] Target deck: 0
 [WAVTrack::load] Loading WAV: "High Hopes" at 96000Hz/24bit (uncompressed)...
   → Estimated file size: 139392000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "High Hopes"
   → Estimated beats: 500  → Precision factor: 1 (uncompressed audio)
-[Sync BPM] Syncing BPM from 124 to 122
 [Load Complete] 'High Hopes' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Reality)
+AudioTrack destructor called for: Reality
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -2041,14 +2542,18 @@ Active Deck: 0
 --- Processing: Freestyler (Rock The Microphone) ---
 [System] Loading track 'Freestyler (Rock The Microphone)' to controller...
 [Cache MISS] Cloning track into cache: Freestyler (Rock The Microphone)
+AudioTrack copy constructor called for: Freestyler (Rock The Microphone)
 [MP3Track::load] Loading MP3: "Freestyler (Rock The Microphone)" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Freestyler (Rock The Microphone)"
   → Estimated beats: 512  → Compression precision factor: 0.6
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b83e10
+AudioTrack destructor called for: Innerbloom (RUMPUS Edit)
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Freestyler (Rock The Microphone)' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2060,6 +2565,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Freestyler (Rock The Microphone)
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Freestyler (Rock The Microphone)
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "Freestyler (Rock The Microphone)" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -2069,6 +2575,7 @@ Active Deck: 0
   → Estimated beats: 512  → Compression precision factor: 0.6
 [Load Complete] 'Freestyler (Rock The Microphone)' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (High Hopes)
+AudioTrack destructor called for: High Hopes
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -2080,14 +2587,18 @@ Active Deck: 1
 --- Processing: Voodoo People ---
 [System] Loading track 'Voodoo People' to controller...
 [Cache MISS] Cloning track into cache: Voodoo People
+AudioTrack copy constructor called for: Voodoo People
 [MP3Track::load] Loading MP3: "Voodoo People" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Voodoo People"
   → Estimated beats: 782  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b85e30
+AudioTrack destructor called for: Black Friday (Pretty Like The Sun)
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Voodoo People' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2099,6 +2610,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Voodoo People
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Voodoo People
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Voodoo People" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -2106,8 +2618,10 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Voodoo People"
   → Estimated beats: 782  → Compression precision factor: 0.8
+[Sync BPM] Syncing BPM from 120 to 129
 [Load Complete] 'Voodoo People' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Freestyler (Rock The Microphone))
+AudioTrack destructor called for: Freestyler (Rock The Microphone)
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -2119,14 +2633,18 @@ Active Deck: 0
 --- Processing: Where Are You Now ---
 [System] Loading track 'Where Are You Now' to controller...
 [Cache MISS] Cloning track into cache: Where Are You Now
+AudioTrack copy constructor called for: Where Are You Now
 [MP3Track::load] Loading MP3: "Where Are You Now" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Where Are You Now"
   → Estimated beats: 410  → Compression precision factor: 1
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b6f7b0
+AudioTrack destructor called for: Reality
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Where Are You Now' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2138,6 +2656,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Where Are You Now
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Where Are You Now
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "Where Are You Now" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -2147,6 +2666,7 @@ Active Deck: 0
   → Estimated beats: 410  → Compression precision factor: 1
 [Load Complete] 'Where Are You Now' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Voodoo People)
+AudioTrack destructor called for: Voodoo People
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -2169,6 +2689,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Where Are You Now
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Where Are You Now
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Where Are You Now" at 320 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -2176,9 +2697,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Where Are You Now"
   → Estimated beats: 410  → Compression precision factor: 1
-[Sync BPM] Syncing BPM from 136 to 136
 [Load Complete] 'Where Are You Now' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Where Are You Now)
+AudioTrack destructor called for: Where Are You Now
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -2190,13 +2711,17 @@ Active Deck: 0
 --- Processing: Let Me Blow Ya Mind (Netsky Bootleg) ---
 [System] Loading track 'Let Me Blow Ya Mind (Netsky Bootleg)' to controller...
 [Cache MISS] Cloning track into cache: Let Me Blow Ya Mind (Netsky Bootleg)
+AudioTrack copy constructor called for: Let Me Blow Ya Mind (Netsky Bootleg)
 [WAVTrack::load] Loading WAV: "Let Me Blow Ya Mind (Netsky Bootleg)" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 83520000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Let Me Blow Ya Mind (Netsky Bootleg)"
   → Estimated beats: 935  → Precision factor: 1 (uncompressed audio)
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b87e20
+AudioTrack destructor called for: High Hopes
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Let Me Blow Ya Mind (Netsky Bootleg)' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2208,15 +2733,16 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Let Me Blow Ya Mind (Netsky Bootleg)
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Let Me Blow Ya Mind (Netsky Bootleg)
 [Deck Switch] Target deck: 1
 [WAVTrack::load] Loading WAV: "Let Me Blow Ya Mind (Netsky Bootleg)" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 83520000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Let Me Blow Ya Mind (Netsky Bootleg)"
   → Estimated beats: 935  → Precision factor: 1 (uncompressed audio)
-[Sync BPM] Syncing BPM from 129 to 132
 [Load Complete] 'Let Me Blow Ya Mind (Netsky Bootleg)' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Where Are You Now)
+AudioTrack destructor called for: Where Are You Now
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -2228,14 +2754,18 @@ Active Deck: 1
 --- Processing: Just Wanna Know ---
 [System] Loading track 'Just Wanna Know' to controller...
 [Cache MISS] Cloning track into cache: Just Wanna Know
+AudioTrack copy constructor called for: Just Wanna Know
 [MP3Track::load] Loading MP3: "Just Wanna Know" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Just Wanna Know"
   → Estimated beats: 944  → Compression precision factor: 0.6
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b81df0
+AudioTrack destructor called for: Freestyler (Rock The Microphone)
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Just Wanna Know' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2247,6 +2777,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Just Wanna Know
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Just Wanna Know
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Just Wanna Know" at 192 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -2254,9 +2785,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Just Wanna Know"
   → Estimated beats: 944  → Compression precision factor: 0.6
-[Sync BPM] Syncing BPM from 133 to 132
 [Load Complete] 'Just Wanna Know' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Let Me Blow Ya Mind (Netsky Bootleg))
+AudioTrack destructor called for: Let Me Blow Ya Mind (Netsky Bootleg)
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -2268,13 +2799,17 @@ Active Deck: 0
 --- Processing: The Feeling ---
 [System] Loading track 'The Feeling' to controller...
 [Cache MISS] Cloning track into cache: The Feeling
+AudioTrack copy constructor called for: The Feeling
 [WAVTrack::load] Loading WAV: "The Feeling" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 85632000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "The Feeling"
   → Estimated beats: 914  → Precision factor: 1 (uncompressed audio)
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b7fe00
+AudioTrack destructor called for: Voodoo People
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'The Feeling' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2286,15 +2821,16 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: The Feeling
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: The Feeling
 [Deck Switch] Target deck: 1
 [WAVTrack::load] Loading WAV: "The Feeling" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 85632000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "The Feeling"
   → Estimated beats: 914  → Precision factor: 1 (uncompressed audio)
-[Sync BPM] Syncing BPM from 123 to 127
 [Load Complete] 'The Feeling' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Just Wanna Know)
+AudioTrack destructor called for: Just Wanna Know
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -2317,15 +2853,16 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: The Feeling
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: The Feeling
 [Deck Switch] Target deck: 0
 [WAVTrack::load] Loading WAV: "The Feeling" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 85632000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "The Feeling"
   → Estimated beats: 914  → Precision factor: 1 (uncompressed audio)
-[Sync BPM] Syncing BPM from 123 to 125
 [Load Complete] 'The Feeling' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (The Feeling)
+AudioTrack destructor called for: The Feeling
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -2337,14 +2874,18 @@ Active Deck: 0
 --- Processing: Head Down ---
 [System] Loading track 'Head Down' to controller...
 [Cache MISS] Cloning track into cache: Head Down
+AudioTrack copy constructor called for: Head Down
 [MP3Track::load] Loading MP3: "Head Down" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Head Down"
   → Estimated beats: 711  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b83e10
+AudioTrack destructor called for: Where Are You Now
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Head Down' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2356,6 +2897,7 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Head Down
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Head Down
 [Deck Switch] Target deck: 1
 [MP3Track::load] Loading MP3: "Head Down" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -2363,9 +2905,9 @@ Active Deck: 0
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Head Down"
   → Estimated beats: 711  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 126 to 125
 [Load Complete] 'Head Down' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (The Feeling)
+AudioTrack destructor called for: The Feeling
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -2377,13 +2919,17 @@ Active Deck: 1
 --- Processing: ID2 ---
 [System] Loading track 'ID2' to controller...
 [Cache MISS] Cloning track into cache: ID2
+AudioTrack copy constructor called for: ID2
 [WAVTrack::load] Loading WAV: "ID2" at 44100Hz/16bit (uncompressed)...
   → Estimated file size: 54860400 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "ID2"
   → Estimated beats: 679  → Precision factor: 1 (uncompressed audio)
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b6f7b0
+AudioTrack destructor called for: Let Me Blow Ya Mind (Netsky Bootleg)
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'ID2' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2395,15 +2941,16 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: ID2
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: ID2
 [Deck Switch] Target deck: 0
 [WAVTrack::load] Loading WAV: "ID2" at 44100Hz/16bit (uncompressed)...
   → Estimated file size: 54860400 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "ID2"
   → Estimated beats: 679  → Precision factor: 1 (uncompressed audio)
-[Sync BPM] Syncing BPM from 131 to 128
 [Load Complete] 'ID2' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Head Down)
+AudioTrack destructor called for: Head Down
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -2415,13 +2962,17 @@ Active Deck: 0
 --- Processing: Kesariya ---
 [System] Loading track 'Kesariya' to controller...
 [Cache MISS] Cloning track into cache: Kesariya
+AudioTrack copy constructor called for: Kesariya
 [WAVTrack::load] Loading WAV: "Kesariya" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 38400000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Kesariya"
   → Estimated beats: 460  → Precision factor: 1 (uncompressed audio)
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b85e30
+AudioTrack destructor called for: Just Wanna Know
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Kesariya' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2433,15 +2984,16 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Kesariya
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Kesariya
 [Deck Switch] Target deck: 1
 [WAVTrack::load] Loading WAV: "Kesariya" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 38400000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Kesariya"
   → Estimated beats: 460  → Precision factor: 1 (uncompressed audio)
-[Sync BPM] Syncing BPM from 138 to 133
 [Load Complete] 'Kesariya' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (ID2)
+AudioTrack destructor called for: ID2
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -2453,14 +3005,18 @@ Active Deck: 1
 --- Processing: Summer Skies (I Love To Cry) ---
 [System] Loading track 'Summer Skies (I Love To Cry)' to controller...
 [Cache MISS] Cloning track into cache: Summer Skies (I Love To Cry)
+AudioTrack copy constructor called for: Summer Skies (I Love To Cry)
 [MP3Track::load] Loading MP3: "Summer Skies (I Love To Cry)" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Summer Skies (I Love To Cry)"
   → Estimated beats: 781  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b87e20
+AudioTrack destructor called for: The Feeling
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Summer Skies (I Love To Cry)' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2472,6 +3028,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Summer Skies (I Love To Cry)
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Summer Skies (I Love To Cry)
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Summer Skies (I Love To Cry)" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -2479,9 +3036,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Summer Skies (I Love To Cry)"
   → Estimated beats: 781  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 127 to 130
 [Load Complete] 'Summer Skies (I Love To Cry)' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Kesariya)
+AudioTrack destructor called for: Kesariya
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -2493,13 +3050,17 @@ Active Deck: 0
 --- Processing: Kick The Nation ---
 [System] Loading track 'Kick The Nation' to controller...
 [Cache MISS] Cloning track into cache: Kick The Nation
+AudioTrack copy constructor called for: Kick The Nation
 [WAVTrack::load] Loading WAV: "Kick The Nation" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 47232000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Kick The Nation"
   → Estimated beats: 541  → Precision factor: 1 (uncompressed audio)
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b7fe00
+AudioTrack destructor called for: Head Down
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Kick The Nation' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2511,15 +3072,16 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Kick The Nation
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Kick The Nation
 [Deck Switch] Target deck: 1
 [WAVTrack::load] Loading WAV: "Kick The Nation" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 47232000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Kick The Nation"
   → Estimated beats: 541  → Precision factor: 1 (uncompressed audio)
-[Sync BPM] Syncing BPM from 132 to 131
 [Load Complete] 'Kick The Nation' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Summer Skies (I Love To Cry))
+AudioTrack destructor called for: Summer Skies (I Love To Cry)
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -2531,13 +3093,17 @@ Active Deck: 1
 --- Processing: Love Is The Only Thing ---
 [System] Loading track 'Love Is The Only Thing' to controller...
 [Cache MISS] Cloning track into cache: Love Is The Only Thing
+AudioTrack copy constructor called for: Love Is The Only Thing
 [WAVTrack::load] Loading WAV: "Love Is The Only Thing" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 73152000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Love Is The Only Thing"
   → Estimated beats: 889  → Precision factor: 1 (uncompressed audio)
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b81df0
+AudioTrack destructor called for: ID2
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Love Is The Only Thing' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2549,15 +3115,16 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Love Is The Only Thing
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Love Is The Only Thing
 [Deck Switch] Target deck: 0
 [WAVTrack::load] Loading WAV: "Love Is The Only Thing" at 48000Hz/16bit (uncompressed)...
   → Estimated file size: 73152000 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Love Is The Only Thing"
   → Estimated beats: 889  → Precision factor: 1 (uncompressed audio)
-[Sync BPM] Syncing BPM from 140 to 135
 [Load Complete] 'Love Is The Only Thing' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Kick The Nation)
+AudioTrack destructor called for: Kick The Nation
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -2569,13 +3136,17 @@ Active Deck: 0
 --- Processing: ID2 ---
 [System] Loading track 'ID2' to controller...
 [Cache MISS] Cloning track into cache: ID2
+AudioTrack copy constructor called for: ID2
 [WAVTrack::load] Loading WAV: "ID2" at 44100Hz/16bit (uncompressed)...
   → Estimated file size: 54860400 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "ID2"
   → Estimated beats: 679  → Precision factor: 1 (uncompressed audio)
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b83e10
+AudioTrack destructor called for: Kesariya
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'ID2' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2587,15 +3158,16 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: ID2
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: ID2
 [Deck Switch] Target deck: 1
 [WAVTrack::load] Loading WAV: "ID2" at 44100Hz/16bit (uncompressed)...
   → Estimated file size: 54860400 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "ID2"
   → Estimated beats: 679  → Precision factor: 1 (uncompressed audio)
-[Sync BPM] Syncing BPM from 131 to 133
 [Load Complete] 'ID2' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Love Is The Only Thing)
+AudioTrack destructor called for: Love Is The Only Thing
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -2607,14 +3179,18 @@ Active Deck: 1
 --- Processing: Worry About Me ---
 [System] Loading track 'Worry About Me' to controller...
 [Cache MISS] Cloning track into cache: Worry About Me
+AudioTrack copy constructor called for: Worry About Me
 [MP3Track::load] Loading MP3: "Worry About Me" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Worry About Me"
   → Estimated beats: 576  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b6f7b0
+AudioTrack destructor called for: Summer Skies (I Love To Cry)
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Worry About Me' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2626,6 +3202,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Worry About Me
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Worry About Me
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Worry About Me" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -2633,9 +3210,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Worry About Me"
   → Estimated beats: 576  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 130 to 131
 [Load Complete] 'Worry About Me' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (ID2)
+AudioTrack destructor called for: ID2
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -2647,13 +3224,17 @@ Active Deck: 0
 --- Processing: Are You With Me ---
 [System] Loading track 'Are You With Me' to controller...
 [Cache MISS] Cloning track into cache: Are You With Me
+AudioTrack copy constructor called for: Are You With Me
 [WAVTrack::load] Loading WAV: "Are You With Me" at 44100Hz/24bit (uncompressed)...
   → Estimated file size: 49744800 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Are You With Me"
   → Estimated beats: 385  → Precision factor: 1 (uncompressed audio)
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b85e30
+AudioTrack destructor called for: Kick The Nation
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Are You With Me' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2665,15 +3246,16 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: Are You With Me
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Are You With Me
 [Deck Switch] Target deck: 1
 [WAVTrack::load] Loading WAV: "Are You With Me" at 44100Hz/24bit (uncompressed)...
   → Estimated file size: 49744800 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Are You With Me"
   → Estimated beats: 385  → Precision factor: 1 (uncompressed audio)
-[Sync BPM] Syncing BPM from 123 to 127
 [Load Complete] 'Are You With Me' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Worry About Me)
+AudioTrack destructor called for: Worry About Me
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -2685,14 +3267,18 @@ Active Deck: 1
 --- Processing: Sun Is Shining ---
 [System] Loading track 'Sun Is Shining' to controller...
 [Cache MISS] Cloning track into cache: Sun Is Shining
+AudioTrack copy constructor called for: Sun Is Shining
 [MP3Track::load] Loading MP3: "Sun Is Shining" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Sun Is Shining"
   → Estimated beats: 533  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b87e20
+AudioTrack destructor called for: Love Is The Only Thing
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Sun Is Shining' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2704,6 +3290,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Sun Is Shining
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Sun Is Shining
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Sun Is Shining" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -2711,9 +3298,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Sun Is Shining"
   → Estimated beats: 533  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 126 to 126
 [Load Complete] 'Sun Is Shining' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (Are You With Me)
+AudioTrack destructor called for: Are You With Me
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -2725,13 +3312,17 @@ Active Deck: 0
 --- Processing: ID1 ---
 [System] Loading track 'ID1' to controller...
 [Cache MISS] Cloning track into cache: ID1
+AudioTrack copy constructor called for: ID1
 [WAVTrack::load] Loading WAV: "ID1" at 44100Hz/16bit (uncompressed)...
   → Estimated file size: 48686400 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "ID1"
   → Estimated beats: 584  → Precision factor: 1 (uncompressed audio)
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b7fe00
+AudioTrack destructor called for: ID2
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'ID1' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2743,15 +3334,16 @@ Active Deck: 0
 [System] Delegating track transfer to MixingEngineService for: ID1
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: ID1
 [Deck Switch] Target deck: 1
 [WAVTrack::load] Loading WAV: "ID1" at 44100Hz/16bit (uncompressed)...
   → Estimated file size: 48686400 bytes
   → Fast loading due to uncompressed format.
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "ID1"
   → Estimated beats: 584  → Precision factor: 1 (uncompressed audio)
-[Sync BPM] Syncing BPM from 127 to 126
 [Load Complete] 'ID1' is now loaded on deck 1
 [Unload] Unloading previous deck 0 (Sun Is Shining)
+AudioTrack destructor called for: Sun Is Shining
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
@@ -2763,14 +3355,18 @@ Active Deck: 1
 --- Processing: Black Thunderclouds (Lost Frequencies 2025 Intro) ---
 [System] Loading track 'Black Thunderclouds (Lost Frequencies 2025 Intro)' to controller...
 [Cache MISS] Cloning track into cache: Black Thunderclouds (Lost Frequencies 2025 Intro)
+AudioTrack copy constructor called for: Black Thunderclouds (Lost Frequencies 2025 Intro)
 [MP3Track::load] Loading MP3: "Black Thunderclouds (Lost Frequencies 2025 Intro)" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
   → Decoding MP3 frames...
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Black Thunderclouds (Lost Frequencies 2025 Intro)"
   → Estimated beats: 662  → Compression precision factor: 0.8
+Move constructor called for: 0x7fffb4c34000
+Reset called for pointer: 0x560cc4b81df0
+AudioTrack destructor called for: Worry About Me
+Move constructor called for: 0x7fffb4c34008
 [Cache INSERT] Added 'Black Thunderclouds (Lost Frequencies 2025 Intro)' to cache.
-[Cache EVICTION] An item was evicted to make space.
 
 === Cache Status ===
 [LRUCache] Status: 4/4 slots used
@@ -2782,6 +3378,7 @@ Active Deck: 1
 [System] Delegating track transfer to MixingEngineService for: Black Thunderclouds (Lost Frequencies 2025 Intro)
 
 === Loading Track to Deck ===
+AudioTrack copy constructor called for: Black Thunderclouds (Lost Frequencies 2025 Intro)
 [Deck Switch] Target deck: 0
 [MP3Track::load] Loading MP3: "Black Thunderclouds (Lost Frequencies 2025 Intro)" at 256 kbps...
   → Processing ID3 metadata (artist info, album art, etc.)...
@@ -2789,9 +3386,9 @@ Active Deck: 1
   → Load complete.
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Black Thunderclouds (Lost Frequencies 2025 Intro)"
   → Estimated beats: 662  → Compression precision factor: 0.8
-[Sync BPM] Syncing BPM from 139 to 132
 [Load Complete] 'Black Thunderclouds (Lost Frequencies 2025 Intro)' is now loaded on deck 0
 [Unload] Unloading previous deck 1 (ID1)
+AudioTrack destructor called for: ID1
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
@@ -2802,13 +3399,13 @@ Active Deck: 0
 
 === DJ Session Summary ===
 Session: Interactive Session
-Tracks processed: 58
+Tracks processed: 28
 Cache hits: 3
-Cache misses: 55
-Cache evictions: 51
-Deck A loads: 29
-Deck B loads: 29
-Transitions: 58
+Cache misses: 25
+Cache evictions: 25
+Deck A loads: 14
+Deck B loads: 14
+Transitions: 28
 Errors: 0
 === Session Complete ===
 Session cancelled by user or all playlists played.
@@ -2816,3 +3413,148 @@ Session cancelled by user or all playlists played.
 
 Shutting down DJ Session System: Interactive Session
 [MixingEngineService] Cleaning up decks...
+AudioTrack destructor called for: Black Thunderclouds (Lost Frequencies 2025 Intro)
+AudioTrack destructor called for: Sun Is Shining
+AudioTrack destructor called for: ID1
+AudioTrack destructor called for: Black Thunderclouds (Lost Frequencies 2025 Intro)
+AudioTrack destructor called for: Are You With Me
+AudioTrack destructor called for: Right Back
+AudioTrack destructor called for: Concrete Angel
+AudioTrack destructor called for: Saving Light
+AudioTrack destructor called for: No One On Earth
+AudioTrack destructor called for: Lighter Than Air
+AudioTrack destructor called for: Tuvan
+AudioTrack destructor called for: Anahera
+AudioTrack destructor called for: U
+AudioTrack destructor called for: Southern Sun
+AudioTrack destructor called for: Take This
+AudioTrack destructor called for: Intense
+AudioTrack destructor called for: Destination (ASOT 2024 Anthem)
+AudioTrack destructor called for: What Took You So Long
+AudioTrack destructor called for: Just As You Are
+AudioTrack destructor called for: The Air I Breathe
+AudioTrack destructor called for: For All Time
+AudioTrack destructor called for: We Control The Sunlight
+AudioTrack destructor called for: Blueprint
+AudioTrack destructor called for: Homeward
+AudioTrack destructor called for: We're Not Going Home
+AudioTrack destructor called for: Lemme Take You
+AudioTrack destructor called for: Bloodstream
+AudioTrack destructor called for: Rock Your Body Rock
+AudioTrack destructor called for: Voema
+AudioTrack destructor called for: Not Coming Down
+AudioTrack destructor called for: Mo Chara
+AudioTrack destructor called for: Brain Box
+AudioTrack destructor called for: Sweet Sorrow
+AudioTrack destructor called for: Ligaya
+AudioTrack destructor called for: Drum's A Weapon
+AudioTrack destructor called for: Black Thunderclouds (Lost Frequencies 2025 Intro)
+AudioTrack destructor called for: ID1
+AudioTrack destructor called for: Sun Is Shining
+AudioTrack destructor called for: Are You With Me
+AudioTrack destructor called for: Worry About Me
+AudioTrack destructor called for: ID2
+AudioTrack destructor called for: Love Is The Only Thing
+AudioTrack destructor called for: Kick The Nation
+AudioTrack destructor called for: Summer Skies (I Love To Cry)
+AudioTrack destructor called for: Kesariya
+AudioTrack destructor called for: Head Down
+AudioTrack destructor called for: The Feeling
+AudioTrack destructor called for: Just Wanna Know
+AudioTrack destructor called for: Let Me Blow Ya Mind (Netsky Bootleg)
+AudioTrack destructor called for: Where Are You Now
+AudioTrack destructor called for: Voodoo People
+AudioTrack destructor called for: Freestyler (Rock The Microphone)
+AudioTrack destructor called for: High Hopes
+AudioTrack destructor called for: Reality
+AudioTrack destructor called for: Black Friday (Pretty Like The Sun)
+AudioTrack destructor called for: Innerbloom (RUMPUS Edit)
+AudioTrack destructor called for: Timeless
+AudioTrack destructor called for: Sweet Disposition (A Moment A Love)
+AudioTrack destructor called for: Dance In The Sunlight (Deluxe Version)
+AudioTrack destructor called for: ENEMY
+AudioTrack destructor called for: Starlight (Keep Me Afloat)
+AudioTrack destructor called for: Together
+AudioTrack destructor called for: Lions In The Wild (Acappella)
+AudioTrack destructor called for: Nation vs. Won't Let You Go vs. Miracle vs. Callin
+AudioTrack destructor called for: Calling
+AudioTrack destructor called for: Nation
+AudioTrack destructor called for: Won't Let You Go
+AudioTrack destructor called for: Miracle (Acappella)
+AudioTrack destructor called for: Empty
+AudioTrack destructor called for: Arrival
+AudioTrack destructor called for: Move
+AudioTrack destructor called for: Sweet Nothing (Acappella)
+AudioTrack destructor called for: Believe
+AudioTrack destructor called for: Higher
+AudioTrack destructor called for: Follow Your Heart
+AudioTrack destructor called for: Breathe
+AudioTrack destructor called for: Atom (MORGANJ Edit)
+AudioTrack destructor called for: Take Me There
+AudioTrack destructor called for: Verve vs. Somebody That I Used To Know (Matisse Sadko Edit)
+AudioTrack destructor called for: Somebody That I Used To Know (Acappella)
+AudioTrack destructor called for: Verve
+AudioTrack destructor called for: Hero vs. Escape (DubVision Mashup)
+AudioTrack destructor called for: Escape
+AudioTrack destructor called for: Hero
+AudioTrack destructor called for: Where You Are (Acappella)
+AudioTrack destructor called for: Lions In The Wild
+AudioTrack destructor called for: ID3
+AudioTrack destructor called for: The Sun Always Shines On T.V.
+AudioTrack destructor called for: ID4
+AudioTrack destructor called for: Now That I've Found You (Acappella)
+AudioTrack destructor called for: Committed To Sparkle Motion vs. A Sky Full Of Stars (Dubvision Edit)
+AudioTrack destructor called for: A Sky Full Of Stars
+AudioTrack destructor called for: Committed To Sparkle Motion
+AudioTrack destructor called for: Harmony vs. Underneath It All (Matisse Sadko Mashup)
+AudioTrack destructor called for: Underneath It All
+AudioTrack destructor called for: Harmony
+AudioTrack destructor called for: Rise Again vs. In The Name Of Love (DubVision Mashup)
+AudioTrack destructor called for: In The Name Of Love (Acappella)
+AudioTrack destructor called for: Rise Again
+AudioTrack destructor called for: Keep On Loving You vs. Lions In The Wild (Third Party Mashup)
+AudioTrack destructor called for: Keep On Loving You
+AudioTrack destructor called for: Cinema (Acappella)
+AudioTrack destructor called for: Don't You Worry Child vs. New Memories vs. Live Forever (AFROJACK Edit)
+AudioTrack destructor called for: Don't You Worry Child
+AudioTrack destructor called for: Live Forever
+AudioTrack destructor called for: New Memories
+AudioTrack destructor called for: Himalaya vs. Rolling In The Deep (Matisse Sadko Mashup)
+AudioTrack destructor called for: Rolling In The Deep (Acappella)
+AudioTrack destructor called for: Himalaya
+AudioTrack destructor called for: Sweet Dreams (Are Made of This)
+AudioTrack destructor called for: Sex Love  Water
+AudioTrack destructor called for: Mia
+AudioTrack destructor called for: Wake Me Up (Acappella)
+AudioTrack destructor called for: Wherever You Are
+AudioTrack destructor called for: Carry You
+AudioTrack destructor called for: Butterflies
+Destroying playlist: lost_frequencies_tomorrowland_2025_w1
+AudioTrack destructor called for: Dance In The Sunlight (Deluxe Version)
+AudioTrack destructor called for: Sweet Disposition (A Moment A Love)
+AudioTrack destructor called for: Timeless
+AudioTrack destructor called for: Innerbloom (RUMPUS Edit)
+AudioTrack destructor called for: Black Friday (Pretty Like The Sun)
+AudioTrack destructor called for: Black Friday (Pretty Like The Sun)
+AudioTrack destructor called for: Reality
+AudioTrack destructor called for: High Hopes
+AudioTrack destructor called for: Freestyler (Rock The Microphone)
+AudioTrack destructor called for: Voodoo People
+AudioTrack destructor called for: Where Are You Now
+AudioTrack destructor called for: Where Are You Now
+AudioTrack destructor called for: Let Me Blow Ya Mind (Netsky Bootleg)
+AudioTrack destructor called for: Just Wanna Know
+AudioTrack destructor called for: The Feeling
+AudioTrack destructor called for: The Feeling
+AudioTrack destructor called for: Head Down
+AudioTrack destructor called for: ID2
+AudioTrack destructor called for: Kesariya
+AudioTrack destructor called for: Summer Skies (I Love To Cry)
+AudioTrack destructor called for: Kick The Nation
+AudioTrack destructor called for: Love Is The Only Thing
+AudioTrack destructor called for: ID2
+AudioTrack destructor called for: Worry About Me
+AudioTrack destructor called for: Are You With Me
+AudioTrack destructor called for: Sun Is Shining
+AudioTrack destructor called for: ID1
+AudioTrack destructor called for: Black Thunderclouds (Lost Frequencies 2025 Intro)

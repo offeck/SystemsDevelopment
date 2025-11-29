@@ -36,6 +36,7 @@ Track count: 1
 
 Cleaning up...
 Destroying playlist: Chill House Mix
+AudioTrack destructor called for: Sunset Lover
 Phase 1 test complete. Check for memory leaks!
 
 
