@@ -1,30 +1,75 @@
 #include "Playlist.h"
 #include "AudioTrack.h"
+#include "PointerWrapper.h"
 #include <iostream>
 #include <algorithm>
 Playlist::Playlist(const std::string& name)   //consturctor
     : head(nullptr), playlist_name(name), track_count(0) {
     std::cout << "Created playlist: " << name << std::endl;
 }
+
+// Copy Constructor - Deep copy
+Playlist::Playlist(const Playlist& other)
+    : head(nullptr), playlist_name(other.playlist_name), track_count(0) {
+    std::cout << "Copy constructor called for playlist: " << playlist_name << std::endl;
+    
+    // Deep copy all nodes and tracks
+    PlaylistNode* other_current = other.head;
+    while (other_current) {
+        // Clone the track to create a new independent copy
+        PointerWrapper<AudioTrack> cloned_track = other_current->track->clone();
+        if (cloned_track) {
+            add_track(cloned_track.release());
+        }
+        other_current = other_current->next;
+    }
+}
+
+// Copy Assignment Operator
+Playlist& Playlist::operator=(const Playlist& other) {
+    std::cout << "Copy assignment called for playlist: " << playlist_name << std::endl;
+    
+    // Self-assignment check
+    if (this == &other) {
+        return *this;
+    }
+    
+    // Clean up existing resources
+    while (head != nullptr) {
+        PlaylistNode* next = head->next;
+        delete head->track;
+        delete head;
+        head = next;
+    }
+    track_count = 0;
+    
+    // Copy data from other
+    playlist_name = other.playlist_name;
+    
+    // Deep copy all nodes and tracks
+    PlaylistNode* other_current = other.head;
+    while (other_current) {
+        PointerWrapper<AudioTrack> cloned_track = other_current->track->clone();
+        if (cloned_track) {
+            add_track(cloned_track.release());
+        }
+        other_current = other_current->next;
+    }
+    
+    return *this;
+}
+
 // TODO: Fix memory leaks!
 // Students must fix this in Phase 1
 // Nir: create copy constructors. Do we need to declare them in h?
 Playlist::~Playlist() {   //destructor
-    // #ifdef DEBUG
     std::cout << "Destroying playlist: " << playlist_name << std::endl;
-    // Nir's code: delete tracks.
-    // option 1:
-    // while (this->head != nullptr) {
-    //    PlaylistNode* nextNode = head->next;
-    //    delete head;
-    //    this->head = nextNode;
-    //}
-    // option 2: delete using remove track method
-    std::vector<AudioTrack*> tracks = getTracks();
-    for (AudioTrack* track : tracks) {
-        remove_track(track->get_title());
+    while (head != nullptr) {
+        PlaylistNode* nextNode = head->next;
+        delete head->track;  // Delete the AudioTrack
+        delete head;         // Delete the node
+        head = nextNode;
     }
-    // #endif
 }
 
 void Playlist::add_track(AudioTrack* track) {
@@ -62,10 +107,12 @@ void Playlist::remove_track(const std::string& title) {
         if (prev) {
             prev->next = current->next;
             // delete current or make it reference
+            delete current->track;
             delete current;
         } else {
             // same
             head = current->next;
+            delete current->track;
             delete current;
         }
 
@@ -136,6 +183,11 @@ int Playlist::get_total_duration() const {
     return total;
 }
 
+/**
+ * Get all tracks as a vector
+ * WARNING: Returned pointers are only valid while this Playlist exists
+ * Do NOT use after Playlist is destroyed or modified
+ */
 std::vector<AudioTrack*> Playlist::getTracks() const {
     std::vector<AudioTrack*> tracks;
     PlaylistNode* current = head;
