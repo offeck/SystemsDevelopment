@@ -114,7 +114,7 @@ help:
 	@echo "  5. Repeat until no leaks found!"
 
 examination:
-	@echo "This is a placeholder for examination-specific targets."
-	./test.sh
+	@echo "Running examination tests..."
+	./test.sh -b
 # Phony targets
 .PHONY: all debug sanitize release test test-leaks clean install-deps help examination

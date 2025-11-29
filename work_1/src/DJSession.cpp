@@ -72,16 +72,12 @@ bool DJSession::load_playlist(const std::string& playlist_name)  {
 
  */
 int DJSession::load_track_to_controller(const std::string& track_name) {
-    std::cout << "[System] Requesting track load to controller: " << track_name << std::endl;
-    
     AudioTrack* track = library_service.findTrack(track_name);
     if (!track) {
         std::cerr << "[ERROR] Track lookup: \"" << track_name << "\" not found in library" << std::endl;
         stats.errors++;
         return 0; 
     }
-    
-    std::cout << "Log: [System] Loading track " << track_name << " to controller." << std::endl;  
 
     int result = controller_service.loadTrackToCache(*track);
     if (result == 1) {
@@ -172,7 +168,7 @@ void DJSession::simulate_dj_performance() {
                 continue;
             }
             for (const auto& track_title : track_titles) {
-                std::cout << "\n-- Processing: " << track_title << "--" << std::endl;
+                std::cout << "\n--- Processing: " << track_title << " ---" << std::endl;
                 stats.tracks_processed++;
                 // Continue processing even if individual tracks fail
                 load_track_to_controller(track_title);
@@ -181,7 +177,7 @@ void DJSession::simulate_dj_performance() {
             print_session_summary();
             reset_stats();
         }
-        std::cout << "\nAll playlists played." << std::endl;
+        std::cout << "Session cancelled by user or all playlists played." << std::endl;
     }
     else{ 
         while(true)
@@ -199,7 +195,7 @@ void DJSession::simulate_dj_performance() {
         
         // 4. Process each track in the selected playlist
         for (const auto& track_title : track_titles) {
-            std::cout << "\n-- Processing: " << track_title << "--" << std::endl;
+            std::cout << "\n--- Processing: " << track_title << " ---" << std::endl;
             stats.tracks_processed++;
             // Continue processing even if individual tracks fail
             load_track_to_controller(track_title);

@@ -10,10 +10,16 @@ DJControllerService::DJControllerService(size_t cache_size)
  * TODO: Implement loadTrackToCache method
  */
 int DJControllerService::loadTrackToCache(AudioTrack& track) {
+    std::cout << "[System] Loading track '" << track.get_title() << "' to controller..." << std::endl;
+    
     if(cache.contains(track.get_title())) {
+        std::cout << "[Cache HIT] " << track.get_title() << " found in cache. Refreshing MRU state." << std::endl;
         cache.get(track.get_title()); // Update usage
+        displayCacheStatus();
         return 1; // Track already in cache
     }
+    
+    std::cout << "[Cache MISS] Cloning track into cache: " << track.get_title() << std::endl;
     PointerWrapper<AudioTrack> track_copy = track.clone();
     if(track_copy.get() == nullptr ) {
         std::cerr << "[ERROR] Track: " << track.get_title() << "failed to clone" << std::endl;
@@ -21,8 +27,10 @@ int DJControllerService::loadTrackToCache(AudioTrack& track) {
     }
     track_copy->load();
     track_copy->analyze_beatgrid();
-    bool success = cache.put(std::move(track_copy));
-    return success ? -1 : 0;
+    bool evicted = cache.put(std::move(track_copy));
+    std::cout << "[Cache INSERT] Added '" << track.get_title() << "' to cache." << std::endl;
+    displayCacheStatus();
+    return evicted ? -1 : 0;
 }
 
 void DJControllerService::set_cache_size(size_t new_size) {

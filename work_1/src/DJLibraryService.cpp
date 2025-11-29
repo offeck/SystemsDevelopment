@@ -15,6 +15,7 @@ DJLibraryService::DJLibraryService(const Playlist& playlist)
  */
 void DJLibraryService::buildLibrary(const std::vector<SessionConfig::TrackInfo>& library_tracks) {
     //Todo: Implement buildLibrary method
+    std::cout << "[INFO] Building track library from config..." << std::endl;
     int count = 0;
     for (const auto& track_info : library_tracks) {
         if (track_info.type == "MP3") {
@@ -27,26 +28,24 @@ void DJLibraryService::buildLibrary(const std::vector<SessionConfig::TrackInfo>&
                 track_info.extra_param1, // bitrate
                 has_tags
             ));
-            std::cout << "MP3: MP3Track created: " << track_info.extra_param1 << " kbps\n";
             count++;
         } else if (track_info.type == "WAV") {
-            bool is_stereo = (track_info.extra_param2 != 0);
+            int bit_depth = track_info.extra_param2; // extra_param2 is bit_depth for WAV
             library.push_back(new WAVTrack(
                 track_info.title,
                 track_info.artists,
                 track_info.duration_seconds,
                 track_info.bpm,
                 track_info.extra_param1, // sample_rate
-                is_stereo
+                bit_depth
             ));
-            std::cout << "WAV: WAVTrack created: " << track_info.extra_param1 << " Hz/" << track_info.extra_param2 << " bit\n";
             count++;
         } else {
             std::cerr << "[ERROR] Unknown track type: " << track_info.type << std::endl;
             continue; // Skip unknown types
         }
-    std::cout << "[INFO] Total tracks added to library: " << count << std::endl;
     }
+    std::cout << "[INFO] Track library built: " << count << " tracks loaded" << std::endl;
 }
 /**
  * @brief Display the current state of the DJ library playlist

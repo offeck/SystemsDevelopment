@@ -73,7 +73,9 @@ Playlist::Playlist(Playlist&& other) noexcept
 
 // Move Assignment Operator
 Playlist& Playlist::operator=(Playlist&& other) noexcept {
+#ifdef DEBUG
     std::cout << "Move assignment called for playlist: " << playlist_name << std::endl;
+#endif
 
     if (this != &other) {
         // Release current resources
@@ -101,7 +103,9 @@ Playlist& Playlist::operator=(Playlist&& other) noexcept {
 // Students must fix this in Phase 1
 // Nir: create copy constructors. Do we need to declare them in h?
 Playlist::~Playlist() {   //destructor
+#ifdef DEBUG
     std::cout << "Destroying playlist: " << playlist_name << std::endl;
+#endif
     while (head != nullptr) {
         PlaylistNode* nextNode = head->next;
         delete head->track;  // Delete the AudioTrack
