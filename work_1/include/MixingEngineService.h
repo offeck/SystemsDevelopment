@@ -18,6 +18,8 @@ private:
 public:
     MixingEngineService();
     ~MixingEngineService();
+    MixingEngineService(const MixingEngineService& other);
+    MixingEngineService& operator=(const MixingEngineService& other);
 
     /** Contract: Load a track to the next deck per instant-transition policy
      * - @param track: reference to a cached track to be cloned for the mixer
