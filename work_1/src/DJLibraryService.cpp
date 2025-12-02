@@ -15,7 +15,7 @@ DJLibraryService::DJLibraryService(const Playlist& playlist)
  */
 void DJLibraryService::buildLibrary(const std::vector<SessionConfig::TrackInfo>& library_tracks) {
     //Todo: Implement buildLibrary method
-    std::cout << "[INFO] Building track library from config..." << std::endl;
+    // std::cout << "[INFO] Building track library from config..." << std::endl;
     int count = 0;
     for (const auto& track_info : library_tracks) {
         if (track_info.type == "MP3") {
