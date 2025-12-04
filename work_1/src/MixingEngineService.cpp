@@ -103,13 +103,6 @@ int MixingEngineService::loadTrackToDeck(const AudioTrack& track) {
     decks[target] = track_ptr.release();
     std::cout << "[Load Complete] '" << track.get_title() << "' is now loaded on deck " << target << "\n";
     
-    // Instant Transition: Unload the previously active deck (if this is not first track)
-    if (!is_first_track && decks[active_deck] != nullptr) {
-        std::cout << "[Unload] Unloading previous deck " << active_deck << " (" << decks[active_deck]->get_title() << ")\n";
-        delete decks[active_deck];
-        decks[active_deck] = nullptr;
-    }
-    
     // Switch active deck
     active_deck = target;
     std::cout << "[Active Deck] Switched to deck " << target << "\n";

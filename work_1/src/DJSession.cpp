@@ -72,6 +72,8 @@ bool DJSession::load_playlist(const std::string& playlist_name)  {
 
  */
 int DJSession::load_track_to_controller(const std::string& track_name) {
+    std::cout << "[System] Loading track '" << track_name << "' to controller..." << std::endl;
+    
     AudioTrack* track = library_service.findTrack(track_name);
     if (!track) {
         std::cerr << "[ERROR] Track lookup: \"" << track_name << "\" not found in library" << std::endl;
