@@ -177,7 +177,6 @@ void DJSession::simulate_dj_performance() {
                 load_track_to_mixer_deck(track_title);
             }
             print_session_summary();
-            reset_stats();
         }
         std::cout << "Session cancelled by user or all playlists played." << std::endl;
     }

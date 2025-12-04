@@ -92,9 +92,11 @@ int MixingEngineService::loadTrackToDeck(const AudioTrack& track) {
     track_ptr->load();
     track_ptr->analyze_beatgrid();
     
-    // BPM Management: If active deck has a track and auto_sync is enabled
-    if (!is_first_track && decks[active_deck] != nullptr && auto_sync) {
-        if (!can_mix_tracks(track_ptr)) {
+    // BPM Management: If auto_sync is enabled, try to sync with the other deck
+    if (auto_sync) {
+        if (is_first_track || decks[active_deck] == nullptr) {
+            std::cout << "[Sync BPM] Cannot sync - one of the decks is empty.\n";
+        } else if (!can_mix_tracks(track_ptr)) {
             sync_bpm(track_ptr);
         }
     }

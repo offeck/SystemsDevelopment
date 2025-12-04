@@ -5,6 +5,7 @@
 #include <iostream>
 #include <memory>
 #include <filesystem>
+#include <algorithm>
 
 
 DJLibraryService::DJLibraryService(const Playlist& playlist) 
@@ -123,5 +124,7 @@ std::vector<std::string> DJLibraryService::getTrackTitles() const {
     for (const auto& track_ptr : tracks) {
         titles.push_back(track_ptr->get_title());
     }
+    // Reverse to maintain insertion order (playlist prepends tracks)
+    std::reverse(titles.begin(), titles.end());
     return titles;
 }
