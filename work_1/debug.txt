@@ -106,10 +106,11 @@ Active Deck: 0
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "For An Angel"
   → Estimated beats: 945  → Precision factor: 1 (uncompressed audio)
 [Load Complete] 'For An Angel' is now loaded on deck 1
+[Unload] Unloading previous deck 0 (Silence)
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
-Deck 0: Silence
+Deck 0: [EMPTY]
 Deck 1: For An Angel
 Active Deck: 1
 ===================
@@ -140,11 +141,12 @@ Active Deck: 1
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "9PM (Till I Come)"
   → Estimated beats: 750  → Compression precision factor: 1
 [Load Complete] '9PM (Till I Come)' is now loaded on deck 0
+[Unload] Unloading previous deck 1 (For An Angel)
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
 Deck 0: 9PM (Till I Come)
-Deck 1: For An Angel
+Deck 1: [EMPTY]
 Active Deck: 0
 ===================
 
@@ -218,10 +220,11 @@ Added 'For An Angel' to playlist 'test_playlist'
   → Estimated beats: 840  → Compression precision factor: 0.6
 [Sync BPM] Syncing BPM from 140 to 132
 [Load Complete] 'Silence' is now loaded on deck 1
+[Unload] Unloading previous deck 0 (9PM (Till I Come))
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
-Deck 0: 9PM (Till I Come)
+Deck 0: [EMPTY]
 Deck 1: Silence
 Active Deck: 1
 ===================
@@ -245,11 +248,12 @@ Active Deck: 1
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "For An Angel"
   → Estimated beats: 945  → Precision factor: 1 (uncompressed audio)
 [Load Complete] 'For An Angel' is now loaded on deck 0
+[Unload] Unloading previous deck 1 (Silence)
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
 Deck 0: For An Angel
-Deck 1: Silence
+Deck 1: [EMPTY]
 Active Deck: 0
 ===================
 
@@ -273,10 +277,11 @@ Active Deck: 0
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "9PM (Till I Come)"
   → Estimated beats: 750  → Compression precision factor: 1
 [Load Complete] '9PM (Till I Come)' is now loaded on deck 1
+[Unload] Unloading previous deck 0 (For An Angel)
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
-Deck 0: For An Angel
+Deck 0: [EMPTY]
 Deck 1: 9PM (Till I Come)
 Active Deck: 1
 ===================
@@ -302,11 +307,12 @@ Active Deck: 1
   → Estimated beats: 840  → Compression precision factor: 0.6
 [Sync BPM] Syncing BPM from 140 to 132
 [Load Complete] 'Silence' is now loaded on deck 0
+[Unload] Unloading previous deck 1 (9PM (Till I Come))
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
 Deck 0: Silence
-Deck 1: 9PM (Till I Come)
+Deck 1: [EMPTY]
 Active Deck: 0
 ===================
 
@@ -329,10 +335,11 @@ Active Deck: 0
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "For An Angel"
   → Estimated beats: 945  → Precision factor: 1 (uncompressed audio)
 [Load Complete] 'For An Angel' is now loaded on deck 1
+[Unload] Unloading previous deck 0 (Silence)
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
-Deck 0: Silence
+Deck 0: [EMPTY]
 Deck 1: For An Angel
 Active Deck: 1
 ===================
@@ -385,11 +392,12 @@ Added 'Silence' to playlist 'trance_classics'
 [WAVTrack::analyze_beatgrid] Analyzing beat grid for: "For An Angel"
   → Estimated beats: 945  → Precision factor: 1 (uncompressed audio)
 [Load Complete] 'For An Angel' is now loaded on deck 0
+[Unload] Unloading previous deck 1 (For An Angel)
 [Active Deck] Switched to deck 0
 
 === Deck Status ===
 Deck 0: For An Angel
-Deck 1: For An Angel
+Deck 1: [EMPTY]
 Active Deck: 0
 ===================
 
@@ -413,10 +421,11 @@ Active Deck: 0
 [MP3Track::analyze_beatgrid] Analyzing beat grid for: "Silence"
   → Estimated beats: 840  → Compression precision factor: 0.6
 [Load Complete] 'Silence' is now loaded on deck 1
+[Unload] Unloading previous deck 0 (For An Angel)
 [Active Deck] Switched to deck 1
 
 === Deck Status ===
-Deck 0: For An Angel
+Deck 0: [EMPTY]
 Deck 1: Silence
 Active Deck: 1
 ===================
