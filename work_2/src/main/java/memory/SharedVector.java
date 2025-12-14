@@ -114,6 +114,9 @@ public class SharedVector {
     }
 
     public void vecMatMul(SharedMatrix matrix) {
+        if (matrix == null || matrix.length() == 0 || matrix.get(0).length() == 0) {
+            throw new IllegalArgumentException("Matrix cannot be emptyfor multiplication.");
+        }
         if (this.orientation != VectorOrientation.ROW_MAJOR) {
             throw new IllegalArgumentException("Vector must be in row-major orientation for multiplication.");
         }
@@ -125,6 +128,9 @@ public class SharedVector {
         try {
             if (isRowMajor) {
                 rows = matrix.length();
+                if (this.vector.length != rows) {
+                throw new IllegalArgumentException("Vector length must match matrix row count for multiplication.");
+                }
                 cols = matrix.get(0).length();
                 result = new double[cols];
                 for (int j = 0; j < cols; j++) {
@@ -138,6 +144,9 @@ public class SharedVector {
                 }
             } else {
                 rows = matrix.get(0).length();
+                if (this.vector.length != rows) {
+                throw new IllegalArgumentException("Vector length must match matrix row count for multiplication.");
+                }   
                 cols = matrix.length();
                 result = new double[cols];
                 for (int i = 0; i < cols; i++) {
@@ -145,9 +154,6 @@ public class SharedVector {
                     result[i] = this.dot(matrix.get(i));
                     matrix.get(i).readUnlock();
                 }
-            }
-            if (this.vector.length != rows) {
-                throw new IllegalArgumentException("Vector length must match matrix row count for multiplication.");
             }
             this.vector = result;
             this.orientation = VectorOrientation.ROW_MAJOR;
