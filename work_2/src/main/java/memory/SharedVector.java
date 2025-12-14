@@ -9,50 +9,73 @@ public class SharedVector {
     private ReadWriteLock lock = new java.util.concurrent.locks.ReentrantReadWriteLock();
 
     public SharedVector(double[] vector, VectorOrientation orientation) {
-        // TODO: store vector data and its orientation
+        this.vector = vector;
+        this.orientation = orientation;
     }
 
     public double get(int index) {
-        // TODO: return element at index (read-locked)
-        return 0;
+        return vector[index];
     }
 
     public int length() {
-        // TODO: return vector length
-        return 0;
+        return vector.length;
     }
 
     public VectorOrientation getOrientation() {
-        // TODO: return vector orientation
-        return null;
+        return this.orientation;
     }
 
     public void writeLock() {
         // TODO: acquire write lock
+        lock.writeLock().lock();
     }
 
     public void writeUnlock() {
         // TODO: release write lock
+        lock.writeLock().unlock();
     }
 
     public void readLock() {
         // TODO: acquire read lock
+        lock.readLock().lock();
     }
 
     public void readUnlock() {
         // TODO: release read lock
+        lock.readLock().unlock();
     }
 
     public void transpose() {
-        // TODO: transpose vector
+        this.orientation = (this.orientation == VectorOrientation.ROW_MAJOR) ? VectorOrientation.COLUMN_MAJOR : VectorOrientation.ROW_MAJOR;
     }
 
     public void add(SharedVector other) {
-        // TODO: add two vectors
+        int size = this.vector.length;
+        if (size != other.vector.length) {
+            throw new IllegalArgumentException("Vectors must be of the same length to add.");
+        }
+        this.writeLock();
+        other.readLock();
+        try {
+            for (int i = 0; i < size; i++) {
+                this.vector[i] += other.vector[i];
+            }
+        } finally {
+            other.readUnlock();
+            this.writeUnlock();
+        }
     }
 
     public void negate() {
-        // TODO: negate vector
+        int size = this.vector.length;
+        this.writeLock();
+        try {
+            for (int i = 0; i < size; i++) {
+                this.vector[i] = -this.vector[i];
+            }
+        } finally {
+            this.writeUnlock();
+        }
     }
 
     public double dot(SharedVector other) {
