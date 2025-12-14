@@ -15,11 +15,41 @@ public class SharedMatrix {
     }
 
     public void loadRowMajor(double[][] matrix) {
-        // TODO: replace internal data with new row-major matrix
+        // Lock old vectors before replacing
+        acquireAllVectorWriteLocks(vectors);
+        
+        // Create new vectors, one per row
+        SharedVector[] newVectors = new SharedVector[matrix.length];
+        for (int i = 0; i < matrix.length; i++) {
+            newVectors[i] = new SharedVector(matrix[i], VectorOrientation.ROW_MAJOR);
+        }
+        
+        // Release old locks
+        releaseAllVectorWriteLocks(vectors);
+        
+        // Replace
+        this.vectors = newVectors;
+        this.orientation = VectorOrientation.ROW_MAJOR;
     }
+    
 
     public void loadColumnMajor(double[][] matrix) {
-        // TODO: replace internal data with new column-major matrix
+        acquireAllVectorWriteLocks(vectors);
+
+        int numRows = matrix.length;
+        int numCols = matrix[0].length;
+        SharedVector[] newVectors = new SharedVector[numCols];
+        for (int col = 0; col < numCols; col++) {
+        double[] columnData = new double[numRows];
+        for (int row = 0; row < numRows; row++) {
+            columnData[row] = matrix[row][col];
+        }
+        newVectors[col] = new SharedVector(columnData, VectorOrientation.COLUMN_MAJOR);
+    }
+    
+        releaseAllVectorWriteLocks(vectors);
+        this.vectors = newVectors;
+        this.orientation = VectorOrientation.COLUMN_MAJOR;
     }
 
     public double[][] readRowMajor() {
