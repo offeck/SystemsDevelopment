@@ -66,6 +66,7 @@
 			"typeinfo": "cpp",
 			"variant": "cpp",
 			"format": "cpp"
-		}
+		},
+		"java.configuration.updateBuildConfiguration": "interactive"
 	}
 }

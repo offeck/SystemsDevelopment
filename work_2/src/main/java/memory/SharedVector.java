@@ -14,39 +14,55 @@ public class SharedVector {
     }
 
     public double get(int index) {
-        return vector[index];
+        this.readLock();
+        try {
+            return vector[index];
+        } finally {
+            this.readUnlock();
+        }
     }
 
     public int length() {
-        return vector.length;
+        this.readLock();
+        try {
+            return vector.length;
+        } finally {
+            this.readUnlock();
+        }
     }
 
     public VectorOrientation getOrientation() {
-        return this.orientation;
+        this.readLock();
+        try {
+            return this.orientation;
+        } finally {
+            this.readUnlock();
+        }
     }
 
     public void writeLock() {
-        // TODO: acquire write lock
         lock.writeLock().lock();
     }
 
     public void writeUnlock() {
-        // TODO: release write lock
         lock.writeLock().unlock();
     }
 
     public void readLock() {
-        // TODO: acquire read lock
         lock.readLock().lock();
     }
 
     public void readUnlock() {
-        // TODO: release read lock
         lock.readLock().unlock();
     }
 
     public void transpose() {
-        this.orientation = (this.orientation == VectorOrientation.ROW_MAJOR) ? VectorOrientation.COLUMN_MAJOR : VectorOrientation.ROW_MAJOR;
+        this.writeLock();
+        try {
+            this.orientation = (this.orientation == VectorOrientation.ROW_MAJOR) ? VectorOrientation.COLUMN_MAJOR : VectorOrientation.ROW_MAJOR;
+        } finally {
+            this.writeUnlock();
+        }
     }
 
     public void add(SharedVector other) {
@@ -79,7 +95,10 @@ public class SharedVector {
     }
 
     public double dot(SharedVector other) {
-        // TODO: compute dot product (row · column)
+        int size = this.vector.length;
+        if (size != other.vector.length) {
+            throw new IllegalArgumentException("Vectors must be of the same length to compute dot product.");
+        }
         return 0;
     }
 
