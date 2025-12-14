@@ -45,7 +45,7 @@ public class SharedMatrix {
         acquireAllVectorReadLocks(vectors);
         
         // If already in ROW_MAJOR, extract rows
-        if (orientation == VectorOrientation.ROW_MAJOR) {
+        if (getOrientation() == VectorOrientation.ROW_MAJOR) {
             double[][] result = new double[vectors.length][];
             for (int i = 0; i < vectors.length; i++) {
                 result[i] = new double[vectors[i].length()];
