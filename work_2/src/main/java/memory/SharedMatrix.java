@@ -2,16 +2,16 @@ package memory;
 
 public class SharedMatrix {
 
-    private volatile SharedVector[] vectors = {}; // underlying vectors
+    private volatile SharedVector[] vectors = {}; // underlying vectors 
+    private volatile VectorOrientation orientation; // Add this line
 
     public SharedMatrix() {
-        // TODO: initialize empty matrix
+        this.vectors = new SharedVector[0];
+        this.orientation = VectorOrientation.ROW_MAJOR; // Default orientation
     }
 
     public SharedMatrix(double[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            SharedVector vec = new SharedVector(matrix[i], VectorOrientation.ROW_MAJOR);
-        }
+        loadRowMajor(matrix);
     }
 
     public void loadRowMajor(double[][] matrix) {
