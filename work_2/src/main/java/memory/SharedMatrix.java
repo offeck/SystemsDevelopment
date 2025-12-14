@@ -12,6 +12,7 @@ public class SharedMatrix {
 
     public SharedMatrix(double[][] matrix) {
         loadRowMajor(matrix);
+        orientation = VectorOrientation.ROW_MAJOR;
     }
 
     public void loadRowMajor(double[][] matrix) {
