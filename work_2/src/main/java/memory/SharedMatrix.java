@@ -28,7 +28,12 @@ public class SharedMatrix {
     }
 
     public SharedVector get(int index) {
-        return vectors[index];
+        this.vectors[index].readLock();
+        try {
+            return this.vectors[index];
+        } finally {
+            this.vectors[index].readUnlock();
+        }
     }
 
     public int length() {
