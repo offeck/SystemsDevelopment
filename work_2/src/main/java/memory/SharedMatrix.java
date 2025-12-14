@@ -54,8 +54,34 @@ public class SharedMatrix {
     }
 
     public double[][] readRowMajor() {
-        // TODO: return matrix contents as a row-major double[][]
-        return null;
+        acquireAllVectorReadLocks(vectors);
+        
+        // If already in ROW_MAJOR, extract rows
+        if (orientation == VectorOrientation.ROW_MAJOR) {
+            double[][] result = new double[vectors.length][];
+            for (int i = 0; i < vectors.length; i++) {
+                result[i] = new double[vectors[i].length()];
+                for (int j = 0; j < vectors[i].length(); j++) {
+                    result[i][j] = vectors[i].get(j);
+                }
+            }
+            releaseAllVectorReadLocks(vectors);
+            return result;
+        }
+        // if is in COLUMN_MAJOR: need to transpose
+        else {
+            int numCols = vectors.length;
+            int numRows = vectors[0].length();
+            double[][] result = new double[numRows][numCols];
+            
+            for (int col = 0; col < numCols; col++) {
+                for (int row = 0; row < numRows; row++) {
+                    result[row][col] = vectors[col].get(row);
+                }
+            }
+            releaseAllVectorReadLocks(vectors);
+            return result;
+        }
     }
 
     public SharedVector get(int index) {
