@@ -2,7 +2,7 @@ package memory;
 
 public class SharedMatrix {
 
-    private volatile SharedVector[] vectors = {}; // underlying vectors 
+    private SharedVector[] vectors = {}; // underlying vectors
 
     public SharedMatrix() {
     }
@@ -11,17 +11,18 @@ public class SharedMatrix {
         loadRowMajor(matrix);
     }
 
-    public void loadRowMajor(double[][] matrix) {   
+    public void loadRowMajor(double[][] matrix) {
         // Create new vectors, one per row
+        acquireAllVectorWriteLocks(vectors);
         SharedVector[] newVectors = new SharedVector[matrix.length];
         for (int i = 0; i < matrix.length; i++) {
             newVectors[i] = new SharedVector(matrix[i], VectorOrientation.ROW_MAJOR);
         }
-        
+        SharedVector[] oldVectors = this.vectors;
         // Replace
         this.vectors = newVectors;
+        releaseAllVectorWriteLocks(oldVectors);
     }
-    
 
     public void loadColumnMajor(double[][] matrix) {
         acquireAllVectorWriteLocks(vectors);
@@ -30,20 +31,20 @@ public class SharedMatrix {
         int numCols = matrix[0].length;
         SharedVector[] newVectors = new SharedVector[numCols];
         for (int col = 0; col < numCols; col++) {
-        double[] columnData = new double[numRows];
-        for (int row = 0; row < numRows; row++) {
-            columnData[row] = matrix[row][col];
+            double[] columnData = new double[numRows];
+            for (int row = 0; row < numRows; row++) {
+                columnData[row] = matrix[row][col];
+            }
+            newVectors[col] = new SharedVector(columnData, VectorOrientation.COLUMN_MAJOR);
         }
-        newVectors[col] = new SharedVector(columnData, VectorOrientation.COLUMN_MAJOR);
-    }
-    
-        releaseAllVectorWriteLocks(vectors);
+        SharedVector[] oldVectors = this.vectors;
         this.vectors = newVectors;
+        releaseAllVectorWriteLocks(oldVectors);
     }
 
     public double[][] readRowMajor() {
         acquireAllVectorReadLocks(vectors);
-        
+
         // If already in ROW_MAJOR, extract rows
         if (getOrientation() == VectorOrientation.ROW_MAJOR) {
             double[][] result = new double[vectors.length][];
@@ -61,7 +62,7 @@ public class SharedMatrix {
             int numCols = vectors.length;
             int numRows = vectors[0].length();
             double[][] result = new double[numRows][numCols];
-            
+
             for (int col = 0; col < numCols; col++) {
                 for (int row = 0; row < numRows; row++) {
                     result[row][col] = vectors[col].get(row);
@@ -86,25 +87,25 @@ public class SharedMatrix {
 
     private void acquireAllVectorReadLocks(SharedVector[] vecs) {
         for (SharedVector v : vecs) {
-        v.readLock();
+            v.readLock();
         }
     }
 
     private void releaseAllVectorReadLocks(SharedVector[] vecs) {
         for (SharedVector v : vecs) {
-        v.readUnlock();
+            v.readUnlock();
         }
     }
 
     private void acquireAllVectorWriteLocks(SharedVector[] vecs) {
         for (SharedVector v : vecs) {
-        v.writeLock();
+            v.writeLock();
         }
     }
 
     private void releaseAllVectorWriteLocks(SharedVector[] vecs) {
         for (SharedVector v : vecs) {
-        v.writeUnlock();
+            v.writeUnlock();
         }
     }
 }
