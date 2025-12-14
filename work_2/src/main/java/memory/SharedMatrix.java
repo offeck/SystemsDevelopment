@@ -3,34 +3,23 @@ package memory;
 public class SharedMatrix {
 
     private volatile SharedVector[] vectors = {}; // underlying vectors 
-    private volatile VectorOrientation orientation; // Add this line
 
     public SharedMatrix() {
-        this.vectors = new SharedVector[0];
-        this.orientation = VectorOrientation.ROW_MAJOR; // Default orientation
     }
 
     public SharedMatrix(double[][] matrix) {
         loadRowMajor(matrix);
-        orientation = VectorOrientation.ROW_MAJOR;
     }
 
-    public void loadRowMajor(double[][] matrix) {
-        // Lock old vectors before replacing
-        acquireAllVectorWriteLocks(vectors);
-        
+    public void loadRowMajor(double[][] matrix) {   
         // Create new vectors, one per row
         SharedVector[] newVectors = new SharedVector[matrix.length];
         for (int i = 0; i < matrix.length; i++) {
             newVectors[i] = new SharedVector(matrix[i], VectorOrientation.ROW_MAJOR);
         }
         
-        // Release old locks
-        releaseAllVectorWriteLocks(vectors);
-        
         // Replace
         this.vectors = newVectors;
-        this.orientation = VectorOrientation.ROW_MAJOR;
     }
     
 
@@ -50,7 +39,6 @@ public class SharedMatrix {
     
         releaseAllVectorWriteLocks(vectors);
         this.vectors = newVectors;
-        this.orientation = VectorOrientation.COLUMN_MAJOR;
     }
 
     public double[][] readRowMajor() {
