@@ -9,7 +9,8 @@ public class SharedVector {
     private ReadWriteLock lock = new java.util.concurrent.locks.ReentrantReadWriteLock();
 
     public SharedVector(double[] vector, VectorOrientation orientation) {
-        this.vector = vector;
+        this.vector = new double[vector.length];
+        System.arraycopy(vector, 0, this.vector, 0, vector.length);
         this.orientation = orientation;
     }
 
@@ -55,15 +56,18 @@ public class SharedVector {
     public void readUnlock() {
         lock.readLock().unlock();
     }
+
     // transposes the vector (row to column or column to row).
     public void transpose() {
         this.writeLock();
         try {
-            this.orientation = (this.orientation == VectorOrientation.ROW_MAJOR) ? VectorOrientation.COLUMN_MAJOR : VectorOrientation.ROW_MAJOR;
+            this.orientation = (this.orientation == VectorOrientation.ROW_MAJOR) ? VectorOrientation.COLUMN_MAJOR
+                    : VectorOrientation.ROW_MAJOR;
         } finally {
             this.writeUnlock();
         }
     }
+
     // adds another vector to this vector.
     public void add(SharedVector other) {
         int size = this.vector.length;
@@ -81,6 +85,7 @@ public class SharedVector {
             this.writeUnlock();
         }
     }
+
     // negates the vector.
     public void negate() {
         int size = this.vector.length;
@@ -93,6 +98,7 @@ public class SharedVector {
             this.writeUnlock();
         }
     }
+
     // multiplies the vector by another vector (dot product).
     public double dot(SharedVector other) {
         int size = this.vector.length;
@@ -129,7 +135,7 @@ public class SharedVector {
             if (isRowMajor) {
                 rows = matrix.length();
                 if (this.vector.length != rows) {
-                throw new IllegalArgumentException("Vector length must match matrix row count for multiplication.");
+                    throw new IllegalArgumentException("Vector length must match matrix row count for multiplication.");
                 }
                 cols = matrix.get(0).length();
                 result = new double[cols];
@@ -145,8 +151,8 @@ public class SharedVector {
             } else {
                 rows = matrix.get(0).length();
                 if (this.vector.length != rows) {
-                throw new IllegalArgumentException("Vector length must match matrix row count for multiplication.");
-                }   
+                    throw new IllegalArgumentException("Vector length must match matrix row count for multiplication.");
+                }
                 cols = matrix.length();
                 result = new double[cols];
                 for (int i = 0; i < cols; i++) {
