@@ -12,12 +12,18 @@ public class TiredExecutor {
     private final AtomicInteger inFlight = new AtomicInteger(0);
 
     public TiredExecutor(int numThreads) {
-        // TODO
-        workers = null; // placeholder
+        // Nir:
+        workers = new TiredThread[numThreads];
+        for (int i = 0; i < numThreads; i++) {
+            workers[i] = new TiredThread(i, 1.0); // Assuming a default fatigue factor of 1.0
+            workers[i].start();
+            idleMinHeap.add(workers[i]);
+        }
     }
 
     public void submit(Runnable task) {
         // TODO
+
     }
 
     public void submitAll(Iterable<Runnable> tasks) {
@@ -30,6 +36,11 @@ public class TiredExecutor {
 
     public synchronized String getWorkerReport() {
         // TODO: return readable statistics for each worker
-        return null;
+        String report = "";
+        for (TiredThread worker : workers) {
+            report += String.format("Worker %d: Time Used = %d ns, Time Idle = %d ns\n",
+                    worker.getWorkerId(), worker.getTimeUsed(), worker.getTimeIdle());
+        }
+        return report;
     }
 }
