@@ -14,16 +14,36 @@ public class LinearAlgebraEngine {
 
     public LinearAlgebraEngine(int numThreads) {
         // TODO: create executor with given thread count
+        this.executor = new TiredExecutor(numThreads);
     }
 
     public ComputationNode run(ComputationNode computationRoot) {
         // TODO: resolve computation tree step by step until final matrix is produced
-        return null;
+        //  Iteratively locate the next resolvable node: a node whose operands are already concrete matrices.
+        ComputationNode resolvable = computationRoot.findResolvable();
+        if (resolvable == null) {
+            // throw error - no resolvable node found
+            throw new IllegalArgumentException("No resolvable node found in computation tree.");
+        }
+        loadAndCompute(resolvable);
     }
 
     public void loadAndCompute(ComputationNode node) {
         // TODO: load operand matrices
+        List<ComputationNode> children = node.getChildren();
+        if (children.size() != 2) {
+            throw new IllegalArgumentException("Node must have exactly two children.");
+        }
+        ComputationNode left = children.get(0);
+        ComputationNode right = children.get(1);
+        if (left.getNodeType() != ComputationNodeType.MATRIX || right.getNodeType() != ComputationNodeType.MATRIX) {
+            throw new IllegalArgumentException("Both children must be MATRIX nodes.");
+        }
+        leftMatrix.loadRowMajor(left.getMatrix());
+        rightMatrix.loadRowMajor(right.getMatrix());
+
         // TODO: create compute tasks & submit tasks to executor
+        
     }
 
     public List<Runnable> createAddTasks() {
