@@ -4,6 +4,7 @@ import parser.*;
 import memory.*;
 import scheduling.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class LinearAlgebraEngine {
@@ -94,18 +95,55 @@ public class LinearAlgebraEngine {
 
     public List<Runnable> createAddTasks() {
         // TODO: return tasks that perform row-wise addition
-        return null;
+    // Nir:
+        if (leftMatrix == null || rightMatrix == null) {
+            throw new IllegalStateException("Both left and right matrices must be loaded before multiplication.");
+        }
+        if (leftMatrix.length() == 0 || rightMatrix.length() == 0) {
+            throw new IllegalStateException("Matrices must not be empty for multiplication.");
+        }
+        if (leftMatrix.get(0).length() != rightMatrix.length()) {
+            throw new IllegalArgumentException("Incompatible matrix dimensions for multiplication.");
+        }   
+        List<Runnable> tasks = new LinkedList<>();
+        for (int i = 0; i < leftMatrix.length(); i++) {
+            final int rowIndex = i;
+            tasks.add(() -> {
+                SharedVector leftRow = leftMatrix.get(rowIndex);
+                SharedVector rightRow = rightMatrix.get(rowIndex);
+                leftRow.add(rightRow);
+            });
+        }
+        return tasks;
     }
 
     public List<Runnable> createMultiplyTasks() {
         // TODO: return tasks that perform row × matrix multiplication
-        return null;
+        // Nir:
+        if (leftMatrix == null || rightMatrix == null) {
+            throw new IllegalStateException("Both left and right matrices must be loaded before multiplication.");
+        }
+        if (leftMatrix.length() == 0 || rightMatrix.length() == 0) {
+            throw new IllegalStateException("Matrices must not be empty for multiplication.");
+        }
+        if (leftMatrix.get(0).length() != rightMatrix.length()) {
+            throw new IllegalArgumentException("Incompatible matrix dimensions for multiplication.");
+        }   
+        List<Runnable> tasks = new LinkedList<>();
+        for (int i = 0; i < leftMatrix.length(); i++) {
+            final int rowIndex = i;
+            tasks.add(() -> {
+                SharedVector leftRow = leftMatrix.get(rowIndex);
+                leftRow.vecMatMul(rightMatrix);
+            });
+        }
+        return tasks;
     }
 
     public List<Runnable> createNegateTasks() {
         // TODO: return tasks that negate rows
         // Add exception handling as needed
-        List<Runnable> tasks = null;
+        List<Runnable> tasks = new LinkedList<>();
         for (int i = 0; i < leftMatrix.length(); i++) {
             final int rowIndex = i;
             tasks.add(() -> {
@@ -118,11 +156,19 @@ public class LinearAlgebraEngine {
 
     public List<Runnable> createTransposeTasks() {
         // TODO: return tasks that transpose rows
-        return null;
+        List<Runnable> tasks = new LinkedList<>();
+        for (int i = 0; i < leftMatrix.length(); i++) {
+            final int rowIndex = i;
+            tasks.add(() -> {
+                SharedVector row = leftMatrix.get(rowIndex);
+                row.transpose();
+            });
+        }
+        return tasks;
     }
 
     public String getWorkerReport() {
-        // TODO: return summary of worker activity
-        return null;
+        // Nir:
+        return executor.getWorkerReport();
     }
 }
