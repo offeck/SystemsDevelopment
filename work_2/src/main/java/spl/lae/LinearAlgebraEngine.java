@@ -38,7 +38,16 @@ public class LinearAlgebraEngine {
 
     public List<Runnable> createNegateTasks() {
         // TODO: return tasks that negate rows
-        return null;
+        // Add exception handling as needed
+        List<Runnable> tasks = null;
+        for (int i = 0; i < leftMatrix.length(); i++) {
+            final int rowIndex = i;
+            tasks.add(() -> {
+                SharedVector row = leftMatrix.get(rowIndex);
+                row.negate();
+            });
+        }
+        return tasks;
     }
 
     public List<Runnable> createTransposeTasks() {
