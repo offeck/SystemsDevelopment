@@ -152,6 +152,12 @@ public class LinearAlgebraEngine {
     public List<Runnable> createNegateTasks() {
         // TODO: return tasks that negate rows
         // Add exception handling as needed
+        if (leftMatrix == null) {
+            throw new IllegalStateException("Left matrix must be loaded before negation.");
+        }   
+        if (leftMatrix.length() == 0) {
+            throw new IllegalStateException("Matrix must not be empty for negation.");
+        }
         List<Runnable> tasks = new LinkedList<>();
         for (int i = 0; i < leftMatrix.length(); i++) {
             final int rowIndex = i;
@@ -165,6 +171,12 @@ public class LinearAlgebraEngine {
 
     public List<Runnable> createTransposeTasks() {
         // TODO: return tasks that transpose rows
+        if (leftMatrix == null) {
+            throw new IllegalStateException("Left matrix must be loaded before transposition.");
+        }
+        if (leftMatrix.length() == 0) {
+            throw new IllegalStateException("Matrix must not be empty for transposition.");
+        }
         List<Runnable> tasks = new LinkedList<>();
         for (int i = 0; i < leftMatrix.length(); i++) {
             final int rowIndex = i;
