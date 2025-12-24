@@ -23,15 +23,36 @@ public class TiredExecutor {
 
     public void submit(Runnable task) {
         // TODO
+        try {
+            TiredThread worker = idleMinHeap.take(); // Get the least tired worker
+            inFlight.incrementAndGet();
+            worker.newTask(task);
+            worker.run();
+            inFlight.decrementAndGet();
+            worker.join();
+            idleMinHeap.put(worker); // Reinsert the worker back into the heap
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Executor interrupted while submitting task", e);
+        }
 
     }
 
     public void submitAll(Iterable<Runnable> tasks) {
         // TODO: submit tasks one by one and wait until all finish
+        for (Runnable task : tasks) {
+            submit(task);
+        }
     }
 
     public void shutdown() throws InterruptedException {
         // TODO
+        for (TiredThread worker : workers) {
+            worker.shutdown();
+        }
+        for (TiredThread worker : workers) {
+            worker.join();
+        }
     }
 
     public synchronized String getWorkerReport() {
