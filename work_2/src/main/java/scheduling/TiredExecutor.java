@@ -44,7 +44,6 @@ public class TiredExecutor {
     }
 }
 
-    }
 
     public void submitAll(Iterable<Runnable> tasks) {
         // TODO: submit tasks one by one and wait until all finish
