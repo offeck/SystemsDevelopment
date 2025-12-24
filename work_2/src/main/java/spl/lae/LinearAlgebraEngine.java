@@ -4,6 +4,7 @@ import parser.*;
 import memory.*;
 import scheduling.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class LinearAlgebraEngine {
@@ -14,40 +15,160 @@ public class LinearAlgebraEngine {
 
     public LinearAlgebraEngine(int numThreads) {
         // TODO: create executor with given thread count
+        this.executor = new TiredExecutor(numThreads);
     }
 
     public ComputationNode run(ComputationNode computationRoot) {
         // TODO: resolve computation tree step by step until final matrix is produced
-        return null;
+        // Iteratively locate the next resolvable node: a node whose operands are
+        // already concrete matrices.
+        ComputationNode resolvable = computationRoot.findResolvable();
+        if (resolvable == null) {
+            // throw error - no resolvable node found
+            throw new IllegalArgumentException("No resolvable node found in computation tree.");
+        }
+        loadAndCompute(resolvable);
+    }
+
+    private void loadUnaryOperand(ComputationNode node) {
+        // Precondition: node must be a unary operation
+        if (node.getNodeType() != ComputationNodeType.NEGATE && node.getNodeType() != ComputationNodeType.TRANSPOSE) {
+            throw new IllegalArgumentException("Node must be a unary operation (NEGATE or TRANSPOSE).");
+        }
+        List<ComputationNode> children = node.getChildren();
+        if (children.size() != 1) {
+            throw new IllegalArgumentException("Node must have exactly two children.");
+        }
+        ComputationNode left = children.get(0);
+        if (left.getNodeType() != ComputationNodeType.MATRIX) {
+            throw new IllegalArgumentException("Child must be a MATRIX node.");
+        }
+        leftMatrix.loadRowMajor(left.getMatrix());
+    }
+
+    private void loadBinaryOperand(ComputationNode node) {
+        // Precondition: node must be a binary operation
+        if (node.getNodeType() != ComputationNodeType.ADD && node.getNodeType() != ComputationNodeType.MULTIPLY) {
+            throw new IllegalArgumentException("Node must be a binary operation (ADD or MULTIPLY).");
+        }
+        List<ComputationNode> children = node.getChildren();
+        if (children.size() != 2) {
+            throw new IllegalArgumentException("Node must have exactly two children.");
+        }
+        ComputationNode left = children.get(0);
+        ComputationNode right = children.get(1);
+        if (left.getNodeType() != ComputationNodeType.MATRIX || right.getNodeType() != ComputationNodeType.MATRIX) {
+            throw new IllegalArgumentException("Both children must be MATRIX nodes.");
+        }
+        leftMatrix.loadRowMajor(left.getMatrix());
+        rightMatrix.loadRowMajor(right.getMatrix());
     }
 
     public void loadAndCompute(ComputationNode node) {
         // TODO: load operand matrices
+        List<Runnable> tasks;
+        switch (node.getNodeType()) {
+            case ADD:
+                loadBinaryOperand(node);
+                tasks = createAddTasks();
+                break;
+            case MULTIPLY:
+                loadBinaryOperand(node);
+                tasks = createMultiplyTasks();
+                break;
+            case NEGATE:
+                loadUnaryOperand(node);
+                tasks = createNegateTasks();
+                break;
+            case TRANSPOSE:
+                loadUnaryOperand(node);
+                tasks = createTransposeTasks();
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported operation: " + node.getNodeType());
+        }
+
         // TODO: create compute tasks & submit tasks to executor
+
+        executor.submitAll(tasks);
     }
 
     public List<Runnable> createAddTasks() {
         // TODO: return tasks that perform row-wise addition
-        return null;
+    // Nir:
+        if (leftMatrix == null || rightMatrix == null) {
+            throw new IllegalStateException("Both left and right matrices must be loaded before multiplication.");
+        }
+        if (leftMatrix.length() == 0 || rightMatrix.length() == 0) {
+            throw new IllegalStateException("Matrices must not be empty for multiplication.");
+        }
+        if (leftMatrix.get(0).length() != rightMatrix.length()) {
+            throw new IllegalArgumentException("Incompatible matrix dimensions for multiplication.");
+        }   
+        List<Runnable> tasks = new LinkedList<>();
+        for (int i = 0; i < leftMatrix.length(); i++) {
+            final int rowIndex = i;
+            tasks.add(() -> {
+                SharedVector leftRow = leftMatrix.get(rowIndex);
+                SharedVector rightRow = rightMatrix.get(rowIndex);
+                leftRow.add(rightRow);
+            });
+        }
+        return tasks;
     }
 
     public List<Runnable> createMultiplyTasks() {
         // TODO: return tasks that perform row × matrix multiplication
-        return null;
+        // Nir:
+        if (leftMatrix == null || rightMatrix == null) {
+            throw new IllegalStateException("Both left and right matrices must be loaded before multiplication.");
+        }
+        if (leftMatrix.length() == 0 || rightMatrix.length() == 0) {
+            throw new IllegalStateException("Matrices must not be empty for multiplication.");
+        }
+        if (leftMatrix.get(0).length() != rightMatrix.length()) {
+            throw new IllegalArgumentException("Incompatible matrix dimensions for multiplication.");
+        }   
+        List<Runnable> tasks = new LinkedList<>();
+        for (int i = 0; i < leftMatrix.length(); i++) {
+            final int rowIndex = i;
+            tasks.add(() -> {
+                SharedVector leftRow = leftMatrix.get(rowIndex);
+                leftRow.vecMatMul(rightMatrix);
+            });
+        }
+        return tasks;
     }
 
     public List<Runnable> createNegateTasks() {
         // TODO: return tasks that negate rows
-        return null;
+        // Add exception handling as needed
+        List<Runnable> tasks = new LinkedList<>();
+        for (int i = 0; i < leftMatrix.length(); i++) {
+            final int rowIndex = i;
+            tasks.add(() -> {
+                SharedVector row = leftMatrix.get(rowIndex);
+                row.negate();
+            });
+        }
+        return tasks;
     }
 
     public List<Runnable> createTransposeTasks() {
         // TODO: return tasks that transpose rows
-        return null;
+        List<Runnable> tasks = new LinkedList<>();
+        for (int i = 0; i < leftMatrix.length(); i++) {
+            final int rowIndex = i;
+            tasks.add(() -> {
+                SharedVector row = leftMatrix.get(rowIndex);
+                row.transpose();
+            });
+        }
+        return tasks;
     }
 
     public String getWorkerReport() {
-        // TODO: return summary of worker activity
-        return null;
+        // Nir:
+        return executor.getWorkerReport();
     }
 }
