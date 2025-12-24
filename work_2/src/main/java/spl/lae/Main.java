@@ -86,7 +86,7 @@ public class Main {
       ComputationNode result = engine.run(root);
       double[][] resultMatrix = result.getMatrix();
       OutputWriter.write(resultMatrix, outputPath);
-    } catch (ParseException e) {
+    } catch (Exception e) {
       OutputWriter.write(e.getMessage(), outputPath);
     }
   }
