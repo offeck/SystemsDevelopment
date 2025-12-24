@@ -22,12 +22,21 @@ public class LinearAlgebraEngine {
         // TODO: resolve computation tree step by step until final matrix is produced
         // Iteratively locate the next resolvable node: a node whose operands are
         // already concrete matrices.
-        ComputationNode resolvable = computationRoot.findResolvable();
-        if (resolvable == null) {
-            // throw error - no resolvable node found
-            throw new IllegalArgumentException("No resolvable node found in computation tree.");
+        while (true) {
+            if (computationRoot.getNodeType() == ComputationNodeType.MATRIX) {
+                return computationRoot;
+            }
+            ComputationNode resolvable = computationRoot.findResolvable();
+            if (resolvable == null) {
+                // throw error - no resolvable node found
+                throw new IllegalArgumentException("No resolvable node found in computation tree.");
+            }
+            loadAndCompute(resolvable);
+            // read the result from the left shared matrix (M1) and attach it back to the
+            // corresponding node in the computation tree.
+            double[][] resultMatrix = leftMatrix.readRowMajor();
+            resolvable.resolve(resultMatrix);
         }
-        loadAndCompute(resolvable);
     }
 
     private void loadUnaryOperand(ComputationNode node) {
@@ -95,7 +104,7 @@ public class LinearAlgebraEngine {
 
     public List<Runnable> createAddTasks() {
         // TODO: return tasks that perform row-wise addition
-    // Nir:
+        // Nir:
         if (leftMatrix == null || rightMatrix == null) {
             throw new IllegalStateException("Both left and right matrices must be loaded before multiplication.");
         }
@@ -104,7 +113,7 @@ public class LinearAlgebraEngine {
         }
         if (leftMatrix.get(0).length() != rightMatrix.length()) {
             throw new IllegalArgumentException("Incompatible matrix dimensions for multiplication.");
-        }   
+        }
         List<Runnable> tasks = new LinkedList<>();
         for (int i = 0; i < leftMatrix.length(); i++) {
             final int rowIndex = i;
@@ -128,7 +137,7 @@ public class LinearAlgebraEngine {
         }
         if (leftMatrix.get(0).length() != rightMatrix.length()) {
             throw new IllegalArgumentException("Incompatible matrix dimensions for multiplication.");
-        }   
+        }
         List<Runnable> tasks = new LinkedList<>();
         for (int i = 0; i < leftMatrix.length(); i++) {
             final int rowIndex = i;
