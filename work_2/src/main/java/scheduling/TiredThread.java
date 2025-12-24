@@ -76,7 +76,40 @@ public class TiredThread extends Thread implements Comparable<TiredThread> {
 
     @Override
     public void run() {
-       // TODO
+        while (alive.get()) {
+            try {
+                // 1. Wait for a task (blocks until available)
+                Runnable task = handoff.take();
+                
+                // 2. Check if it's the poison pill (shutdown signal)
+                if (task == POISON_PILL) {
+                    break;  // Exit the loop
+                }
+                
+                // 3. Update idle time (we just stopped being idle)
+                long currentTime = System.nanoTime();
+                timeIdle.addAndGet(currentTime - idleStartTime.get());
+                
+                // 4. Mark as busy
+                busy.set(true);
+                
+                // 5. Execute the task and track time
+                long startTime = System.nanoTime();
+                task.run();
+                long endTime = System.nanoTime();
+                
+                // 6. Update time used
+                timeUsed.addAndGet(endTime - startTime);
+                
+                // 7. Mark as idle again
+                busy.set(false);
+                idleStartTime.set(System.nanoTime());
+                
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                break;
+            }
+        }
     }
 
     @Override
