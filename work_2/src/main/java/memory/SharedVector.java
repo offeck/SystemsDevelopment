@@ -115,7 +115,7 @@ public class SharedVector {
 
     public void vecMatMul(SharedMatrix matrix) {
         if (matrix == null || matrix.length() == 0 || matrix.get(0).length() == 0) {
-            throw new IllegalArgumentException("Matrix cannot be emptyfor multiplication.");
+            throw new IllegalArgumentException("Matrix cannot be empty for multiplication.");
         }
         if (this.orientation != VectorOrientation.ROW_MAJOR) {
             throw new IllegalArgumentException("Vector must be in row-major orientation for multiplication.");
