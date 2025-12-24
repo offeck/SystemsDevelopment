@@ -22,24 +22,33 @@ public class TiredExecutor {
     }
 
     public void submit(Runnable task) {
-        // TODO
-        try {
-            TiredThread worker = idleMinHeap.take(); // Get the least tired worker
-            inFlight.incrementAndGet();
-            worker.newTask(task);
-            worker.run();
-            inFlight.decrementAndGet();
-            worker.join();
-            idleMinHeap.put(worker); // Reinsert the worker back into the heap
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw new RuntimeException("Executor interrupted while submitting task", e);
-        }
+        
+    try {
+        TiredThread worker = idleMinHeap.take();
+        inFlight.incrementAndGet();
+        
+        worker.newTask(() -> {
+            try {
+                task.run();
+            } catch (Throwable t) {
+                // CRITICAL: Catch user errors so the worker thread doesn't die!
+                System.err.println("Task failed: " + t.getMessage());
+            } finally {
+                inFlight.decrementAndGet();
+                idleMinHeap.add(worker); 
+            }
+        });
+    } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+        throw new RuntimeException("Executor interrupted", e);
+    }
+}
 
     }
 
     public void submitAll(Iterable<Runnable> tasks) {
         // TODO: submit tasks one by one and wait until all finish
+        // Nir: ask for advice in office hours.
         for (Runnable task : tasks) {
             submit(task);
         }
