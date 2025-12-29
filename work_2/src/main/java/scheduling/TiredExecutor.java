@@ -22,46 +22,35 @@ public class TiredExecutor {
     }
 
     public void submit(Runnable task) {
-        
-    try {
-        TiredThread worker = idleMinHeap.take();
-        inFlight.incrementAndGet();
-        
-        worker.newTask(() -> {
-            try {
-                task.run();
-            } finally {
-                inFlight.decrementAndGet();
-                idleMinHeap.add(worker); 
-            }
-        });
-    } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-        throw new RuntimeException("Executor interrupted", e);
-    }
-}
+        try {
+            TiredThread worker = idleMinHeap.take();
+            inFlight.incrementAndGet();
 
-
-    public void submitAll(Iterable<Runnable> tasks) {
-        List<java.util.concurrent.CompletableFuture<Void>> futures = new ArrayList<>();
-
-        for (Runnable task : tasks) {
-            java.util.concurrent.CompletableFuture<Void> future = new java.util.concurrent.CompletableFuture<>();
-            futures.add(future);
-            submit(() -> {
+            worker.newTask(() -> {
                 try {
                     task.run();
-                    future.complete(null);
                 } catch (Throwable t) {
-                    future.completeExceptionally(t);
+                    // CRITICAL: Catch user errors so the worker thread doesn't die!
+                    System.err.println("Task failed: " + t.getMessage());
+                } finally {
+                    inFlight.decrementAndGet();
+                    idleMinHeap.add(worker);
                 }
             });
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Executor interrupted", e);
         }
+    }
 
-        if (!futures.isEmpty()) {
-            java.util.concurrent.CompletableFuture.allOf(
-                    futures.toArray(new java.util.concurrent.CompletableFuture[0]))
-                    .join();
+    public void submitAll(Iterable<Runnable> tasks) {
+        // TODO: submit tasks one by one and wait until all finish
+        // Nir: ask for advice in office hours.
+        for (Runnable task : tasks) {
+            submit(task);
+        }
+        while (inFlight.get() != 0) {
+            continue;
         }
     }
 

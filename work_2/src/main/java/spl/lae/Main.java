@@ -1,9 +1,6 @@
 package spl.lae;
 
 import java.io.IOException;
-import java.text.ParseException;
-
-import memory.SharedMatrix;
 import parser.*;
 
 /**
@@ -87,15 +84,7 @@ public class Main {
       double[][] resultMatrix = result.getMatrix();
       OutputWriter.write(resultMatrix, outputPath);
     } catch (Exception e) {
-      Throwable cause = e;
-      while (cause instanceof java.util.concurrent.CompletionException || cause instanceof java.util.concurrent.ExecutionException) {
-        if (cause.getCause() != null) {
-          cause = cause.getCause();
-        } else {
-          break;
-        }
-      }
-      OutputWriter.write(cause.getMessage(), outputPath);
+      OutputWriter.write(e.getMessage(), outputPath);
     }
   }
 }
