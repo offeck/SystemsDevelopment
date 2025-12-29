@@ -97,22 +97,12 @@ public class ExamplesTester {
         InputParser parser = new InputParser();
         try {
             ComputationNode root = parser.parse(inputPath);
-            try (LinearAlgebraEngine engine = new LinearAlgebraEngine(threads)) {
-                ComputationNode result = engine.run(root);
-                double[][] resultMatrix = result.getMatrix();
-                return mapper.valueToTree(new OutputWriter.ResultMatrix(resultMatrix));
-            }
+            LinearAlgebraEngine engine = new LinearAlgebraEngine(threads);
+            ComputationNode result = engine.run(root);
+            double[][] resultMatrix = result.getMatrix();
+            return mapper.valueToTree(new OutputWriter.ResultMatrix(resultMatrix));
         } catch (Exception e) {
-            Throwable cause = e;
-            while (cause instanceof java.util.concurrent.CompletionException || cause instanceof java.util.concurrent.ExecutionException) {
-                if (cause.getCause() != null) {
-                    cause = cause.getCause();
-                } else {
-                    break;
-                }
-            }
-            return mapper.valueToTree(new OutputWriter.ErrorMessage(cause.getMessage()));
+            return mapper.valueToTree(new OutputWriter.ErrorMessage(e.getMessage()));
         }
     }
 }
-
