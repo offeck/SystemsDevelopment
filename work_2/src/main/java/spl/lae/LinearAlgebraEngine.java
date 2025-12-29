@@ -24,6 +24,11 @@ public class LinearAlgebraEngine {
         // already concrete matrices.
         while (true) {
             if (computationRoot.getNodeType() == ComputationNodeType.MATRIX) {
+                try {
+                    this.executor.shutdown();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
                 return computationRoot;
             }
             ComputationNode resolvable = computationRoot.findResolvable();
@@ -154,7 +159,7 @@ public class LinearAlgebraEngine {
         // Add exception handling as needed
         if (leftMatrix == null) {
             throw new IllegalStateException("Left matrix must be loaded before negation.");
-        }   
+        }
         if (leftMatrix.length() == 0) {
             throw new IllegalStateException("Matrix must not be empty for negation.");
         }

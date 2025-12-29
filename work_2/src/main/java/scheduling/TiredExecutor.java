@@ -30,8 +30,7 @@ public class TiredExecutor {
                 try {
                     task.run();
                 } catch (Throwable t) {
-                    // CRITICAL: Catch user errors so the worker thread doesn't die!
-                    System.err.println("Task failed: " + t.getMessage());
+                    throw t;
                 } finally {
                     inFlight.decrementAndGet();
                     idleMinHeap.add(worker);
