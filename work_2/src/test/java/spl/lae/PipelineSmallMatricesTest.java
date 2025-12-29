@@ -100,6 +100,7 @@ public class PipelineSmallMatricesTest {
 
         parser.InputParser inputParser = new parser.InputParser();
         parser.ComputationNode root = inputParser.parse(input.toString());
+        root.associativeNesting();
         assertEquals(parser.ComputationNodeType.ADD, root.getNodeType());
         assertEquals(2, root.getChildren().size());
         assertEquals(parser.ComputationNodeType.ADD, root.getChildren().get(0).getNodeType());
