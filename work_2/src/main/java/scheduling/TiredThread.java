@@ -65,13 +65,9 @@ public class TiredThread extends Thread implements Comparable<TiredThread> {
      * Request this worker to stop after finishing current task.
      * Inserts a poison pill so the worker wakes up and exits.
      */
-    public void shutdown() {
+    public void shutdown() throws InterruptedException {
         alive.set(false);
-        try {
-            handoff.put(POISON_PILL);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        handoff.put(POISON_PILL);
     }
 
     @Override

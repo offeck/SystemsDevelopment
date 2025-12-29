@@ -18,17 +18,13 @@ public class LinearAlgebraEngine {
         this.executor = new TiredExecutor(numThreads);
     }
 
-    public ComputationNode run(ComputationNode computationRoot) {
+    public ComputationNode run(ComputationNode computationRoot) throws InterruptedException {
         // TODO: resolve computation tree step by step until final matrix is produced
         // Iteratively locate the next resolvable node: a node whose operands are
         // already concrete matrices.
         while (true) {
             if (computationRoot.getNodeType() == ComputationNodeType.MATRIX) {
-                try {
-                    this.executor.shutdown();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
+                this.executor.shutdown();
                 return computationRoot;
             }
             ComputationNode resolvable = computationRoot.findResolvable();
