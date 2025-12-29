@@ -10,12 +10,16 @@ public class TiredExecutor {
     private final TiredThread[] workers;
     private final PriorityBlockingQueue<TiredThread> idleMinHeap = new PriorityBlockingQueue<>();
     private final AtomicInteger inFlight = new AtomicInteger(0);
+    private final Object lock = new Object();
 
     public TiredExecutor(int numThreads) {
+        if (numThreads <= 0) {
+            throw new IllegalArgumentException("Number of threads must be positive");
+        }
         // Nir:
         workers = new TiredThread[numThreads];
         for (int i = 0; i < numThreads; i++) {
-            workers[i] = new TiredThread(i, 1.0); // Assuming a default fatigue factor of 1.0
+            workers[i] = new TiredThread(i, 0.5 + Math.random()); // a random value in the range 0.5–1.5
             workers[i].start();
             idleMinHeap.add(workers[i]);
         }
@@ -32,7 +36,11 @@ public class TiredExecutor {
                 } catch (Throwable t) {
                     throw t;
                 } finally {
-                    inFlight.decrementAndGet();
+                    if (inFlight.decrementAndGet() == 0) {
+                        synchronized (lock) {
+                            lock.notifyAll();
+                        }
+                    }
                     idleMinHeap.add(worker);
                 }
             });
@@ -48,8 +56,14 @@ public class TiredExecutor {
         for (Runnable task : tasks) {
             submit(task);
         }
-        while (inFlight.get() != 0) {
-            continue;
+        synchronized (lock) {
+            while (inFlight.get() != 0) {
+                try {
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
         }
     }
 

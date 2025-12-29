@@ -79,6 +79,7 @@ public class Main {
     InputParser parser = new InputParser();
     try {
       ComputationNode root = parser.parse(inputPath);
+      root.associativeNesting();
       LinearAlgebraEngine engine = new LinearAlgebraEngine(numberOfThreads);
       ComputationNode result = engine.run(root);
       double[][] resultMatrix = result.getMatrix();
