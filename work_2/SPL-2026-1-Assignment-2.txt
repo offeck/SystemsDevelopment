@@ -1,0 +1,455 @@
+----- Page 1 -----
+BGU 2026-1 SPL Assignment 2
+TAs: Amit Hendin, Gur Elkin, Dan Zlotnikov
+December 9, 2025
+Contents
+1 Introduction 1
+1.1 Environment Setup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+1.1.1 Maven . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+1.1.2 Running the JAR File . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+1.2 Unit Tests . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+2 Linear Algebra Engine 3
+2.1 Parsing Input Files . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+2.2 LAE Orchestration Logic . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+2.3 Scheduling Computation for Execution . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+2.3.1 Tasks . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+2.3.2 Thread Pool and Worker Threads . . . . . . . . . . . . . . . . . . . . . . . . . 7
+2.3.3 Shared Memory: SharedMatrix and SharedVector . . . . . . . . . . . . . . . . 8
+2.3.4 Data Flow and MatricesM 1, M2. . . . . . . . . . . . . . . . . . . . . . . . . 9
+2.3.5 Fairness and Fatigue . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+2.3.6 Handling Output Files . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+3 Conclusion 11
+3.1 Grading . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+3.2 Submission Instructions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+1 Introduction
+In this assignment you will implement aLinear Algebra Engine(LAE) that performs linear algebra
+computations using a custom thread pool, while managing shared resources safely. The goal is to
+gain hands-on experience with multi-threading, synchronization, and correct usage of shared data
+structures.
+The assignment is to be done in pairs and written in Java. See the course website for material
+on compiling and running Java, working with threads, and handling shared resources.
+1.1 Environment Setup
+To ensure that your code compiles and runs as expected, follow the environment setup document
+on the course website. Once completed, add the skeleton project files provided there to the root
+directory of your project.
+1
+
+----- Page 2 -----
+1.1.1 Maven
+This project is organized as a Maven-based Java application. Maven is a build automation and
+dependency management tool that uses a standard directory structure and a configuration file
+namedpom.xml.
+Maven operates by executing predefined build phases such ascompile,test, andpackage. Each
+phase may compile Java code, download dependencies, run tests, and produce output files such as
+JAR archives. Maven retrieves required libraries and plugins from remote repositories and caches
+them under˜/.m2/repositoryfor reuse.
+The state and behavior of the project are defined inpom.xml, which specifies the project name,
+Java version, dependencies, and plugin configuration.
+The standard layout is:
+src/main/java/ Application source code
+src/test/java/ Unit tests
+target/ Build output (generated automatically)
+pom.xml Maven project configuration
+All program source files go undersrc/main/java/. Test files go undersrc/test/java/.
+Before working with the project, ensure that:
+•Java 21 or a compatible version is installed, and thejavaandjavaccommands are in the
+system path.
+•Maven is installed. Runningmvn -versionshould display version information and show that
+Maven detects the correct Java installation.
+To compile all Java source files:
+mvn compile
+This command:
+•Reads configuration frompom.xml.
+•Ensures all dependencies and plugins are available.
+•Compiles code undersrc/main/java/totarget/classes/.
+To run unit tests:
+mvn test
+Maven will:
+•Compile test code.
+•Execute tests using the configured framework.
+•Print a test report in the console.
+To build a JAR file:
+mvn package
+2
+
+----- Page 3 -----
+This command:
+•Compiles main and test code.
+•Runs tests (unless disabled).
+•Packages compiled classes into a JAR undertarget/.
+After packaging, the JAR file is located in:
+target/lga-1.0.jar
+1.1.2 Running the JAR File
+Start the program with:
+java -jar target/lga-1.0.jar
+If the program expects command-line arguments:
+java -jar target/lga-1.0.jar arg1 arg2 arg3
+These values are accessible in themainmethod viaString[] args.
+1.2 Unit Tests
+Unittestingisessentialforcorrectnessandmaintainability. Inthisassignment, unittestsmustverify
+that each component of your LAE behaves as intended in isolation, and help detect regressions when
+code changes.
+You are required to write comprehensive unit tests for all methods that contribute to the cor-
+rectness of your program, including:
+•Matrix and vector operations (addition, multiplication, transpose, negation).
+•Dimension checks and error-handling logic.
+•Task creation and decomposition logic.
+•Any helper methods whose correctness is necessary for proper LAE behavior.
+Tests should cover standard and edge cases, including invalid inputs and small matrices where
+results are easy to verify. Submissions without meaningful passing tests will be penalized.
+2 Linear Algebra Engine
+The program you will implement is called a Linear Algebra Engine (LAE). Its goal is to perform
+linear algebra computations efficiently by exploiting the parallel nature of the operations and the
+available processors.
+The LAE reads three command-line arguments:
+<number of threads> <path/to/input/file> <path/to/output/file>
+For example:
+java -jar target/lga-1.0.jar \
+10 \
+./input_files/example1.json \
+./output_files/example1.out.json
+3
+
+----- Page 4 -----
+2.1 Parsing Input Files
+All computations are over the field of real numbersR. The LAE must support:
++Matrix addition
+∗Matrix multiplication
+TTranspose
+−Negation
+Unary operators accept exactly one operand; if they receive more, you must treat this as an
+error. Binary operators must have at least two operands; if more than two are given, evaluate
+left-associatively, e.g.∗(A, B, C)is(A∗B)∗C.
+Matrices.A matrix inR3×3is represented as an array of arrays. For example:
+
+1 0 2
+3 1 4
+0 0 1
+∈R3×3
+is encoded as:
+1[
+2[1, 0, 2],
+3[3, 1, 4],
+4[0, 0, 1]
+5]
+Single Operations.Operations are encoded using an"operator"and an"operands"array:
+1 2
+3 4
++5 6
+7 8
+1{
+2"operator": "+",
+3"operands": [
+4[
+5[1, 2],
+6[3, 4]
+7],
+8[
+9[5, 6],
+10[7, 8]
+11]
+12]
+13}
+Nested Operations.More complex computations are formed by nesting operators:
+
+
+1 1 1 1 5
+1 1 1 1 5
+1 1 1 1 5
++
+6 1 1 1 1
+6 1 1 1 1
+6 1 1 1 1
+
+
+3 2 1
+1 2 3
+2 1 3
+3 2 1
+1 2 3
+
+4
+
+----- Page 5 -----
+1{
+2"operator": "*",
+3"operands": [
+4{
+5"operator": "+",
+6"operands": [
+7[
+8[1,1,1,1,5],
+9[1,1,1,1,5],
+10[1,1,1,1,5]
+11],
+12[
+13[6,1,1,1,1],
+14[6,1,1,1,1],
+15[6,1,1,1,1]
+16]
+17]
+18},
+19[
+20[3,2,1],
+21[1,2,3],
+22[2,1,3],
+23[3,2,1],
+24[1,2,3]
+25]
+26]
+27}
+2.2 LAE Orchestration Logic
+The computation described by the input JSON is represented as a tree ofComputationNodein-
+stances. Each node has an operator and zero, one, or more operands.
+TheLinearAlgebraEngine(LAE) class orchestrates execution of this tree. Its responsibilities
+are:
+•Iteratively locate the nextresolvablenode: a node whose operands are already concrete ma-
+trices.
+•Load the operand matrices of that node into two shared matricesM 1andM 2, which are
+instances ofSharedMatrix.
+•DecomposetheoperationintoacollectionofRunnabletasksthatworkonindividualSharedVector
+objects (rows or columns) insideM 1andM 2.
+•Submit all tasks for the current node to theTiredExecutorthread pool, and block until all
+tasks in the batch have completed.
+•After completion of the batch, read the result from the left shared matrix (M 1) and attach it
+back to the corresponding node in the computation tree.
+If the root node is itself a matrix (i.e., a leaf node representing a concrete matrix), the LAE
+writes that matrix directly to the output file without scheduling worker tasks.
+5
+
+----- Page 6 -----
+2.3 Scheduling Computation for Execution
+The LAE breaks each operation into tasks (see Section 2.3.1) and distributes them among worker
+threads (see Section 2.3.2). The process of breaking down and distributing work is calledscheduling.
+Your goal is to maximize thread utilization while minimizing resource contention and idle time.
+Implementations that show poor performance compared to a serial implementation, or that cause
+workers to remain idle unnecessarily, will lose points.
+2.3.1 Tasks
+Ataskis a unit of work that is ready to be executed by a worker thread. Tasks operate on
+SharedVectorandSharedMatrixobjects and are represented as standardRunnableinstances.
+When breaking a computation into tasks, you must:
+•Validate that the operation is legal (e.g., check matrix dimensions before multiplication).
+•If an operation is illegal, write an error message to the output file and halt execution.
+Wide but Shallow Example.
+1{
+2"operator": "+",
+3"operands": [
+4{
+5"operator": "*",
+6"operands": [
+7[ [1,2], [3,4] ],
+8[2, 0]
+9]
+10},
+11{
+12"operator": "*",
+13"operands": [
+14[ [0,1], [1,0] ],
+15[1, 1]
+16]
+17},
+18{
+19"operator": "-",
+20"operands": [
+21[5, 5],
+22[1, 2]
+23]
+24},
+25{
+26"operator": "+",
+27"operands": [
+28[10, 0, 1],
+29[0, 1, 0]
+30]
+31}
+32]
+33}
+Large Matrices Example.
+1{
+2"operator": "*",
+6
+
+----- Page 7 -----
+3"operands": [
+4[
+5[1, 2, 3, ..., 50],
+6[0, 1, 0, ..., 0],
+7[0, 0, 1, ..., 0],
+8...,
+9[0, 0, 0, ..., 1]
+10],
+11[
+12[1, 0, 0, ..., 0],
+13[0, 1, 0, ..., 0],
+14[0, 0, 1, ..., 0],
+15...,
+16[50, 49, 48, ..., 1]
+17]
+18]
+19}
+Tasks should typically operate at the granularity of vector operations: for example, computing
+one row of the result matrix as a sum of one row fromM 1and appropriate row fromM 2.
+2.3.2 Thread Pool and Worker Threads
+When the LAE starts, it creates a thread pool withnworker threads. The pool is implemented by
+theTiredExecutorclass, and each worker is an instance ofTiredThread. The only way to execute
+work on the pool is by submitting standardRunnableobjects to the executor.
+Thread-pool implementation restriction.For this assignment, the thread pool and worker-
+scheduling logic must be implemented usingonlyJava’s built-in monitor primitives:synchronized
+blocks together with thewait(),notify(), andnotifyAll()methods on your own objects. The
+only exception may be locks and blocking data structures provided in the skeleton classes.
+The executor maintains:
+•An array of workerTiredThreadinstances.
+•Apriority-queue–like structure ofidleworkers, ordered by increasingfatigue, so that the
+least-fatigued worker receives the next task; however, since the fatigue factor is unknown
+in advance, you may not assume that the fatigue order remains valid between successive
+operations, therefore this ordering must be recomputed dynamically after each task execution.
+•Acounter(forexample, anAtomicInteger)thattracksthenumberofcurrentlyrunningtasks.
+To submit a task, the executor:
+•Selects the least-fatigued idle worker from the priority queue (blocking if none are currently
+idle).
+•Places theRunnableinto the worker’s one-elementhandoffqueue.
+When all computation is complete, the executor shuts down by sending a designated “poison
+pill” through each worker’s handoff queue, instructing it to exit its run loop.
+7
+
+----- Page 8 -----
+TiredThread.EachTiredThread:
+•Has a hidden fatigue factor, a random value in the range0.5–1.5.
+•Measures how much CPU time it spends executing tasks, accumulating this intimeUsed.
+•Separately tracks idle periods astimeIdle.
+•Computes its fatigue as
+fatigue=fatigueFactor×timeUsed.
+You must not change the logic insideTiredThreadthat measures time and computes fatigue.
+Responsibilities.The main thread (which owns theLinearAlgebraEngine) is responsible for:
+•Parsing the input file and writing the output file.
+•Building the computation tree ofComputationNodeobjects.
+•Loading operand matrices into the twoSharedMatrixinstancesM 1andM 2.
+•Creating and submittingRunnabletasks toTiredExecutor.
+•Waiting until all tasks for the current node have completed.
+•Shutting down the executor cleanly once the entire computation finishes.
+Worker threads are responsible only for:
+•Concurrently reading from and writing toSharedMatrixandSharedVectorinstances using
+the locking discipline ofSharedVector.
+•Performing vector-level and row/column-level computations as described by their assigned
+tasks.
+2.3.3 Shared Memory: SharedMatrix and SharedVector
+The LAE exposes two shared matrices,M 1andM 2, as instances of theSharedMatrixclass. Each
+SharedMatrixmanages its data as an array ofSharedVectorobjects. The orientation of these
+vectors (rows or columns) determines how the logical matrix is interpreted.
+•SharedMatrixdoesnotimplement any locking. It must not usesynchronizedor explicit
+lock objects in its methods. It is responsible only for organizing and exposing arrays of
+SharedVectorinstances and for providing convenience methods (such as accessing a row or
+column).
+•SharedVectorwraps adouble[]that stores the numeric data, plus metadata describing
+whetheritrepresentsaroworacolumn. EachSharedVectorownsaReentrantReadWriteLock
+or equivalent that may be used to protect concurrent access to its underlying array when nec-
+essary (in which case, the relevant scenario must be explained in a code comment).
+8
+
+----- Page 9 -----
+Multiple threads may hold the read lock simultaneously to read aSharedVector, but writes
+require exclusive access via the write lock.SharedVectormust provide in-place methods for basic
+operations such as: Adding vectors, negating vectors, etc.
+Each task submitted to the executor operates by acquiring the appropriate read and/or write
+locks on the relevantSharedVectorinstances, performing numeric operations, and releasing the
+locks.
+2.3.4 Data Flow and MatricesM 1, M2
+The output of every task must be written to the left matrixM 1, by updating the appropriate
+SharedVectorinstances in place. Subsequent operations can reuseM 1andM 2by unloading their
+contents back into the computation tree, and then reloading new operand matrices as needed. A
+single operation can be broken into many tasks.
+Input FileLAE
+Task Queue
+M1 M2Worker Thread 1
+Worker Thread 2
+Worker Thread 3computationtaskstask 1
+task 2
+task 3
+Figure 1: Flow of computation into the LAE, then into tasks and worker threads.
+2.3.5 Fairness and Fatigue
+At the end of execution, the quality of your scheduling logic is evaluated by how fairly the workload
+is distributed across workers. Fairness is measured by the sum of squared deviations from the
+average fatigue:X
+i(fatiguei−fatigue)2.
+A lower score means a more uniform distribution of work.
+Your executor must use the workers’getFatigue()values to drive scheduling decisions so that
+tasks tend to be assigned to less-fatigued threads first, balancing total work.
+2.3.6 Handling Output Files
+Output must be formatted in the same JSON format as the input, meaning JSON arrays. Output
+files will contain one object with either "result" property or "error" property. The result prop-
+erty will only have a JSON array in it that is the result fo the computation. The error property
+will have a single string containing the error message if one occured. The output file cannot have
+9
+
+----- Page 10 -----
+Op
+Op1 Op2
+Op2.1Task 1→M2
+Task 2→M2
+Task 3→M1Computation Tree Task Queue / Worker Threads
+Figure 2: Conversion of a computation tree into tasks with destinations in the shared matrices.
+both result and error, put error if the computation failed and put result if it succeeded. For example:
+Input file
+1{
+2"operator": "+",
+3"operands": [
+4[
+5[1, 2],
+6[3, 4]
+7],
+8[
+9[5, 6],
+10[7, 8]
+11]
+12]
+13}
+Output file
+1{"result": [
+2[6, 8],
+3[10, 12]
+4]}
+Input file
+1{
+2"operator": "*",
+3"operands": [
+4[
+5[1, 2],
+6[3, 4]
+7],
+8[
+9[5, 6, 7],
+10[7, 8, 8],
+11[6, 6, 1]
+12]
+13]
+14}
+Output file
+10
+
+----- Page 11 -----
+1{"error": "Illegal operation: dimensions mismatch"}
+The LAE (main thread) is responsible for writing this output file after the root computation
+has been resolved.
+3 Conclusion
+Your task is to write a program that lets users compute linear algebra expressions while utilizing
+the full parallel computing power available on their system. First, ensure that your linear algebra
+operations are correct and thoroughly tested. Then, focus on parallelizing them with careful use of
+fine-grained locks and a fair scheduling policy to avoid unnecessary contention and idle time.
+Example input and output files are provided in the skeleton project, but they do not cover all
+cases. You must add and test your own inputs to validate correctness and performance.
+3.1 Grading
+Your work will be evaluated on correctness and efficiency.
+•Correctness.All computations must return correct results. Incorrect results will incur
+significant penalties.
+•Efficiency.Implementations that fail to demonstrate effective parallelism, show excessive
+worker idle time, will lose points.
+•Use of Skeleton.The skeleton includes several classes. You must use these classes to
+implement your solution. Do not add fields to these classes. You must implement the provided
+empty methods without changing their signatures and use them in your design.
+3.2 Submission Instructions
+When you are finished:
+•Create a.zipfile containing all your source code files, including any skeleton files from the
+course website that you modified.
+•Include a plain textREADMEfile containing your names, ID numbers, and the submission date.
+Upload your.ziparchive via the course submission system as instructed.
+11
