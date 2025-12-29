@@ -30,9 +30,6 @@ public class TiredExecutor {
         worker.newTask(() -> {
             try {
                 task.run();
-            } catch (Throwable t) {
-                // CRITICAL: Catch user errors so the worker thread doesn't die!
-                System.err.println("Task failed: " + t.getMessage());
             } finally {
                 inFlight.decrementAndGet();
                 idleMinHeap.add(worker); 
@@ -46,10 +43,25 @@ public class TiredExecutor {
 
 
     public void submitAll(Iterable<Runnable> tasks) {
-        // TODO: submit tasks one by one and wait until all finish
-        // Nir: ask for advice in office hours.
+        List<java.util.concurrent.CompletableFuture<Void>> futures = new ArrayList<>();
+
         for (Runnable task : tasks) {
-            submit(task);
+            java.util.concurrent.CompletableFuture<Void> future = new java.util.concurrent.CompletableFuture<>();
+            futures.add(future);
+            submit(() -> {
+                try {
+                    task.run();
+                    future.complete(null);
+                } catch (Throwable t) {
+                    future.completeExceptionally(t);
+                }
+            });
+        }
+
+        if (!futures.isEmpty()) {
+            java.util.concurrent.CompletableFuture.allOf(
+                    futures.toArray(new java.util.concurrent.CompletableFuture[0]))
+                    .join();
         }
     }
 

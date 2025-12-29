@@ -46,7 +46,7 @@ public class LinearAlgebraEngine {
         }
         List<ComputationNode> children = node.getChildren();
         if (children.size() != 1) {
-            throw new IllegalArgumentException("Node must have exactly two children.");
+            throw new IllegalArgumentException("Node must have exactly one child.");
         }
         ComputationNode left = children.get(0);
         if (left.getNodeType() != ComputationNodeType.MATRIX) {
@@ -106,13 +106,13 @@ public class LinearAlgebraEngine {
         // TODO: return tasks that perform row-wise addition
         // Nir:
         if (leftMatrix == null || rightMatrix == null) {
-            throw new IllegalStateException("Both left and right matrices must be loaded before multiplication.");
+            throw new IllegalStateException("Both left and right matrices must be loaded before addition.");
         }
         if (leftMatrix.length() == 0 || rightMatrix.length() == 0) {
-            throw new IllegalStateException("Matrices must not be empty for multiplication.");
+            throw new IllegalStateException("Matrices must not be empty for addition.");
         }
-        if (leftMatrix.get(0).length() != rightMatrix.length()) {
-            throw new IllegalArgumentException("Incompatible matrix dimensions for multiplication.");
+        if (leftMatrix.length() != rightMatrix.length() || leftMatrix.get(0).length() != rightMatrix.get(0).length()) {
+            throw new IllegalArgumentException("Incompatible matrix dimensions for addition.");
         }
         List<Runnable> tasks = new LinkedList<>();
         for (int i = 0; i < leftMatrix.length(); i++) {

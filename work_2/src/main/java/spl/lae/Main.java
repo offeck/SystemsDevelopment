@@ -87,7 +87,15 @@ public class Main {
       double[][] resultMatrix = result.getMatrix();
       OutputWriter.write(resultMatrix, outputPath);
     } catch (Exception e) {
-      OutputWriter.write(e.getMessage(), outputPath);
+      Throwable cause = e;
+      while (cause instanceof java.util.concurrent.CompletionException || cause instanceof java.util.concurrent.ExecutionException) {
+        if (cause.getCause() != null) {
+          cause = cause.getCause();
+        } else {
+          break;
+        }
+      }
+      OutputWriter.write(cause.getMessage(), outputPath);
     }
   }
 }
