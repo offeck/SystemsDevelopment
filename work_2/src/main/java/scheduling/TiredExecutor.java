@@ -9,6 +9,7 @@ public class TiredExecutor {
     private final PriorityBlockingQueue<TiredThread> idleMinHeap = new PriorityBlockingQueue<>();
     private final AtomicInteger inFlight = new AtomicInteger(0);
     private final Object lock = new Object();
+    private final java.util.concurrent.atomic.AtomicReference<Throwable> firstError = new java.util.concurrent.atomic.AtomicReference<>();
 
     public TiredExecutor(int numThreads) {
         if (numThreads <= 0) {
@@ -31,6 +32,8 @@ public class TiredExecutor {
             worker.newTask(() -> {
                 try {
                     task.run();
+                } catch (Throwable t) {
+                    firstError.compareAndSet(null, t);
                 } finally {
                     if (inFlight.decrementAndGet() == 0) {
                         synchronized (lock) {
@@ -60,6 +63,16 @@ public class TiredExecutor {
                     Thread.currentThread().interrupt();
                     throw new RuntimeException("Executor interrupted while waiting for tasks", e);
                 }
+            }
+        }
+        Throwable error = firstError.getAndSet(null);
+        if (error != null) {
+            if (error instanceof RuntimeException) {
+                throw (RuntimeException) error;
+            } else if (error instanceof Error) {
+                throw (Error) error;
+            } else {
+                throw new RuntimeException(error);
             }
         }
     }
