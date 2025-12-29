@@ -1,8 +1,6 @@
 package scheduling;
 
 import java.util.concurrent.PriorityBlockingQueue;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class TiredExecutor {
@@ -33,12 +31,10 @@ public class TiredExecutor {
             worker.newTask(() -> {
                 try {
                     task.run();
-                } catch (Throwable t) {
-                    throw t;
                 } finally {
                     if (inFlight.decrementAndGet() == 0) {
                         synchronized (lock) {
-                            lock.notifyAll();
+                            lock.notifyAll(); // Notify submitAll waiter
                         }
                     }
                     idleMinHeap.add(worker);
@@ -46,7 +42,7 @@ public class TiredExecutor {
             });
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            throw new RuntimeException("Executor interrupted", e);
+            throw new RuntimeException("Executor interrupted while waiting for worker", e);
         }
     }
 
@@ -62,28 +58,34 @@ public class TiredExecutor {
                     lock.wait();
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
+                    throw new RuntimeException("Executor interrupted while waiting for tasks", e);
                 }
             }
         }
     }
 
-    public void shutdown() throws InterruptedException {
+    public void shutdown() {
         // TODO
-        for (TiredThread worker : workers) {
-            worker.shutdown();
-        }
-        for (TiredThread worker : workers) {
-            worker.join();
+        try {
+            for (TiredThread worker : workers) {
+                worker.shutdown();
+            }
+            for (TiredThread worker : workers) {
+                worker.join();
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Executor interrupted while waiting for tasks", e);
         }
     }
 
     public synchronized String getWorkerReport() {
         // TODO: return readable statistics for each worker
-        String report = "";
+        StringBuilder report = new StringBuilder();
         for (TiredThread worker : workers) {
-            report += String.format("Worker %d: Time Used = %d ns, Time Idle = %d ns\n",
-                    worker.getWorkerId(), worker.getTimeUsed(), worker.getTimeIdle());
+            report.append(String.format("Worker %d: Time Used = %d ns, Time Idle = %d ns\n",
+                    worker.getWorkerId(), worker.getTimeUsed(), worker.getTimeIdle()));
         }
-        return report;
+        return report.toString();
     }
 }

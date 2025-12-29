@@ -18,7 +18,7 @@ public class LinearAlgebraEngine {
         this.executor = new TiredExecutor(numThreads);
     }
 
-    public ComputationNode run(ComputationNode computationRoot) throws InterruptedException {
+    public ComputationNode run(ComputationNode computationRoot) {
         // TODO: resolve computation tree step by step until final matrix is produced
         // Iteratively locate the next resolvable node: a node whose operands are
         // already concrete matrices.
