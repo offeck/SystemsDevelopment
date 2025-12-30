@@ -77,9 +77,8 @@ class TiredThreadTest {
      */
     @Test
     void testFatigueCalculation() throws InterruptedException {
-        double inputFactor = 2.0;
-        double effectiveFactor = 1.5; // Normalized to max 1.5
-        TiredThread thread = new TiredThread(1, inputFactor);
+        double fatigueFactor =  0.5 + Math.random(); // Random fatigue factor between 0.5 and 1.5
+        TiredThread thread = new TiredThread(1, fatigueFactor);
         thread.start();
 
         CountDownLatch latch = new CountDownLatch(1);
