@@ -103,6 +103,9 @@ class TiredThreadTest {
         assertTrue(timeUsed > 0, "Time used should be greater than 0");
         
         // Fatigue = timeUsed * fatigueFactor
+        System.out.println("Time Used: " + timeUsed);
+        System.out.println("Fatigue Factor: " + fatigueFactor);
+        System.out.println("Fatigue: " + thread.getFatigue());
         assertEquals(timeUsed * fatigueFactor, thread.getFatigue(), 0.001);
 
         thread.shutdown();
