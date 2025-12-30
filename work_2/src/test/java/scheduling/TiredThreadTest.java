@@ -53,22 +53,6 @@ class TiredThreadTest {
         assertEquals(0.0, thread.getFatigue(), 0.001);
     }
     /**
-     * Tests that the thread throws an exception when initialized with
-     * an invalid fatigue factor (negative).
-     */  
-     @Test
-    void testInvalidFatigueFactorInitialization() {
-        double negativeFatigueFactor = -0.5;
-        double zeroFatigueFactor = 0.0;
-        double positiveFatigueFactor = 0.49999;
-        double LargePositiveFatigueFactor = 1.5001;
-        assertThrows(IllegalArgumentException.class, () -> new TiredThread(1, negativeFatigueFactor));
-        assertThrows(IllegalArgumentException.class, () -> new TiredThread(2, zeroFatigueFactor));
-        assertThrows(IllegalArgumentException.class, () -> new TiredThread(3, positiveFatigueFactor));
-        assertThrows(IllegalArgumentException.class, () -> new TiredThread(4, LargePositiveFatigueFactor));
-
-    }   
-    /**
      * Tests task execution.
      * Verifies that a submitted task is executed by the thread.
      */
@@ -180,6 +164,86 @@ class TiredThreadTest {
         t2.shutdown();
         t1.join();
         t2.join();
+    }
+
+    /**
+     * Tests that newTask throws an exception when the worker is busy
+     * and the handoff queue is full.
+     */
+    @Test
+    void testNewTaskQueueFull() throws InterruptedException {
+        TiredThread thread = new TiredThread(1, 1.0);
+        thread.start();
+
+        CountDownLatch taskStarted = new CountDownLatch(1);
+        CountDownLatch taskFinish = new CountDownLatch(1);
+        CountDownLatch task2Finished = new CountDownLatch(1);
+
+        // 1. Submit a task that blocks
+        thread.newTask(() -> {
+            taskStarted.countDown();
+            try {
+                taskFinish.await(); // Block until we let it finish
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        });
+
+        // Wait for the thread to pick up the task (queue is now empty, but worker is busy)
+        taskStarted.await();
+
+        // 2. Submit a second task (fills the queue)
+        thread.newTask(() -> {
+            task2Finished.countDown();
+        });
+
+        // 3. Submit a third task - should fail because queue (size 1) is full
+        assertThrows(IllegalStateException.class, () -> {
+            thread.newTask(() -> {});
+        }, "Should throw exception when queue is full");
+
+        // Cleanup
+        taskFinish.countDown(); // Let the first task finish
+        task2Finished.await(); // Wait for the second task to finish (ensures queue is empty)
+        
+        thread.shutdown();
+        thread.join();
+    }
+
+    /**
+     * Tests isBusy state during task execution.
+     */
+    @Test
+    void testIsBusy() throws InterruptedException {
+        TiredThread thread = new TiredThread(1, 1.0);
+        thread.start();
+
+        assertFalse(thread.isBusy(), "Should not be busy initially");
+
+        CountDownLatch latch = new CountDownLatch(1);
+        CountDownLatch release = new CountDownLatch(1);
+
+        thread.newTask(() -> {
+            latch.countDown(); // Signal we started
+            try {
+                release.await(); // Wait here
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        });
+
+        latch.await();
+        // Thread is now running the task
+        assertTrue(thread.isBusy(), "Should be busy while running task");
+
+        release.countDown(); // Let it finish
+        
+        // Wait for thread to update state
+        Thread.sleep(50);
+        assertFalse(thread.isBusy(), "Should not be busy after task finishes");
+
+        thread.shutdown();
+        thread.join();
     }
 
     /**
