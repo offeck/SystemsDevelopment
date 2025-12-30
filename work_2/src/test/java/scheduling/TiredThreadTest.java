@@ -52,7 +52,16 @@ class TiredThreadTest {
         // Initial fatigue should be 0 as timeUsed is 0
         assertEquals(0.0, thread.getFatigue(), 0.001);
     }
-
+    /**
+     * Tests that the thread throws an exception when initialized with
+     * an invalid fatigue factor (negative).
+     */  
+     @Test
+    void testInvalidFatigueFactorInitialization() {
+        int id = 1;
+        double invalidFatigueFactor = -0.5;
+        assertThrows(IllegalArgumentException.class, () -> new TiredThread(id, invalidFatigueFactor));
+    }   
     /**
      * Tests task execution.
      * Verifies that a submitted task is executed by the thread.
