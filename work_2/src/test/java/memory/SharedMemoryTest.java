@@ -81,6 +81,14 @@ class SharedMemoryTest {
         
         assertEquals(32.0, result, 0.0001);
     }
+    
+    @Test
+    void testSharedVectorDotMismatch() {
+        SharedVector v1 = new SharedVector(new double[]{1.0}, VectorOrientation.ROW_MAJOR);
+        SharedVector v2 = new SharedVector(new double[]{1.0, 2.0}, VectorOrientation.ROW_MAJOR);
+
+        assertThrows(IllegalArgumentException.class, () -> v1.dot(v2));
+    }
 
     @Test
     void testSharedVectorDotMismatch() {
@@ -120,6 +128,89 @@ class SharedMemoryTest {
         
         latch.await();
         assertEquals((double)threads, v.get(0), 0.0001);
+    }
+    
+    @Test
+    void testSharedVectorGetOutOfBounds() {
+        SharedVector v = new SharedVector(new double[]{1.0}, VectorOrientation.ROW_MAJOR);
+        assertThrows(IndexOutOfBoundsException.class, () -> v.get(1));
+        assertThrows(IndexOutOfBoundsException.class, () -> v.get(-1));
+    }
+
+    // --- VecMatMul Tests ---
+
+    @Test
+    void testVecMatMulSuccessRowMajorMatrix() {
+        // Vector: [1, 2]
+        // Matrix (Row Major):
+        // [3, 4]
+        // [5, 6]
+        // Result: [1*3 + 2*5, 1*4 + 2*6] = [3+10, 4+12] = [13, 16]
+        
+        SharedVector v = new SharedVector(new double[]{1.0, 2.0}, VectorOrientation.ROW_MAJOR);
+        double[][] matData = {
+            {3.0, 4.0},
+            {5.0, 6.0}
+        };
+        SharedMatrix m = new SharedMatrix(matData);
+        
+        v.vecMatMul(m);
+        
+        assertEquals(2, v.length());
+        assertEquals(13.0, v.get(0), 0.0001);
+        assertEquals(16.0, v.get(1), 0.0001);
+    }
+
+    @Test
+    void testVecMatMulSuccessColumnMajorMatrix() {
+        // Vector: [1, 2]
+        // Matrix (Col Major - Transposed logically):
+        // [3, 4]
+        // [5, 6]
+        // In Col Major internal storage: 
+        // Col 0: [3, 5]
+        // Col 1: [4, 6]
+        
+        SharedVector v = new SharedVector(new double[]{1.0, 2.0}, VectorOrientation.ROW_MAJOR);
+        double[][] matData = {
+            {3.0, 4.0},
+            {5.0, 6.0}
+        };
+        SharedMatrix m = new SharedMatrix();
+        m.loadColumnMajor(matData);
+        
+        v.vecMatMul(m);
+        
+        assertEquals(2, v.length());
+        assertEquals(13.0, v.get(0), 0.0001);
+        assertEquals(16.0, v.get(1), 0.0001);
+    }
+
+    @Test
+    void testVecMatMulDimensionMismatch() {
+        // Vector: [1, 2, 3] (length 3)
+        // Matrix: 2x2
+        SharedVector v = new SharedVector(new double[]{1.0, 2.0, 3.0}, VectorOrientation.ROW_MAJOR);
+        SharedMatrix m = new SharedMatrix(new double[][]{{1, 2}, {3, 4}});
+        
+        assertThrows(IllegalArgumentException.class, () -> v.vecMatMul(m));
+    }
+
+    @Test
+    void testVecMatMulInvalidOrientation() {
+        // Vector must be ROW_MAJOR for vecMatMul
+        SharedVector v = new SharedVector(new double[]{1.0, 2.0}, VectorOrientation.COLUMN_MAJOR);
+        SharedMatrix m = new SharedMatrix(new double[][]{{1, 2}, {3, 4}});
+        
+        assertThrows(IllegalArgumentException.class, () -> v.vecMatMul(m));
+    }
+
+    @Test
+    void testVecMatMulNullOrEmptyMatrix() {
+        SharedVector v = new SharedVector(new double[]{1.0}, VectorOrientation.ROW_MAJOR);
+        
+        assertThrows(IllegalArgumentException.class, () -> v.vecMatMul(null));
+        assertThrows(IllegalArgumentException.class, () -> v.vecMatMul(new SharedMatrix()));
     }
 
     @Test
@@ -243,5 +334,12 @@ class SharedMemoryTest {
         
         assertArrayEquals(data[0], result[0]);
         assertArrayEquals(data[1], result[1]);
+    }
+    
+    @Test
+    void testSharedMatrixGetOutOfBounds() {
+        SharedMatrix m = new SharedMatrix(new double[][]{{1, 2}});
+        assertThrows(IndexOutOfBoundsException.class, () -> m.get(1));
+        assertThrows(IndexOutOfBoundsException.class, () -> m.get(-1));
     }
 }
