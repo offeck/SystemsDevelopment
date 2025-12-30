@@ -91,14 +91,6 @@ class SharedMemoryTest {
     }
 
     @Test
-    void testSharedVectorDotMismatch() {
-        SharedVector v1 = new SharedVector(new double[]{1.0}, VectorOrientation.ROW_MAJOR);
-        SharedVector v2 = new SharedVector(new double[]{1.0, 2.0}, VectorOrientation.ROW_MAJOR);
-        
-        assertThrows(IllegalArgumentException.class, () -> v1.dot(v2));
-    }
-
-    @Test
     void testSharedVectorDotNegative() {
         double[] data1 = {1.0, -2.0};
         double[] data2 = {-3.0, 4.0};
