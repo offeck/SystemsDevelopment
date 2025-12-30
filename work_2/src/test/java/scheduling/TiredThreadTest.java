@@ -58,9 +58,15 @@ class TiredThreadTest {
      */  
      @Test
     void testInvalidFatigueFactorInitialization() {
-        int id = 1;
-        double invalidFatigueFactor = -0.5;
-        assertThrows(IllegalArgumentException.class, () -> new TiredThread(id, invalidFatigueFactor));
+        double negativeFatigueFactor = -0.5;
+        double zeroFatigueFactor = 0.0;
+        double positiveFatigueFactor = 0.49999;
+        double LargePositiveFatigueFactor = 1.5001;
+        assertThrows(IllegalArgumentException.class, () -> new TiredThread(1, negativeFatigueFactor));
+        assertThrows(IllegalArgumentException.class, () -> new TiredThread(2, zeroFatigueFactor));
+        assertThrows(IllegalArgumentException.class, () -> new TiredThread(3, positiveFatigueFactor));
+        assertThrows(IllegalArgumentException.class, () -> new TiredThread(4, LargePositiveFatigueFactor));
+
     }   
     /**
      * Tests task execution.
