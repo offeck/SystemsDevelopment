@@ -83,6 +83,27 @@ class SharedMemoryTest {
     }
 
     @Test
+    void testSharedVectorDotMismatch() {
+        SharedVector v1 = new SharedVector(new double[]{1.0}, VectorOrientation.ROW_MAJOR);
+        SharedVector v2 = new SharedVector(new double[]{1.0, 2.0}, VectorOrientation.ROW_MAJOR);
+        
+        assertThrows(IllegalArgumentException.class, () -> v1.dot(v2));
+    }
+
+    @Test
+    void testSharedVectorDotNegative() {
+        double[] data1 = {1.0, -2.0};
+        double[] data2 = {-3.0, 4.0};
+        SharedVector v1 = new SharedVector(data1, VectorOrientation.ROW_MAJOR);
+        SharedVector v2 = new SharedVector(data2, VectorOrientation.ROW_MAJOR);
+        
+        // 1*(-3) + (-2)*4 = -3 - 8 = -11
+        double result = v1.dot(v2);
+        
+        assertEquals(-11.0, result, 0.0001);
+    }
+
+    @Test
     void testSharedVectorConcurrency() throws InterruptedException {
         int threads = 10;
         SharedVector v = new SharedVector(new double[]{0.0}, VectorOrientation.ROW_MAJOR);
@@ -99,6 +120,59 @@ class SharedMemoryTest {
         
         latch.await();
         assertEquals((double)threads, v.get(0), 0.0001);
+    }
+
+    @Test
+    void testSharedVectorVecMatMulRowMajor() {
+        // Vector: [1, 2]
+        // Matrix: [[3, 4], [5, 6]]
+        // Result: [1*3 + 2*5, 1*4 + 2*6] = [3+10, 4+12] = [13, 16]
+        
+        SharedVector v = new SharedVector(new double[]{1.0, 2.0}, VectorOrientation.ROW_MAJOR);
+        double[][] matData = {
+            {3.0, 4.0},
+            {5.0, 6.0}
+        };
+        SharedMatrix m = new SharedMatrix(matData); // Row Major
+        
+        v.vecMatMul(m);
+        
+        assertEquals(2, v.length());
+        assertEquals(13.0, v.get(0), 0.0001);
+        assertEquals(16.0, v.get(1), 0.0001);
+    }
+
+    @Test
+    void testSharedVectorVecMatMulColumnMajor() {
+        // Vector: [1, 2]
+        // Matrix: [[3, 4], [5, 6]]
+        // Result: [13, 16]
+        
+        SharedVector v = new SharedVector(new double[]{1.0, 2.0}, VectorOrientation.ROW_MAJOR);
+        double[][] matData = {
+            {3.0, 4.0},
+            {5.0, 6.0}
+        };
+        SharedMatrix m = new SharedMatrix();
+        m.loadColumnMajor(matData); // Column Major
+        
+        v.vecMatMul(m);
+        
+        assertEquals(2, v.length());
+        assertEquals(13.0, v.get(0), 0.0001);
+        assertEquals(16.0, v.get(1), 0.0001);
+    }
+
+    @Test
+    void testSharedVectorVecMatMulDimensionMismatch() {
+        SharedVector v = new SharedVector(new double[]{1.0}, VectorOrientation.ROW_MAJOR);
+        double[][] matData = {
+            {3.0, 4.0},
+            {5.0, 6.0}
+        };
+        SharedMatrix m = new SharedMatrix(matData);
+        
+        assertThrows(IllegalArgumentException.class, () -> v.vecMatMul(m));
     }
 
     // --- SharedMatrix Tests ---
