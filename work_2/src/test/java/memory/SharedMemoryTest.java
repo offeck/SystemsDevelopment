@@ -204,6 +204,13 @@ class SharedMemoryTest {
         assertThrows(IllegalArgumentException.class, () -> v.vecMatMul(null));
         assertThrows(IllegalArgumentException.class, () -> v.vecMatMul(new SharedMatrix()));
     }
+    @Test
+    void testSharedVectorVecMatMulEmptyVector() {
+        SharedVector v = new SharedVector(new double[]{}, VectorOrientation.ROW_MAJOR);
+        SharedMatrix m = new SharedMatrix(new double[][]{{1, 2}, {3, 4}});
+        
+        assertThrows(IllegalArgumentException.class, () -> v.vecMatMul(m));
+    }
 
     @Test
     void testSharedVectorVecMatMulRowMajor() {
@@ -224,7 +231,35 @@ class SharedMemoryTest {
         assertEquals(13.0, v.get(0), 0.0001);
         assertEquals(16.0, v.get(1), 0.0001);
     }
-
+    @Test
+    void testLargeSharedVectorVecMatMulRowMajor(){ 
+        int vectorSize = 1000;
+        int matrixCols = 500;
+        double[] vectorData = new double[vectorSize];
+        double[][] matrixData = new double[vectorSize][matrixCols];
+        
+        // Initialize vector and matrix with some values
+        for (int i = 0; i < vectorSize; i++) {
+            vectorData[i] = i + 1; 
+            for (int j = 0; j < matrixCols; j++) {
+                matrixData[i][j] = (i + 1) * (j + 1); 
+            }
+        }
+        
+        SharedVector v = new SharedVector(vectorData, VectorOrientation.ROW_MAJOR);
+        SharedMatrix m = new SharedMatrix(matrixData); // Row Major
+        
+        v.vecMatMul(m);
+        
+        // Validate a few entries in the resulting vector
+        for (int j = 0; j < matrixCols; j++) {
+            double expectedValue = 0.0;
+            for (int i = 0; i < vectorSize; i++) {
+                expectedValue += vectorData[i] * matrixData[i][j];
+            }
+            assertEquals(expectedValue, v.get(j), 0.0001);
+        }
+    }
     @Test
     void testSharedVectorVecMatMulColumnMajor() {
         // Vector: [1, 2]
@@ -245,7 +280,36 @@ class SharedMemoryTest {
         assertEquals(13.0, v.get(0), 0.0001);
         assertEquals(16.0, v.get(1), 0.0001);
     }
-
+    @Test
+    void testLargeSharedVectorVecMatMulColumnMajor() {
+        int vectorSize = 1000;
+        int matrixCols = 500;
+        double[] vectorData = new double[vectorSize];
+        double[][] matrixData = new double[vectorSize][matrixCols];
+        
+        // Initialize vector and matrix with some values
+        for (int i = 0; i < vectorSize; i++) {
+            vectorData[i] = i + 1; 
+            for (int j = 0; j < matrixCols; j++) {
+                matrixData[i][j] = (i + 1) * (j + 1); 
+            }
+        }
+        
+        SharedVector v = new SharedVector(vectorData, VectorOrientation.ROW_MAJOR);
+        SharedMatrix m = new SharedMatrix();
+        m.loadColumnMajor(matrixData); // Column Major
+        
+        v.vecMatMul(m);
+        
+        // Validate a few entries in the resulting vector
+        for (int j = 0; j < matrixCols; j++) {
+            double expectedValue = 0.0;
+            for (int i = 0; i < vectorSize; i++) {
+                expectedValue += vectorData[i] * matrixData[i][j];
+            }
+            assertEquals(expectedValue, v.get(j), 0.0001);
+        }
+    }
     @Test
     void testSharedVectorVecMatMulDimensionMismatch() {
         SharedVector v = new SharedVector(new double[]{1.0}, VectorOrientation.ROW_MAJOR);
