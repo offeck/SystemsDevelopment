@@ -81,7 +81,53 @@ class SharedMemoryTest {
         
         assertEquals(32.0, result, 0.0001);
     }
-    
+    @Test
+    void testSharedVectorDotLargeValues() {
+        double[] data1 = {1e150, 2e150};
+        double[] data2 = {3e150, 4e150};
+        SharedVector v1 = new SharedVector(data1, VectorOrientation.ROW_MAJOR);
+        SharedVector v2 = new SharedVector(data2, VectorOrientation.ROW_MAJOR);
+        
+        double result = v1.dot(v2); // 1e150*3e150 + 2e150*4e150 = 3e300 + 8e300 = 11e300
+        
+        assertEquals(11e300, result, 1e290); // Allow some tolerance due to floating point precision
+    }   
+    @Test
+    void testLargeSharedVector() {
+        int size = 1000;
+        double[] data = new double[size];
+        for (int i = 0; i < size; i++) {
+            data[i] = i * 1.0;
+        }
+        SharedVector v = new SharedVector(data, VectorOrientation.ROW_MAJOR);
+        
+        assertEquals(size, v.length());
+        for (int i = 0; i < size; i++) {
+            assertEquals(i * 1.0, v.get(i), 0.0001);
+        }
+    }
+    @Test
+    void testLongSharedVectorDot() {
+        int size = 1000;
+        double[] data1 = new double[size];
+        double[] data2 = new double[size];
+        for (int i = 0; i < size; i++) {
+            data1[i] = i * 1.0;
+            data2[i] = (size - i) * 1.0;
+        }
+        SharedVector v1 = new SharedVector(data1, VectorOrientation.ROW_MAJOR);
+        SharedVector v2 = new SharedVector(data2, VectorOrientation.ROW_MAJOR);
+        
+        // Dot product: sum of i * (size - i) for i=0 to size-1
+        double expected = 0.0;
+        for (int i = 0; i < size; i++) {
+            expected += i * (size - i);
+        }
+        
+        double result = v1.dot(v2);
+        
+        assertEquals(expected, result, 0.0001);
+    }
     @Test
     void testSharedVectorDotMismatch() {
         SharedVector v1 = new SharedVector(new double[]{1.0}, VectorOrientation.ROW_MAJOR);
