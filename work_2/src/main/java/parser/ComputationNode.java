@@ -55,15 +55,38 @@ public class ComputationNode {
         if (nodeType == ComputationNodeType.MATRIX) {
             return null;
         }
+        boolean allChildrenMatrices = true;
         for (ComputationNode child : children) {
             if (child.getNodeType() != ComputationNodeType.MATRIX) {
+                allChildrenMatrices = false;
                 ComputationNode res = child.findResolvable();
                 if (res != null) {
                     return res;
                 }
             }
         }
-        return this;
+        return allChildrenMatrices ? this : null;
+    }
+
+    /**
+     * Recursively finds all resolvable nodes in the tree.
+     * A resolvable node is defined as a node that is not of type MATRIX,
+     * with children that are all of type MATRIX.
+     */
+    public void findAllResolvable(List<ComputationNode> accumulator) {
+        if (nodeType == ComputationNodeType.MATRIX) {
+            return;
+        }
+        boolean allChildrenMatrices = true;
+        for (ComputationNode child : children) {
+            if (child.getNodeType() != ComputationNodeType.MATRIX) {
+                allChildrenMatrices = false;
+                child.findAllResolvable(accumulator);
+            }
+        }
+        if (allChildrenMatrices) {
+            accumulator.add(this);
+        }
     }
 
     /**

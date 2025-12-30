@@ -4,47 +4,94 @@ import parser.*;
 import memory.*;
 import scheduling.*;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class LinearAlgebraEngine {
 
-    private SharedMatrix leftMatrix = new SharedMatrix();
-    private SharedMatrix rightMatrix = new SharedMatrix();
-    private TiredExecutor executor;
+    private final TiredExecutor executor;
 
     public LinearAlgebraEngine(int numThreads) {
-        // TODO: create executor with given thread count
         this.executor = new TiredExecutor(numThreads);
     }
 
     public ComputationNode run(ComputationNode computationRoot) {
-        // TODO: resolve computation tree step by step until final matrix is produced
-        // Iteratively locate the next resolvable node: a node whose operands are
-        // already concrete matrices.
         try {
             while (true) {
                 if (computationRoot.getNodeType() == ComputationNodeType.MATRIX) {
                     return computationRoot;
                 }
-                ComputationNode resolvable = computationRoot.findResolvable();
-                if (resolvable == null) {
-                    // throw error - no resolvable node found
+
+                List<ComputationNode> resolvableNodes = new ArrayList<>();
+                computationRoot.findAllResolvable(resolvableNodes);
+
+                if (resolvableNodes.isEmpty()) {
                     throw new IllegalArgumentException("No resolvable node found in computation tree.");
                 }
-                loadAndCompute(resolvable);
-                // read the result from the left shared matrix (M1) and attach it back to the
-                // corresponding node in the computation tree.
-                double[][] resultMatrix = leftMatrix.readRowMajor();
-                resolvable.resolve(resultMatrix);
+
+                List<Runnable> batchTasks = new ArrayList<>();
+                List<PendingResolution> pendingResolutions = new ArrayList<>();
+
+                for (ComputationNode node : resolvableNodes) {
+                    PendingResolution pending = loadAndPrepare(node);
+                    batchTasks.addAll(pending.tasks);
+                    pendingResolutions.add(pending);
+                }
+
+                executor.submitAll(batchTasks);
+
+                for (PendingResolution pending : pendingResolutions) {
+                    double[][] resultMatrix = pending.resultMatrixHolder.readRowMajor();
+                    pending.node.resolve(resultMatrix);
+                }
             }
         } finally {
             this.executor.shutdown();
         }
     }
 
-    private void loadUnaryOperand(ComputationNode node) {
-        // Precondition: node must be a unary operation
+    private static class PendingResolution {
+        ComputationNode node;
+        SharedMatrix resultMatrixHolder;
+        List<Runnable> tasks;
+
+        PendingResolution(ComputationNode node, SharedMatrix resultMatrixHolder, List<Runnable> tasks) {
+            this.node = node;
+            this.resultMatrixHolder = resultMatrixHolder;
+            this.tasks = tasks;
+        }
+    }
+
+    private PendingResolution loadAndPrepare(ComputationNode node) {
+        SharedMatrix left = new SharedMatrix();
+        SharedMatrix right = new SharedMatrix();
+        List<Runnable> tasks;
+
+        switch (node.getNodeType()) {
+            case ADD:
+                loadBinaryOperand(node, left, right);
+                tasks = createAddTasks(left, right);
+                break;
+            case MULTIPLY:
+                loadBinaryOperand(node, left, right);
+                tasks = createMultiplyTasks(left, right);
+                break;
+            case NEGATE:
+                loadUnaryOperand(node, left);
+                tasks = createNegateTasks(left);
+                break;
+            case TRANSPOSE:
+                loadUnaryOperand(node, left);
+                tasks = createTransposeTasks(left);
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported operation: " + node.getNodeType());
+        }
+        return new PendingResolution(node, left, tasks);
+    }
+
+    private void loadUnaryOperand(ComputationNode node, SharedMatrix destLeft) {
         if (node.getNodeType() != ComputationNodeType.NEGATE && node.getNodeType() != ComputationNodeType.TRANSPOSE) {
             throw new IllegalArgumentException("Node must be a unary operation (NEGATE or TRANSPOSE).");
         }
@@ -52,15 +99,14 @@ public class LinearAlgebraEngine {
         if (children.size() != 1) {
             throw new IllegalArgumentException("Node must have exactly one child.");
         }
-        ComputationNode left = children.get(0);
-        if (left.getNodeType() != ComputationNodeType.MATRIX) {
+        ComputationNode child = children.get(0);
+        if (child.getNodeType() != ComputationNodeType.MATRIX) {
             throw new IllegalArgumentException("Child must be a MATRIX node.");
         }
-        leftMatrix.loadRowMajor(left.getMatrix());
+        destLeft.loadRowMajor(child.getMatrix());
     }
 
-    private void loadBinaryOperand(ComputationNode node) {
-        // Precondition: node must be a binary operation
+    private void loadBinaryOperand(ComputationNode node, SharedMatrix destLeft, SharedMatrix destRight) {
         if (node.getNodeType() != ComputationNodeType.ADD && node.getNodeType() != ComputationNodeType.MULTIPLY) {
             throw new IllegalArgumentException("Node must be a binary operation (ADD or MULTIPLY).");
         }
@@ -68,50 +114,16 @@ public class LinearAlgebraEngine {
         if (children.size() != 2) {
             throw new IllegalArgumentException("Node must have exactly two children.");
         }
-        ComputationNode left = children.get(0);
-        ComputationNode right = children.get(1);
-        if (left.getNodeType() != ComputationNodeType.MATRIX || right.getNodeType() != ComputationNodeType.MATRIX) {
+        ComputationNode leftChild = children.get(0);
+        ComputationNode rightChild = children.get(1);
+        if (leftChild.getNodeType() != ComputationNodeType.MATRIX || rightChild.getNodeType() != ComputationNodeType.MATRIX) {
             throw new IllegalArgumentException("Both children must be MATRIX nodes.");
         }
-        leftMatrix.loadRowMajor(left.getMatrix());
-        rightMatrix.loadRowMajor(right.getMatrix());
+        destLeft.loadRowMajor(leftChild.getMatrix());
+        destRight.loadRowMajor(rightChild.getMatrix());
     }
 
-    public void loadAndCompute(ComputationNode node) {
-        // TODO: load operand matrices
-        List<Runnable> tasks;
-        switch (node.getNodeType()) {
-            case ADD:
-                loadBinaryOperand(node);
-                tasks = createAddTasks();
-                break;
-            case MULTIPLY:
-                loadBinaryOperand(node);
-                tasks = createMultiplyTasks();
-                break;
-            case NEGATE:
-                loadUnaryOperand(node);
-                tasks = createNegateTasks();
-                break;
-            case TRANSPOSE:
-                loadUnaryOperand(node);
-                tasks = createTransposeTasks();
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported operation: " + node.getNodeType());
-        }
-
-        // TODO: create compute tasks & submit tasks to executor
-
-        executor.submitAll(tasks);
-    }
-
-    public List<Runnable> createAddTasks() {
-        // TODO: return tasks that perform row-wise addition
-        // Nir:
-        if (leftMatrix == null || rightMatrix == null) {
-            throw new IllegalStateException("Both left and right matrices must be loaded before addition.");
-        }
+    private List<Runnable> createAddTasks(SharedMatrix leftMatrix, SharedMatrix rightMatrix) {
         if (leftMatrix.length() == 0 || rightMatrix.length() == 0) {
             throw new IllegalStateException("Matrices must not be empty for addition.");
         }
@@ -130,12 +142,7 @@ public class LinearAlgebraEngine {
         return tasks;
     }
 
-    public List<Runnable> createMultiplyTasks() {
-        // TODO: return tasks that perform row × matrix multiplication
-        // Nir:
-        if (leftMatrix == null || rightMatrix == null) {
-            throw new IllegalStateException("Both left and right matrices must be loaded before multiplication.");
-        }
+    private List<Runnable> createMultiplyTasks(SharedMatrix leftMatrix, SharedMatrix rightMatrix) {
         if (leftMatrix.length() == 0 || rightMatrix.length() == 0) {
             throw new IllegalStateException("Matrices must not be empty for multiplication.");
         }
@@ -153,12 +160,7 @@ public class LinearAlgebraEngine {
         return tasks;
     }
 
-    public List<Runnable> createNegateTasks() {
-        // TODO: return tasks that negate rows
-        // Add exception handling as needed
-        if (leftMatrix == null) {
-            throw new IllegalStateException("Left matrix must be loaded before negation.");
-        }
+    private List<Runnable> createNegateTasks(SharedMatrix leftMatrix) {
         if (leftMatrix.length() == 0) {
             throw new IllegalStateException("Matrix must not be empty for negation.");
         }
@@ -173,11 +175,7 @@ public class LinearAlgebraEngine {
         return tasks;
     }
 
-    public List<Runnable> createTransposeTasks() {
-        // TODO: return tasks that transpose rows
-        if (leftMatrix == null) {
-            throw new IllegalStateException("Left matrix must be loaded before transposition.");
-        }
+    private List<Runnable> createTransposeTasks(SharedMatrix leftMatrix) {
         if (leftMatrix.length() == 0) {
             throw new IllegalStateException("Matrix must not be empty for transposition.");
         }
@@ -193,7 +191,6 @@ public class LinearAlgebraEngine {
     }
 
     public String getWorkerReport() {
-        // Nir:
         return executor.getWorkerReport();
     }
 }
