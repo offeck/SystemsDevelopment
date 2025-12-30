@@ -117,14 +117,27 @@ class TiredThreadTest {
         long timeUsed = thread.getTimeUsed();
         assertTrue(timeUsed > 0, "Time used should be greater than 0");
         
-        // Fatigue = timeUsed * fatigueFactor
+        // Fatigue = timeUsed * effectiveFactor
         System.out.println("Time Used: " + timeUsed);
-        System.out.println("Fatigue Factor: " + fatigueFactor);
+        System.out.println("Input Factor: " + inputFactor);
+        System.out.println("Effective Factor: " + effectiveFactor);
         System.out.println("Fatigue: " + thread.getFatigue());
-        assertEquals(timeUsed * fatigueFactor, thread.getFatigue(), 0.001);
+        assertEquals(timeUsed * effectiveFactor, thread.getFatigue(), 0.001);
 
         thread.shutdown();
         thread.join();
+    }
+
+    @Test
+    void testNormalization() {
+        TiredThread t1 = new TiredThread(1, 0.1);
+        assertEquals("FF=0.50", t1.getName());
+
+        TiredThread t2 = new TiredThread(2, 2.0);
+        assertEquals("FF=1.50", t2.getName());
+
+        TiredThread t3 = new TiredThread(3, 1.0);
+        assertEquals("FF=1.00", t3.getName());
     }
 
     /**
