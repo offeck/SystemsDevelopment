@@ -25,9 +25,11 @@ public class TiredThread extends Thread implements Comparable<TiredThread> {
 
     public TiredThread(int id, double fatigueFactor) {
         this.id = id;
-        this.fatigueFactor = fatigueFactor;
+        // Normalize fatigue factor to be between 0.5 and 1.5
+        this.fatigueFactor = Math.max(0.5, Math.min(fatigueFactor, 1.5));
+        
         this.idleStartTime.set(System.nanoTime());
-        setName(String.format("FF=%.2f", fatigueFactor));
+        setName(String.format("FF=%.2f", this.fatigueFactor));
     }
 
     public int getWorkerId() {
