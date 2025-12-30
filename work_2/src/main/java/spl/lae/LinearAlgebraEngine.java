@@ -22,21 +22,24 @@ public class LinearAlgebraEngine {
         // TODO: resolve computation tree step by step until final matrix is produced
         // Iteratively locate the next resolvable node: a node whose operands are
         // already concrete matrices.
-        while (true) {
-            if (computationRoot.getNodeType() == ComputationNodeType.MATRIX) {
-                this.executor.shutdown();
-                return computationRoot;
+        try {
+            while (true) {
+                if (computationRoot.getNodeType() == ComputationNodeType.MATRIX) {
+                    return computationRoot;
+                }
+                ComputationNode resolvable = computationRoot.findResolvable();
+                if (resolvable == null) {
+                    // throw error - no resolvable node found
+                    throw new IllegalArgumentException("No resolvable node found in computation tree.");
+                }
+                loadAndCompute(resolvable);
+                // read the result from the left shared matrix (M1) and attach it back to the
+                // corresponding node in the computation tree.
+                double[][] resultMatrix = leftMatrix.readRowMajor();
+                resolvable.resolve(resultMatrix);
             }
-            ComputationNode resolvable = computationRoot.findResolvable();
-            if (resolvable == null) {
-                // throw error - no resolvable node found
-                throw new IllegalArgumentException("No resolvable node found in computation tree.");
-            }
-            loadAndCompute(resolvable);
-            // read the result from the left shared matrix (M1) and attach it back to the
-            // corresponding node in the computation tree.
-            double[][] resultMatrix = leftMatrix.readRowMajor();
-            resolvable.resolve(resultMatrix);
+        } finally {
+            this.executor.shutdown();
         }
     }
 

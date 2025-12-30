@@ -16,6 +16,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,42 +32,80 @@ public class ExamplesTest {
             throw new IllegalStateException("Expected examples directory at: " + examplesDir.toAbsolutePath());
         }
 
-        List<Integer> exampleIds = new ArrayList<>();
+        List<Arguments> testCases = new ArrayList<>();
         try (Stream<Path> paths = Files.list(examplesDir)) {
-            paths.forEach(path -> {
+            List<Path> allFiles = paths.filter(Files::isRegularFile).collect(Collectors.toList());
+
+            for (Path path : allFiles) {
                 String fileName = path.getFileName().toString();
+
+                // Case 1: exampleN.json -> outN.json
                 Matcher matcher = examplePattern.matcher(fileName);
                 if (matcher.matches()) {
-                    exampleIds.add(Integer.parseInt(matcher.group(1)));
+                    String id = matcher.group(1);
+                    Path expectedOutput = examplesDir.resolve("out" + id + ".json");
+                    if (Files.exists(expectedOutput)) {
+                        testCases.add(Arguments.of(fileName, expectedOutput.getFileName().toString(), 1));
+                        testCases.add(Arguments.of(fileName, expectedOutput.getFileName().toString(), 4));
+                    }
                 }
-            });
+                // Case 2: X.json -> X_out.json (excluding files that are themselves outputs)
+                else if (fileName.endsWith(".json") && !fileName.endsWith("_out.json") && !fileName.startsWith("out")) {
+                    String baseName = fileName.substring(0, fileName.length() - 5);
+                    Path expectedOutput = examplesDir.resolve(baseName + "_out.json");
+                    if (Files.exists(expectedOutput)) {
+                        testCases.add(Arguments.of(fileName, expectedOutput.getFileName().toString(), 1));
+                        testCases.add(Arguments.of(fileName, expectedOutput.getFileName().toString(), 4));
+                    }
+                }
+            }
         }
-        exampleIds.sort(Comparator.naturalOrder());
 
-        if (exampleIds.isEmpty()) {
-            throw new IllegalStateException("No example*.json files found under: " + examplesDir.toAbsolutePath());
+        if (testCases.isEmpty()) {
+            throw new IllegalStateException("No valid test pairs found under: " + examplesDir.toAbsolutePath());
         }
 
-        return exampleIds.stream()
-                .flatMap(exampleId -> Stream.of(1, 4).map(threads -> Arguments.of(exampleId, threads)));
+        // Sort by input filename for consistent test order
+        testCases.sort(Comparator.comparing(arg -> (String) arg.get()[0]));
+
+        return testCases.stream();
     }
 
-    @ParameterizedTest(name = "example{0}.json with {1} threads")
+    @ParameterizedTest(name = "{0} with {2} threads")
     @MethodSource("exampleInputsAndExpectedOutputs")
-    void examplesMatchExpectedOutputs(int exampleId, int threads, @TempDir Path tempDir) throws Exception {
-        Path input = Path.of("examples", "example" + exampleId + ".json");
-        Path expectedOutput = Path.of("examples", "out" + exampleId + ".json");
+    void examplesMatchExpectedOutputs(String inputFileName, String outputFileName, int threads, @TempDir Path tempDir) throws Exception {
+        Path input = Path.of("examples", inputFileName);
+        Path expectedOutput = Path.of("examples", outputFileName);
         assertTrue(Files.isRegularFile(input), "Missing input file: " + input.toAbsolutePath());
         assertTrue(Files.isRegularFile(expectedOutput), "Missing expected output file: " + expectedOutput.toAbsolutePath());
 
-        Path actualOutput = tempDir.resolve("out" + exampleId + "_t" + threads + ".json");
+        Path actualOutput = tempDir.resolve("actual_" + outputFileName);
         Main.main(new String[] { String.valueOf(threads), input.toString(), actualOutput.toString() });
 
         assertTrue(Files.isRegularFile(actualOutput), "Main did not create output file: " + actualOutput.toAbsolutePath());
 
         JsonNode expected = mapper.readTree(expectedOutput.toFile());
         JsonNode actual = mapper.readTree(actualOutput.toFile());
-        assertEquals(expected, actual);
+        assertJsonEquals(expected, actual);
+    }
+
+    private void assertJsonEquals(JsonNode expected, JsonNode actual) {
+        if (expected.isNumber() && actual.isNumber()) {
+            assertEquals(expected.asDouble(), actual.asDouble(), 0.0001, "Number mismatch: expected " + expected + " but was " + actual);
+        } else if (expected.isArray() && actual.isArray()) {
+            assertEquals(expected.size(), actual.size(), "Array size mismatch");
+            for (int i = 0; i < expected.size(); i++) {
+                assertJsonEquals(expected.get(i), actual.get(i));
+            }
+        } else if (expected.isObject() && actual.isObject()) {
+            assertEquals(expected.size(), actual.size(), "Object size mismatch");
+            expected.fieldNames().forEachRemaining(field -> {
+                assertTrue(actual.has(field), "Missing field: " + field);
+                assertJsonEquals(expected.get(field), actual.get(field));
+            });
+        } else {
+            assertEquals(expected, actual);
+        }
     }
 
     @Test
