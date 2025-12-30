@@ -119,10 +119,9 @@ class TiredThreadTest {
         
         // Fatigue = timeUsed * effectiveFactor
         System.out.println("Time Used: " + timeUsed);
-        System.out.println("Input Factor: " + inputFactor);
-        System.out.println("Effective Factor: " + effectiveFactor);
-        System.out.println("Fatigue: " + thread.getFatigue());
-        assertEquals(timeUsed * effectiveFactor, thread.getFatigue(), 0.001);
+        System.out.println("Input Factor: " + fatigueFactor);
+        System.out.println("Final Fatigue: " + thread.getFatigue());
+        assertEquals(timeUsed * fatigueFactor, thread.getFatigue(), 0.001);
 
         thread.shutdown();
         thread.join();
