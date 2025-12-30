@@ -47,6 +47,8 @@ public class ExamplesTest {
                     if (Files.exists(expectedOutput)) {
                         testCases.add(Arguments.of(fileName, expectedOutput.getFileName().toString(), 1));
                         testCases.add(Arguments.of(fileName, expectedOutput.getFileName().toString(), 4));
+                    } else {
+                        throw new IllegalStateException("Input file " + fileName + " exists but output file out" + id + ".json is missing.");
                     }
                 }
                 // Case 2: X.json -> X_out.json (excluding files that are themselves outputs)
@@ -56,6 +58,8 @@ public class ExamplesTest {
                     if (Files.exists(expectedOutput)) {
                         testCases.add(Arguments.of(fileName, expectedOutput.getFileName().toString(), 1));
                         testCases.add(Arguments.of(fileName, expectedOutput.getFileName().toString(), 4));
+                    } else {
+                         throw new IllegalStateException("Input file " + fileName + " exists but output file " + baseName + "_out.json is missing.");
                     }
                 }
             }
