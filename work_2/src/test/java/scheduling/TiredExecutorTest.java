@@ -123,4 +123,54 @@ class TiredExecutorTest {
         
         executor.shutdown();
     }
+
+    /**
+     * Tests that an exception thrown by a task is propagated to the main thread
+     * in submitAll.
+     */
+    @Test
+    void testTaskErrorPropagation() {
+        TiredExecutor executor = new TiredExecutor(2);
+        List<Runnable> tasks = new ArrayList<>();
+        tasks.add(() -> {
+            throw new RuntimeException("Oops inside thread");
+        });
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            executor.submitAll(tasks);
+        });
+
+        assertEquals("Oops inside thread", thrown.getMessage());
+        executor.shutdown();
+    }
+
+    /**
+     * Tests that when multiple tasks are submitted and one fails, the error is propagated.
+     */
+    @Test
+    void testMultipleTasksWithOneError() {
+        TiredExecutor executor = new TiredExecutor(4);
+        List<Runnable> tasks = new ArrayList<>();
+        int numTasks = 10;
+        for (int i = 0; i < numTasks; i++) {
+            final int index = i;
+            tasks.add(() -> {
+                if (index == 5) {
+                    throw new RuntimeException("Error at 5");
+                }
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            });
+        }
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            executor.submitAll(tasks);
+        });
+
+        assertEquals("Error at 5", thrown.getMessage());
+        executor.shutdown();
+    }
 }
