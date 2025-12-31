@@ -9,7 +9,26 @@ public class TiredExecutor {
     private final PriorityBlockingQueue<TiredThread> idleMinHeap = new PriorityBlockingQueue<>();
     private final AtomicInteger inFlight = new AtomicInteger(0);
     private final Object lock = new Object();
-    private final java.util.concurrent.atomic.AtomicReference<Throwable> firstError = new java.util.concurrent.atomic.AtomicReference<>();
+    private Throwable firstError = null;
+
+    private void recordFirstError(Throwable t) {
+        if (t == null) {
+            return;
+        }
+        synchronized (lock) {
+            if (firstError == null) {
+                firstError = t;
+            }
+        }
+    }
+
+    private Throwable consumeFirstError() {
+        synchronized (lock) {
+            Throwable error = firstError;
+            firstError = null;
+            return error;
+        }
+    }
 
     public TiredExecutor(int numThreads) {
         if (numThreads <= 0) {
@@ -33,7 +52,7 @@ public class TiredExecutor {
                 try {
                     task.run();
                 } catch (Throwable t) {
-                    firstError.compareAndSet(null, t);
+                    recordFirstError(t);
                 } finally {
                     if (inFlight.decrementAndGet() == 0) {
                         synchronized (lock) {
@@ -65,7 +84,7 @@ public class TiredExecutor {
                 }
             }
         }
-        Throwable error = firstError.getAndSet(null);
+        Throwable error = consumeFirstError();
         if (error != null) {
             if (error instanceof RuntimeException) {
                 throw (RuntimeException) error;
