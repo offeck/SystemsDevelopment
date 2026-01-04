@@ -4,7 +4,9 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/work_1/include",
-                "${workspaceFolder}/work_1/src"
+                "${workspaceFolder}/work_1/src",
+                "${workspaceFolder}/work_3/client/include",
+                "${workspaceFolder}/work_3/client/src"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++",

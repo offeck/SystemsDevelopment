@@ -26,6 +26,81 @@
             ],
             "preLaunchTask": "work1: build",
             "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "type": "java",
+            "name": "work2: Launch Main",
+            "request": "launch",
+            "mainClass": "spl.lae.Main",
+            "cwd": "${workspaceFolder}/work_2",
+            "preLaunchTask": "work2: mvn compile"
+        },
+        {
+            "type": "java",
+            "name": "work3: Launch EchoServer",
+            "request": "launch",
+            "mainClass": "bgu.spl.net.impl.echo.EchoServer",
+            "projectName": "server",
+            "cwd": "${workspaceFolder}/work_3/server",
+            "preLaunchTask": "work3: mvn compile (server)"
+        },
+        {
+            "name": "work3: (gdb) Launch stomp client",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/work_3/client/bin/StompWCIClient",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/work_3/client",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "work3: make StompWCIClient",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "work3: (gdb) Launch echo client",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/work_3/client/bin/EchoClient",
+            "args": ["127.0.0.1", "7777"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/work_3/client",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "work3: make EchoClient",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "type": "java",
+            "name": "Java: Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
         }
     ]
 }

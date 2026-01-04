@@ -26,6 +26,63 @@
             },
             "group": "build",
             "detail": "Clean work_1 build artifacts"
+        },
+        {
+            "label": "work2: mvn compile",
+            "type": "shell",
+            "command": "mvn",
+            "args": ["compile"],
+            "options": {
+                "cwd": "${workspaceFolder}/work_2"
+            },
+            "group": "build",
+            "detail": "Compile the work_2 Maven project"
+        },
+        {
+            "label": "work2: mvn test",
+            "type": "shell",
+            "command": "mvn",
+            "args": ["test"],
+            "options": {
+                "cwd": "${workspaceFolder}/work_2"
+            },
+            "group": "test",
+            "detail": "Run the work_2 test suite"
+        },
+        {
+            "label": "work3: make StompWCIClient",
+            "type": "shell",
+            "command": "make",
+            "args": ["StompWCIClient"],
+            "options": {
+                "cwd": "${workspaceFolder}/work_3/client"
+            },
+            "group": "build",
+            "problemMatcher": ["$gcc"],
+            "detail": "Build the work_3 StompWCIClient"
+        },
+        {
+            "label": "work3: make EchoClient",
+            "type": "shell",
+            "command": "make",
+            "args": ["EchoClient"],
+            "options": {
+                "cwd": "${workspaceFolder}/work_3/client"
+            },
+            "group": "build",
+            "problemMatcher": ["$gcc"],
+            "detail": "Build the work_3 EchoClient"
+        },
+        {
+            "label": "work3: mvn compile (server)",
+            "type": "shell",
+            "command": "mvn",
+            "args": ["compile"],
+            "options": {
+                "cwd": "${workspaceFolder}/work_3/server"
+            },
+            "group": "build",
+            "detail": "Compile the work_3 server"
         }
     ]
 }

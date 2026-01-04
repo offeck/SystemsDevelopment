@@ -2,6 +2,16 @@
     "recommendations": [
         "ms-vscode.cpptools",
         "ms-vscode.cpptools-extension-pack",
-        "vscode-icons-team.vscode-icons"
+        "vscode-icons-team.vscode-icons",
+        "vscjava.vscode-java-pack",
+        "ms-python.python",
+        "ms-vscode.makefile-tools",
+        "jeff-hykin.better-cpp-syntax",
+        "cschlosser.doxdocgen",
+        "2gua.rainbow-brackets",
+        "natqe.reload",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-sqlite",
+        "ms-vsliveshare.vsliveshare"
     ]
 }

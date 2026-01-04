@@ -2,9 +2,23 @@
   "name": "BGU SPL Student Workspace",
   "image": "ghcr.io/bguspl/student-env:latest",
   "remoteUser": "spl",
+  "runArgs": ["--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"],
   "customizations": {
     "vscode": {
-      "extensions": ["ms-vscode.cpptools-extension-pack", "vscjava.vscode-java-pack", "ms-python.python", "mtxr.sqltools", "mtxr.sqltools-driver-sqlite", "ms-vsliveshare.vsliveshare"],
+      "extensions": [
+        "ms-vscode.cpptools-extension-pack",
+        "vscjava.vscode-java-pack",
+        "ms-python.python",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-sqlite",
+        "ms-vsliveshare.vsliveshare",
+        "vscode-icons-team.vscode-icons",
+        "2gua.rainbow-brackets",
+        "jeff-hykin.better-cpp-syntax",
+        "ms-vscode.makefile-tools",
+        "natqe.reload",
+        "cschlosser.doxdocgen"
+      ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash"
       }
