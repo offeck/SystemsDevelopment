@@ -53,3 +53,52 @@ This document summarizes the changes made to the `work_3` project to implement t
 ## 4. Verification
 *   **Build**: The server project successfully compiles with `mvn compile`.
 *   **Sanity Check**: Verified that the existing Echo Server/Client infrastructure remains functional after environment updates.
+
+## 5. Leading Questions & Answers
+
+### 1. In the StompServer implementation, where do I fit the switch case that checks which protocol to use?
+You generally **do not** need a switch case inside the protocol logic itself to decide *which* protocol class to use.
+*   **Separation of Concerns**: The decision of which protocol to run is made at **construction time** in `StompServer.main()`.
+*   **Factory Pattern**: When you start `Server.threadPerClient()` or `Server.reactor()`, you pass a `Supplier<ProcessingProtocol>`.
+*   **Implementation**: In `StompServer`, you pass `StompMessagingProtocolImpl::new`. This delegates the creation of the specific protocol instance to the server infrastructure, which instantiates a new protocol object for each connected client.
+
+### 2. Can you explain the different interfaces that appear in the BaseServer?
+*   **`MessageEncoderDecoder<T>`**:
+    *   **Role**: Translator.
+    *   **Input**: Raw bytes from the socket.
+    *   **Output**: Typed messages (e.g., `String` or `StompFrame`).
+    *   **Why**: TCP sends a stream of bytes. We need to know where one message ends and the next begins (framing).
+*   **`MessagingProtocol<T>`**:
+    *   **Role**: Brain/Logic.
+    *   **Input**: A complete message object (produced by the EncDec).
+    *   **Output**: A response message (or null).
+    *   **Why**: It processes the *intent* of the data (e.g., "User wants to Subscribe"). It maintains the client's state (e.g., "Is this user logged in?").
+
+### 3. Compare the Thread-Per-Client approach to the Reactor approach.
+*   **Thread-Per-Client (TPC)**:
+    *   **Model**: One dedicated OS thread for every active connection.
+    *   **Blocking**: The thread calls `in.read()` and blocks (sleeps) until data arrives.
+    *   **Pros**: Simple to write/debug.
+    *   **Cons**: Expensive. Threads consume memory (stack) and context switching overhead. Does not scale to 10k+ clients.
+*   **Reactor**:
+    *   **Model**: One main "Selector" thread monitoring many sockets. A fixed pool of worker threads handles the processing.
+    *   **Non-Blocking**: Uses `java.nio`. The Selector thread is notified *only* when data is ready.
+    *   **Pros**: Highly scalable. Can handle thousands of idle connections with few threads.
+    *   **Cons**: Complex to implement. Logic must be non-blocking.
+
+### 4. Which part of the code is the Runnable?
+*   **Thread-Per-Client**:
+    *   The **`BlockingConnectionHandler`** is the `Runnable`.
+    *   The `BaseServer` creates a new `Thread(handler).start()` for each client.
+*   **Reactor**:
+    *   The **`NonBlockingConnectionHandler`** is *not* a Runnable itself in the same way, but the tasks submitted to the thread pool are.
+    *   The `Reactor` main loop sees an event (Read/Write) and submits the handler's task to the `ExecutorService` (the Actor Thread Pool).
+
+### 5. Where should I hold the object that represents the database?
+*   **Location**: It should be a **Singleton** or a shared service managed by the Application Context.
+*   **Initialization**: Initialize it once in `StompServer.main()` before starting the server.
+*   **Access**:
+    *   Since `StompMessagingProtocolImpl` is created fresh for each client, you cannot store the DB *inside* the Protocol instance (unless it's static).
+    *   **Best Practice**: Pass a reference to the shared DB/User object into the generic constructor of the `StompMessagingProtocolImpl`.
+    *   **Current Code**: Currently, our `StompMessagingProtocolImpl::new` is a parameterless constructor reference. To support a DB, we would change the supplier to `() -> new StompMessagingProtocolImpl(myDatabaseInstance)`.
+
