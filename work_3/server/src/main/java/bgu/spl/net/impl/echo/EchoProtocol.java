@@ -1,17 +1,26 @@
 package bgu.spl.net.impl.echo;
 
-import bgu.spl.net.api.MessagingProtocol;
+import bgu.spl.net.api.StompMessagingProtocol;
+import bgu.spl.net.srv.Connections;
 import java.time.LocalDateTime;
 
-public class EchoProtocol implements MessagingProtocol<String> {
+public class EchoProtocol implements StompMessagingProtocol<String> {
 
     private boolean shouldTerminate = false;
+    private int connectionId;
+    private Connections<String> connections;
 
     @Override
-    public String process(String msg) {
+    public void start(int connectionId, Connections<String> connections) {
+        this.connectionId = connectionId;
+        this.connections = connections;
+    }
+
+    @Override
+    public void process(String msg) {
         shouldTerminate = "bye".equals(msg);
         System.out.println("[" + LocalDateTime.now() + "]: " + msg);
-        return createEcho(msg);
+        connections.send(connectionId, createEcho(msg));
     }
 
     private String createEcho(String message) {
