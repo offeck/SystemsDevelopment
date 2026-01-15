@@ -13,22 +13,21 @@ public class StompServer {
         int port = Integer.parseInt(args[0]);
         String serverType = args[1];
 
-        // You need to replace 'String' with the actual class representing your STOMP frames if you create one (e.g., StompFrame)
+        // You need to replace 'String' with the actual class representing your STOMP
+        // frames if you create one (e.g., StompFrame)
         // You also need to implement the Protocol and EncoderDecoder classes.
-        
+
         if (serverType.equals("tpc")) {
             Server.threadPerClient(
                     port,
-                    () -> new StompMessagingProtocolImpl(), // TODO: Replace with your actual Protocol implementation
-                    () -> new StompEncoderDecoder()         // TODO: Replace with your actual EncoderDecoder implementation
-            ).serve();
+                    StompMessagingProtocolImpl::new,
+                    StompEncoderDecoder::new).serve();
         } else if (serverType.equals("reactor")) {
             Server.reactor(
                     Runtime.getRuntime().availableProcessors(),
                     port,
-                    () -> new StompMessagingProtocolImpl(), // TODO: Replace with your actual Protocol implementation
-                    () -> new StompEncoderDecoder()         // TODO: Replace with your actual EncoderDecoder implementation
-            ).serve();
+                    StompMessagingProtocolImpl::new,
+                    StompEncoderDecoder::new).serve();
         } else {
             System.out.println("Invalid server type: " + serverType + ". Use 'tpc' or 'reactor'.");
             System.exit(1);
