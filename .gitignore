@@ -1,2 +1,4 @@
 work_1/bin/*
 work_2/target/*
+work_3/server/target/*
+work_3/client/bin/*
