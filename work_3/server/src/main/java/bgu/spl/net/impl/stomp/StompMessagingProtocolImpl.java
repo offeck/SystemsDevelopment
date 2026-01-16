@@ -2,6 +2,7 @@ package bgu.spl.net.impl.stomp;
 
 import bgu.spl.net.api.StompMessagingProtocol;
 import bgu.spl.net.srv.Connections;
+import bgu.spl.net.srv.DatabaseHandler; // Add this import
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -14,6 +15,9 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol<String
     private static AtomicInteger messageIdCounter = new AtomicInteger(0);
     private Map<String, String> subscriptionIdToTopic = new ConcurrentHashMap<>();
     private boolean isConnected = false;
+
+    // You likely need to store the username to log logout events later
+    private String loggedInUser; 
 
     @Override
     public void start(int connectionId, Connections<String> connections) {
@@ -58,10 +62,11 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol<String
     }
 
     private void handleConnect(StompFrame frame) {
-        String version = frame.getHeader("accept-version");
+        String login = frame.getHeader("login");
+        String passcode = frame.getHeader("passcode");
         String host = frame.getHeader("host");
 
-        if (!"1.2".equals(version)) {
+        if (!"1.2".equals(frame.getHeader("accept-version"))) {
             sendError("Version mismatch", "Supported version is 1.2");
             return;
         }
@@ -70,7 +75,15 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol<String
             return;
         }
 
-        // Login logic can be added here
+        // --- ADDED DATABASE LOGIC ---
+        // 1. Insert user if not exists (Register)
+        DatabaseHandler.sendSqlRequest("INSERT OR IGNORE INTO Users (username, password) VALUES ('" + login + "', '" + passcode + "')");
+        
+        // 2. Log logic event
+        DatabaseHandler.sendSqlRequest("INSERT INTO UserLogins (username, login_datetime) VALUES ('" + login + "', datetime('now'))");
+        
+        this.loggedInUser = login;
+        // ----------------------------
 
         isConnected = true;
 
@@ -129,6 +142,12 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol<String
     }
 
     private void handleDisconnect(StompFrame frame) {
+        // --- ADDED DATABASE LOGIC ---
+        if (loggedInUser != null) {
+             DatabaseHandler.sendSqlRequest("UPDATE UserLogins SET logout_datetime = datetime('now') WHERE username = '" + loggedInUser + "' AND logout_datetime IS NULL");
+        }
+        // ----------------------------
+
         sendReceiptIfNeeded(frame);
         shouldTerminate = true;
         connections.disconnect(connectionId);
