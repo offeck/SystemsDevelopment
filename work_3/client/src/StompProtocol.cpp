@@ -76,14 +76,14 @@ void StompProtocol::addEvent(const Event& event, const std::string& username) {
     if (state.teamB.empty()) state.teamB = event.get_team_b_name();
 
     // Update stats
-    for (auto const& [key, val] : event.get_game_updates()) {
-        state.generalStats[key] = val;
+    for (auto const& pair : event.get_game_updates()) {
+        state.generalStats[pair.first] = pair.second;
     }
-    for (auto const& [key, val] : event.get_team_a_updates()) {
-        state.teamAStats[key] = val;
+    for (auto const& pair : event.get_team_a_updates()) {
+        state.teamAStats[pair.first] = pair.second;
     }
-    for (auto const& [key, val] : event.get_team_b_updates()) {
-        state.teamBStats[key] = val;
+    for (auto const& pair : event.get_team_b_updates()) {
+        state.teamBStats[pair.first] = pair.second;
     }
     
     state.events.push_back(event);
