@@ -45,17 +45,17 @@ def init_database():
                 )''')
     # Create User Registration table (username, date-time)
     c.execute('''CREATE TABLE IF NOT EXISTS UserRegistrations (
-                    FOREIGN KEY (username) REFERENCES Users(username),
                     username TEXT PRIMARY KEY,
-                    registration_datetime DATETIME NOT NULL
+                    registration_datetime DATETIME NOT NULL,
+                    FOREIGN KEY (username) REFERENCES Users(username)
                 )''')
     # Create User Logins table (username, login-time, logout-time)
     c.execute('''CREATE TABLE IF NOT EXISTS UserLogins (
-                    FOREIGN KEY (username) REFERENCES Users(username),
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     username TEXT NOT NULL,
                     login_datetime  NOT NULL,
-                    logout_datetime DATETIME
+                    logout_datetime DATETIME,
+                    FOREIGN KEY (username) REFERENCES Users(username)
                 )''')
     # Create Messages table (id, time, sender, receiver, message)
     c.execute('''CREATE TABLE IF NOT EXISTS Messages (
