@@ -63,7 +63,61 @@ const std::string &Event::get_discription() const
 
 Event::Event(const std::string &frame_body) : team_a_name(""), team_b_name(""), name(""), time(0), game_updates(), team_a_updates(), team_b_updates(), description("")
 {
+    // Parse the body
+    std::stringstream ss(frame_body);
+    std::string line;
+    std::string current_map = ""; // "general", "team_a", "team_b"
+
+    while (std::getline(ss, line)) {
+        if (line.empty()) continue; // Should probably keep newlines in description? 
+        // Actually description is the last field and can be multi-line.
+        
+        size_t colonPos = line.find(':');
+        if (colonPos == std::string::npos) {
+            // Might be part of description if current_map is description
+            if (current_map == "description") {
+                description += "\n" + line;
+            }
+            continue;
+        }
+
+        std::string key = line.substr(0, colonPos);
+        std::string value = line.substr(colonPos + 1);
+        
+        // Trim whitespace
+        // (Not strictly necessary if format is rigid but good for robustness)
+        // Helper lambda for trimming would be nice but C++11... 
+        
+        // Simplified trim
+        while (!key.empty() && (key.back() == ' ' || key.back() == '\t')) key.pop_back();
+        while (!key.empty() && (key.front() == ' ' || key.front() == '\t')) key.erase(0, 1);
+        while (!value.empty() && (value.back() == ' ' || value.back() == '\t')) value.pop_back();
+        while (!value.empty() && (value.front() == ' ' || value.front() == '\t')) value.erase(0, 1);
+
+        if (key == "team a") { team_a_name = value; }
+        else if (key == "team b") { team_b_name = value; }
+        else if (key == "event name") { name = value; }
+        else if (key == "time") { time = std::stoi(value); }
+        else if (key == "general game updates") { current_map = "general"; }
+        else if (key == "team a updates") { current_map = "team_a"; }
+        else if (key == "team b updates") { current_map = "team_b"; }
+        else if (key == "description") { 
+            current_map = "description"; 
+            description = value; 
+        }
+        else {
+            // It's a map entry
+            if (current_map == "general") game_updates[key] = value;
+            else if (current_map == "team_a") team_a_updates[key] = value;
+            else if (current_map == "team_b") team_b_updates[key] = value;
+            else if (current_map == "description") {
+                // Continuation of description with a colon in it?
+                 description += "\n" + line;
+            }
+        }
+    }
 }
+
 
 names_and_events parseEventsFile(std::string json_path)
 {

@@ -66,3 +66,34 @@ void StompProtocol::setDisconnectReceiptId(int id) {
 int StompProtocol::getDisconnectReceiptId() const {
     return disconnectReceiptId;
 }
+
+void StompProtocol::addEvent(const Event& event, const std::string& username) {
+    std::lock_guard<std::mutex> lock(reportMutex);
+    std::string gameName = event.get_team_a_name() + "_" + event.get_team_b_name();
+    
+    GameState& state = gameReports[gameName][username];
+    if (state.teamA.empty()) state.teamA = event.get_team_a_name();
+    if (state.teamB.empty()) state.teamB = event.get_team_b_name();
+
+    // Update stats
+    for (auto const& [key, val] : event.get_game_updates()) {
+        state.generalStats[key] = val;
+    }
+    for (auto const& [key, val] : event.get_team_a_updates()) {
+        state.teamAStats[key] = val;
+    }
+    for (auto const& [key, val] : event.get_team_b_updates()) {
+        state.teamBStats[key] = val;
+    }
+    
+    state.events.push_back(event);
+}
+
+bool StompProtocol::getGameState(const std::string& gameName, const std::string& username, GameState& outState) {
+    std::lock_guard<std::mutex> lock(reportMutex);
+    if (gameReports.count(gameName) && gameReports[gameName].count(username)) {
+        outState = gameReports[gameName][username];
+        return true;
+    }
+    return false;
+}
