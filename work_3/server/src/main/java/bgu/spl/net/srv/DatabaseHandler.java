@@ -7,23 +7,25 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
 public class DatabaseHandler {
-    
+
     // Configuration to match the Python server
     private static final String SQL_SERVER_HOST = "127.0.0.1";
-    private static final int SQL_SERVER_PORT = 7778; 
+    private static final int SQL_SERVER_PORT = 7778;
 
     /**
-     * Sends an SQL command or query to the Python SQL Server and receives the response.
+     * Sends an SQL command or query to the Python SQL Server and receives the
+     * response.
      * 
-     * @param sqlCommand The SQL string to execute (e.g., "INSERT INTO...", "SELECT...").
+     * @param sqlCommand The SQL string to execute (e.g., "INSERT INTO...",
+     *                   "SELECT...").
      * @return The response string from the server (results or confirmation).
      */
     public static String sendSqlRequest(String sqlCommand) {
         String response = "";
-        
+
         try (Socket socket = new Socket(SQL_SERVER_HOST, SQL_SERVER_PORT);
-             BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
-             BufferedInputStream in = new BufferedInputStream(socket.getInputStream())) {
+                BufferedOutputStream out = new BufferedOutputStream(socket.getOutputStream());
+                BufferedInputStream in = new BufferedInputStream(socket.getInputStream())) {
 
             // 1. Send the SQL command terminated by a null byte
             // The Python server recv_null_terminated expects this format
@@ -51,40 +53,44 @@ public class DatabaseHandler {
         return response;
     }
 
-    public static void printReport() {
-        System.out.println("========================================");
-        System.out.println("[STOMP] SERVER REPORT");
-        System.out.println("========================================");
+    public static String getReport() {
+        StringBuilder report = new StringBuilder();
+        report.append("========================================\n");
+        report.append("[STOMP] SERVER REPORT\n");
+        report.append("========================================\n");
 
         String users = sendSqlRequest("SELECT username FROM Users ORDER BY username ASC");
-        System.out.println("Registered Users:");
+        report.append("Registered Users:\n");
         if (users == null || users.isEmpty()) {
-            System.out.println("  (none)");
+            report.append("  (none)\n");
         } else {
             for (String line : users.split("\n")) {
-                System.out.println("  " + line);
+                report.append("  ").append(line).append("\n");
             }
         }
 
-        String logins = sendSqlRequest("SELECT username, login_datetime, logout_datetime FROM UserLogins ORDER BY username, login_datetime ASC");
-        System.out.println("\nLogin History:");
+        String logins = sendSqlRequest(
+                "SELECT username, login_datetime, logout_datetime FROM UserLogins ORDER BY username, login_datetime ASC");
+        report.append("\nLogin History:\n");
         if (logins == null || logins.isEmpty()) {
-            System.out.println("  (none)");
+            report.append("  (none)\n");
         } else {
             for (String line : logins.split("\n")) {
-                System.out.println("  " + line);
+                report.append("  ").append(line).append("\n");
             }
         }
 
-        String files = sendSqlRequest("SELECT uploader, filename, game_channel, upload_datetime FROM FileTracking ORDER BY uploader, upload_datetime ASC");
-        System.out.println("\nFile Uploads:");
+        String files = sendSqlRequest(
+                "SELECT uploader, filename, game_channel, upload_datetime FROM FileTracking ORDER BY uploader, upload_datetime ASC");
+        report.append("\nFile Uploads:\n");
         if (files == null || files.isEmpty()) {
-            System.out.println("  (none)");
+            report.append("  (none)\n");
         } else {
             for (String line : files.split("\n")) {
-                System.out.println("  " + line);
+                report.append("  ").append(line).append("\n");
             }
         }
-        System.out.println("========================================");
+        report.append("========================================");
+        return report.toString();
     }
 }

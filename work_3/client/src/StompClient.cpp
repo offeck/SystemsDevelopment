@@ -120,6 +120,7 @@ enum class Command {
     REPORT,
     SUMMARY,
     LOGOUT,
+    STATS,
     UNKNOWN
 };
 
@@ -130,6 +131,7 @@ Command getCommand(const std::string& commandStr) {
     if (commandStr == "report") return Command::REPORT;
     if (commandStr == "summary") return Command::SUMMARY;
     if (commandStr == "logout") return Command::LOGOUT;
+    if (commandStr == "stats") return Command::STATS;
     return Command::UNKNOWN;
 }
 
@@ -368,6 +370,24 @@ void handleSummary(std::shared_ptr<ConnectionHandler>& connectionHandler, const 
     std::cout << "Summary created" << std::endl;
 }
 
+void handleStats(std::shared_ptr<ConnectionHandler>& connectionHandler, const std::vector<std::string>& words, StompProtocol& protocol) {
+    if (!protocol.getLoggedIn()) {
+        std::cout << "Not logged in" << std::endl;
+        return;
+    }
+
+    StompFrame frame("REPORT");
+    // No destination header needed for the custom REPORT command
+    
+    // Add receipt header to get confirmation
+    int receiptId = protocol.generateReceiptId();
+    frame.addHeader("receipt", std::to_string(receiptId));
+
+    if (!connectionHandler || !connectionHandler->sendFrameAscii(frame.toString(), '\0')) {
+         std::cout << "Could not send stats request" << std::endl;
+    }
+}
+
 void handleLogout(std::shared_ptr<ConnectionHandler>& connectionHandler, const std::vector<std::string>& words, StompProtocol& protocol) {
     if (!protocol.getLoggedIn()) {
         std::cout << "Not logged in" << std::endl;
@@ -423,6 +443,9 @@ int handleInput(std::string& input, std::shared_ptr<ConnectionHandler>& connecti
              break;
         case Command::SUMMARY:
              handleSummary(connectionHandler, words, protocol);
+             break;
+        case Command::STATS:
+             handleStats(connectionHandler, words, protocol);
              break;
         case Command::LOGOUT:
              handleLogout(connectionHandler, words, protocol);
