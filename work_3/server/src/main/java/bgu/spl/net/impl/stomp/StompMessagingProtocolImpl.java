@@ -88,13 +88,24 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol<String
         }
 
         // --- DATABASE LOGIC ---
-        // 1. Check if user is already logged in
-        String activeLogins = DatabaseHandler.sendSqlRequest("SELECT count(*) FROM UserLogins WHERE username = '"
-                + escapeSql(login) + "' AND logout_datetime IS NULL");
-        if (activeLogins != null && !activeLogins.startsWith("error") && !activeLogins.trim().equals("0")) {
-            sendError(frame, "User already logged in", "User '" + login + "' is already logged in.");
-            return;
+        // 1. Check if user is already logged in (Memory Check First)
+        if (connections instanceof ConnectionsImpl) {
+            if (((ConnectionsImpl<String>) connections).isUserConnected(login)) {
+                sendError(frame, "User already logged in", "User '" + login + "' is already logged in.");
+                return;
+            }
         }
+
+        /*
+        // Database active check (Legacy/Cleanup) - We rely on memory now for active session logic
+         String activeLogins = DatabaseHandler.sendSqlRequest("SELECT count(*) FROM UserLogins WHERE username = '"
+         + escapeSql(login) + "' AND logout_datetime IS NULL");
+         if (activeLogins != null && !activeLogins.startsWith("error") && !activeLogins.trim().equals("0")) {
+         sendError(frame, "User already logged in", "User '" + login + "' is already logged in.");
+         return;
+         }
+         */
+
 
         // 2. Check user credentials or register new user
         String existingPassword = DatabaseHandler
@@ -123,6 +134,13 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol<String
                 + "', datetime('now'))");
 
         this.loggedInUser = login;
+        if (connections instanceof ConnectionsImpl) {
+            if (!((ConnectionsImpl<String>) connections).registerUser(connectionId, login)) {
+                // Race condition hit: someone else registered in the split second between check and register?
+                sendError(frame, "User already logged in", "User '" + login + "' is already logged in.");
+                return;
+            }
+        }
         isConnected = true;
 
         StompFrame connectedFrame = new StompFrame("CONNECTED");
@@ -233,6 +251,8 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol<String
         }
         errorFrame.setBody("The message:\n-----\n" + description + "\n-----");
         connections.send(connectionId, errorFrame.toString());
+        
+        // Update DB logout timestamp if user was logged in
         if (loggedInUser != null) {
             DatabaseHandler.sendSqlRequest("UPDATE UserLogins SET logout_datetime = datetime('now') WHERE username = '"
                     + escapeSql(loggedInUser) + "' AND logout_datetime IS NULL");

@@ -42,7 +42,7 @@ public class StompFrame {
 
         int i = 1;
         while (i < lines.length && !lines[i].isEmpty()) {
-            String[] header = lines[i].split(":");
+            String[] header = lines[i].split(":", 2);
             if (header.length > 1) {
                 frame.addHeader(header[0], header[1]);
             }
@@ -84,7 +84,7 @@ public class StompFrame {
         int headersStart = firstNewLine + 1;
         // Find the boundary between headers and body (first empty line)
         int doubleNewLine = msg.indexOf("\n\n", headersStart);
-        
+
         String headersSection;
         String bodySection = "";
 
@@ -97,19 +97,20 @@ public class StompFrame {
         } else {
             // Check if it ends with a single newline which implies empty body
             if (msg.endsWith("\n\n")) {
-                 headersSection = msg.substring(headersStart, msg.length() - 2);
+                headersSection = msg.substring(headersStart, msg.length() - 2);
             } else if (msg.endsWith("\n")) {
-                 headersSection = msg.substring(headersStart, msg.length() - 1);
+                headersSection = msg.substring(headersStart, msg.length() - 1);
             } else {
-                 headersSection = msg.substring(headersStart);
+                headersSection = msg.substring(headersStart);
             }
         }
 
         String[] headerLines = headersSection.split("\n");
         for (String line : headerLines) {
             line = line.trim(); // Handle potential \r
-            if (line.isEmpty()) continue;
-            
+            if (line.isEmpty())
+                continue;
+
             int colon = line.indexOf(':');
             if (colon != -1) {
                 String key = line.substring(0, colon);
@@ -117,7 +118,7 @@ public class StompFrame {
                 frame.addHeader(key, value);
             }
         }
-        
+
         frame.setBody(bodySection);
         return frame;
     }
