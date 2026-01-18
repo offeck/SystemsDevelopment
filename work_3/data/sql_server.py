@@ -47,7 +47,6 @@ def init_database():
     c.execute('''CREATE TABLE IF NOT EXISTS UserRegistrations (
                     username TEXT PRIMARY KEY,
                     registration_datetime DATETIME NOT NULL,
-                    FOREIGN KEY (username) REFERENCES Users(username)
                 )''')
     # Create User Logins table (username, login-time, logout-time)
     c.execute('''CREATE TABLE IF NOT EXISTS UserLogins (
@@ -55,7 +54,6 @@ def init_database():
                     username TEXT NOT NULL,
                     login_datetime  NOT NULL,
                     logout_datetime DATETIME,
-                    FOREIGN KEY (username) REFERENCES Users(username)
                 )''')
     # Create Messages table (id, time, sender, receiver, message)
     c.execute('''CREATE TABLE IF NOT EXISTS Messages (
