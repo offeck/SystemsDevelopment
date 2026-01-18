@@ -52,6 +52,7 @@ void readerThread(std::shared_ptr<ConnectionHandler> connectionHandler, StompPro
             if (reporter.empty()) {
                 reporter = "unknown";
             }
+            if (protocol.getUserName() == reporter) continue;
             Event event(frame.getBody());
             protocol.addEvent(event, reporter);
         } else if (frame.getCommand() == "CONNECTED") {
