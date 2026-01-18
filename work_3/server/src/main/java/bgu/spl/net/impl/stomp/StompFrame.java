@@ -67,68 +67,58 @@ public class StompFrame {
         return frame;
     }
 
-    // Better parse method
     public static StompFrame fromString(String msg) {
         int firstNewLine = msg.indexOf('\n');
-        if (firstNewLine == -1)
-            return new StompFrame(msg.trim()); // Just command?
+        if (firstNewLine == -1) // Case: Only command, no headers, no body
+            return new StompFrame(msg.trim());
 
         String command = msg.substring(0, firstNewLine).trim();
         StompFrame frame = new StompFrame(command);
 
+        // STOMP headers end with an empty line.
+        // We look for "\n\n" or "\r\n\r\n" but since our splitting is simplistic,
+        // we'll split the remaining string by double newline.
+        // NOTE: This assumes the sender uses standard LF or CRLF consistently
+        // and that our msg string preserves them.
+
         int headersStart = firstNewLine + 1;
-        int emptyLineIndex = msg.indexOf("\n\n", headersStart);
-        // Handle \r\n
-        // Simply parsing line by line until empty line is safer.
-
-        String remaining = msg.substring(headersStart);
-        if (emptyLineIndex == -1) {
-            // No body, just headers maybe? Or malformed?
-            // Case: Headers end, then EOF.
-            // Check if there is an empty line at all.
-            // Let's assume split is safer for headers.
-            String[] parts = remaining.split("\n\n", 2);
-            String headersPart = parts[0];
-            String bodyPart = parts.length > 1 ? parts[1] : "";
-
-            // Parse headers
-            for (String line : headersPart.split("\n")) {
-                int colon = line.indexOf(':');
-                if (colon != -1) {
-                    frame.addHeader(line.substring(0, colon), line.substring(colon + 1));
-                }
-            }
-            frame.setBody(bodyPart);
-        } else {
-            // ...
-        }
-        // Actually, let's redo parse logic to be robust.
-        // Split by first "\n\n" to separate headers and body
-        // The command is the first line of the first part.
-
-        int doubleNewLine = msg.indexOf("\n\n");
+        // Find the boundary between headers and body (first empty line)
+        int doubleNewLine = msg.indexOf("\n\n", headersStart);
+        
         String headersSection;
         String bodySection = "";
 
         if (doubleNewLine != -1) {
-            headersSection = msg.substring(0, doubleNewLine);
-            bodySection = msg.substring(doubleNewLine + 2);
+            headersSection = msg.substring(headersStart, doubleNewLine);
+            // +2 for the two \n characters
+            if (doubleNewLine + 2 < msg.length()) {
+                bodySection = msg.substring(doubleNewLine + 2);
+            }
         } else {
-            headersSection = msg;
+            // Check if it ends with a single newline which implies empty body
+            if (msg.endsWith("\n\n")) {
+                 headersSection = msg.substring(headersStart, msg.length() - 2);
+            } else if (msg.endsWith("\n")) {
+                 headersSection = msg.substring(headersStart, msg.length() - 1);
+            } else {
+                 headersSection = msg.substring(headersStart);
+            }
         }
 
         String[] headerLines = headersSection.split("\n");
-        if (headerLines.length > 0) {
-            frame = new StompFrame(headerLines[0].trim());
-            for (int k = 1; k < headerLines.length; k++) {
-                String line = headerLines[k];
-                int colon = line.indexOf(':');
-                if (colon != -1) {
-                    frame.addHeader(line.substring(0, colon), line.substring(colon + 1));
-                }
+        for (String line : headerLines) {
+            line = line.trim(); // Handle potential \r
+            if (line.isEmpty()) continue;
+            
+            int colon = line.indexOf(':');
+            if (colon != -1) {
+                String key = line.substring(0, colon);
+                String value = line.substring(colon + 1);
+                frame.addHeader(key, value);
             }
         }
-        frame.setBody(bodySection); // Body might contain null char? EncDec removes it.
+        
+        frame.setBody(bodySection);
         return frame;
     }
 

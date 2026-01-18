@@ -10,9 +10,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class StompMessagingProtocolImpl implements StompMessagingProtocol<String> {
 
-    private static final Map<String, String> registeredUsers = new ConcurrentHashMap<>();
-    private static final Set<String> loggedInUsers = ConcurrentHashMap.newKeySet();
-
     private int connectionId;
     private Connections<String> connections;
     private boolean shouldTerminate = false;
@@ -89,30 +86,38 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol<String
             sendError(frame, "Missing headers", "login and passcode are required");
             return;
         }
-        if (loggedInUsers.contains(login)) {
-            sendError(frame, "User already logged in", "User already logged in");
+
+        // --- DATABASE LOGIC ---
+        // 1. Check if user is already logged in
+        String activeLogins = DatabaseHandler.sendSqlRequest("SELECT count(*) FROM UserLogins WHERE username = '" + escapeSql(login) + "' AND logout_datetime IS NULL");
+        if (activeLogins != null && !activeLogins.startsWith("error") && !activeLogins.trim().equals("0")) {
+            sendError(frame, "User already logged in", "User '" + login + "' is already logged in.");
             return;
         }
 
-        String existingPassword = registeredUsers.get(login);
-        if (existingPassword != null && !existingPassword.equals(passcode)) {
-            sendError(frame, "Wrong password", "Wrong password");
-            return;
+        // 2. Check user credentials or register new user
+        String existingPassword = DatabaseHandler.sendSqlRequest("SELECT password FROM Users WHERE username = '" + escapeSql(login) + "'");
+        
+        if (existingPassword != null && !existingPassword.startsWith("error") && !existingPassword.trim().isEmpty()) {
+            // User exists, check password
+            if (!existingPassword.trim().equals(passcode)) {
+                sendError(frame, "Wrong password", "Password does not match for user '" + login + "'");
+                return;
+            }
+        } else {
+            // User does not exist, register them
+            String regRes = DatabaseHandler.sendSqlRequest("INSERT INTO Users (username, password) VALUES ('" + escapeSql(login) + "', '" + escapeSql(passcode) + "')");
+            if (regRes.startsWith("error")) {
+                sendError(frame, "Database Error", "Registration failed: " + regRes);
+                return;
+            }
+            DatabaseHandler.sendSqlRequest("INSERT INTO UserRegistrations (username, registration_datetime) VALUES ('" + escapeSql(login) + "', datetime('now'))");
         }
-
-        if (existingPassword == null) {
-            registeredUsers.put(login, passcode);
-            DatabaseHandler.sendSqlRequest("INSERT OR IGNORE INTO Users (username, password) VALUES ('"
-                    + escapeSql(login) + "', '" + escapeSql(passcode) + "')");
-            DatabaseHandler.sendSqlRequest("INSERT OR IGNORE INTO UserRegistrations (username, registration_datetime) VALUES ('"
-                    + escapeSql(login) + "', datetime('now'))");
-        }
-
-        DatabaseHandler.sendSqlRequest("INSERT INTO UserLogins (username, login_datetime) VALUES ('"
-                + escapeSql(login) + "', datetime('now'))");
+        
+        // 3. Log logic event
+        DatabaseHandler.sendSqlRequest("INSERT INTO UserLogins (username, login_datetime) VALUES ('" + escapeSql(login) + "', datetime('now'))");
+        
         this.loggedInUser = login;
-        loggedInUsers.add(login);
-
         isConnected = true;
 
         StompFrame connectedFrame = new StompFrame("CONNECTED");
@@ -189,7 +194,6 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol<String
         if (loggedInUser != null) {
              DatabaseHandler.sendSqlRequest("UPDATE UserLogins SET logout_datetime = datetime('now') WHERE username = '"
                      + escapeSql(loggedInUser) + "' AND logout_datetime IS NULL");
-             loggedInUsers.remove(loggedInUser);
         }
 
         sendReceiptIfNeeded(frame);
@@ -223,7 +227,8 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol<String
         errorFrame.setBody("The message:\n-----\n" + description + "\n-----");
         connections.send(connectionId, errorFrame.toString());
         if (loggedInUser != null) {
-            loggedInUsers.remove(loggedInUser);
+            DatabaseHandler.sendSqlRequest("UPDATE UserLogins SET logout_datetime = datetime('now') WHERE username = '"
+                    + escapeSql(loggedInUser) + "' AND logout_datetime IS NULL");
             loggedInUser = null;
         }
         shouldTerminate = true;

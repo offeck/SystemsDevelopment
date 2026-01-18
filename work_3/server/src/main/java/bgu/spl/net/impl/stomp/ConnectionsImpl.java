@@ -5,18 +5,21 @@ import bgu.spl.net.srv.Connections;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.ArrayList;
 
 public class ConnectionsImpl<T> implements Connections<T> {
     // fields
-    ConcurrentHashMap<Integer, ConnectionHandler<T>> connectionHandlers;
-    ConcurrentHashMap<String, ConcurrentHashMap<Integer, String>> channelSubscriptions;
+    private final ConcurrentHashMap<Integer, ConnectionHandler<T>> connectionHandlers;
+    private final ConcurrentHashMap<String, ConcurrentHashMap<Integer, String>> channelSubscriptions;
+    // Reverse mapping for efficient disconnect: connectionId -> Set<Channel>
+    private final ConcurrentHashMap<Integer, Set<String>> connectionActiveSubscriptions;
 
     // constructor
     public ConnectionsImpl() {
         this.connectionHandlers = new ConcurrentHashMap<>();
         this.channelSubscriptions = new ConcurrentHashMap<>();
+        this.connectionActiveSubscriptions = new ConcurrentHashMap<>();
     }
 
     public void addConnectionHandler(int connectionId, ConnectionHandler<T> handler) {
@@ -28,24 +31,31 @@ public class ConnectionsImpl<T> implements Connections<T> {
     }
 
     public void addChannelSubscription(String channel, int connectionId, String subscriptionId) {
-        this.channelSubscriptions.putIfAbsent(channel, new ConcurrentHashMap<>());
-        this.channelSubscriptions.get(channel).put(connectionId, subscriptionId);
+        channelSubscriptions.computeIfAbsent(channel, k -> new ConcurrentHashMap<>()).put(connectionId, subscriptionId);
+        connectionActiveSubscriptions.computeIfAbsent(connectionId, k -> ConcurrentHashMap.newKeySet()).add(channel);
     }
 
     public void removeChannelSubscription(String channel, int connectionId) {
-        if (this.channelSubscriptions.containsKey(channel)) {
-            this.channelSubscriptions.get(channel).remove(connectionId);
-            if (this.channelSubscriptions.get(channel).isEmpty()) {
-                this.channelSubscriptions.remove(channel);
-            }
-        }
+        // Atomic removal to avoid race condition where we remove a channel map that just got a new subscriber
+        channelSubscriptions.computeIfPresent(channel, (k, v) -> {
+            v.remove(connectionId);
+            return v.isEmpty() ? null : v;
+        });
+        
+        // Clean up the reverse mapping
+        connectionActiveSubscriptions.computeIfPresent(connectionId, (k, v) -> {
+            v.remove(channel);
+            return v;
+        });
     }
 
     @Override
     public boolean send(int connectionId, T msg) {
         ConnectionHandler<T> handler = this.connectionHandlers.get(connectionId);
         if (handler != null) {
-            handler.send(msg);
+            synchronized (handler) {
+                handler.send(msg);
+            }
             return true;
         }
         return false;
@@ -60,22 +70,24 @@ public class ConnectionsImpl<T> implements Connections<T> {
                 String subscriptionId = entry.getValue();
                 ConnectionHandler<T> handler = this.connectionHandlers.get(connectionId);
                 if (handler != null) {
-                    if (msg instanceof String) {
-                        String strMsg = (String) msg;
-                        // Assuming msg is a MESSAGE frame string.
-                        // We need to inject "subscription:subscriptionId" into headers.
-                        // Inject after first newline (command line).
-                        int firstNewLine = strMsg.indexOf('\n');
-                        if (firstNewLine != -1) {
-                            String newMsg = strMsg.substring(0, firstNewLine + 1)
-                                    + "subscription:" + subscriptionId + "\n"
-                                    + strMsg.substring(firstNewLine + 1);
-                            handler.send((T) newMsg);
+                    synchronized (handler) {
+                        if (msg instanceof String) {
+                            String strMsg = (String) msg;
+                            // Assuming msg is a MESSAGE frame string.
+                            // We need to inject "subscription:subscriptionId" into headers.
+                            // Inject after first newline (command line).
+                            int firstNewLine = strMsg.indexOf('\n');
+                            if (firstNewLine != -1) {
+                                String newMsg = strMsg.substring(0, firstNewLine + 1)
+                                        + "subscription:" + subscriptionId + "\n"
+                                        + strMsg.substring(firstNewLine + 1);
+                                handler.send((T) newMsg);
+                            } else {
+                                handler.send(msg);
+                            }
                         } else {
                             handler.send(msg);
                         }
-                    } else {
-                        handler.send(msg);
                     }
                 }
             }
@@ -85,8 +97,16 @@ public class ConnectionsImpl<T> implements Connections<T> {
     @Override
     public void disconnect(int connectionId) {
         this.removeConnectionHandler(connectionId);
-        for (String channel : this.channelSubscriptions.keySet()) {
-            this.removeChannelSubscription(channel, connectionId);
+        
+        // Efficiently remove only relevant subscriptions
+        Set<String> channels = connectionActiveSubscriptions.remove(connectionId);
+        if (channels != null) {
+            for (String channel : channels) {
+                // We use the simpler logic for channelSubscriptions cleanup directly
+                // or just call removeChannelSubscription. 
+                // Calling removeChannelSubscription is safe and handles the map cleanup.
+                removeChannelSubscription(channel, connectionId);
+            }
         }
     }
 }
