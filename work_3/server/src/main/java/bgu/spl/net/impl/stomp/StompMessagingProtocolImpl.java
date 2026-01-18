@@ -210,7 +210,6 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol<String
     private void handleReport(StompFrame frame) {
         String report = DatabaseHandler.getReport();
         System.out.println(report); // Log report to server console
-        frame.setBody(report);
         sendReceiptIfNeeded(frame);
     }
 

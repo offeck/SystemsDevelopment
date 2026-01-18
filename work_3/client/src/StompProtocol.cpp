@@ -3,7 +3,7 @@
 StompProtocol::StompProtocol() 
     : isLoggedIn(false), currentUserName(""), subscriptionIdCounter(0), receiptIdCounter(0), 
       topicToSubscriptionId(), subscriptionIdToTopic(), subscriptionMutex(), 
-      gameReports(), reportMutex(), disconnectReceiptId(-1), receiptActions(), receiptMutex() {}
+      gameReports(), reportMutex(), disconnectReceiptId(-1), receiptActions(), receiptMutex(), debugMode(false) {}
 
 void StompProtocol::setLoggedIn(bool status) {
     isLoggedIn = status;
@@ -11,6 +11,14 @@ void StompProtocol::setLoggedIn(bool status) {
 
 bool StompProtocol::getLoggedIn() const {
     return isLoggedIn;
+}
+
+void StompProtocol::setDebug(bool status) {
+    debugMode = status;
+}
+
+bool StompProtocol::isDebug() const {
+    return debugMode;
 }
 
 void StompProtocol::setUserName(const std::string& name) {

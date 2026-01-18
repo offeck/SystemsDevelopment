@@ -48,12 +48,17 @@ private:
     int disconnectReceiptId;
     std::map<int, std::pair<std::string, std::string>> receiptActions;
     std::mutex receiptMutex;
+    
+    std::atomic<bool> debugMode;
 
 public:
     StompProtocol();
     
     void setLoggedIn(bool status);
     bool getLoggedIn() const;
+
+    void setDebug(bool status);
+    bool isDebug() const;
 
     void setUserName(const std::string& name);
     std::string getUserName() const;

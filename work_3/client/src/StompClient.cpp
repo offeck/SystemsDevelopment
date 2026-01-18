@@ -45,6 +45,11 @@ void readerThread(std::shared_ptr<ConnectionHandler> connectionHandler, StompPro
              protocol.setLoggedIn(false);
              break;
         }
+
+        if (protocol.isDebug()) {
+            std::cout << "[DEBUG] Received frame:\n" << answer << std::endl;
+        }
+
         StompFrame frame = StompFrame::parse(answer);
         if (frame.getCommand() == "MESSAGE") {
 
@@ -121,6 +126,7 @@ enum class Command {
     SUMMARY,
     LOGOUT,
     STATS,
+    DEBUG,
     UNKNOWN
 };
 
@@ -132,7 +138,17 @@ Command getCommand(const std::string& commandStr) {
     if (commandStr == "summary") return Command::SUMMARY;
     if (commandStr == "logout") return Command::LOGOUT;
     if (commandStr == "stats") return Command::STATS;
+    if (commandStr == "debug") return Command::DEBUG;
     return Command::UNKNOWN;
+}
+
+// Helper function to send frames and optionally print debug info
+bool sendFrame(const StompFrame& frame, std::shared_ptr<ConnectionHandler>& connectionHandler, StompProtocol& protocol) {
+    if (protocol.isDebug()) {
+        std::cout << "[DEBUG] Sending frame:\n" << frame.toString() << std::endl;
+    }
+    if (!connectionHandler) return false;
+    return connectionHandler->sendFrameAscii(frame.toString(), '\0');
 }
 
 void handleLogin(std::shared_ptr<ConnectionHandler>& connectionHandler, std::thread& reader,
@@ -188,7 +204,7 @@ void handleLogin(std::shared_ptr<ConnectionHandler>& connectionHandler, std::thr
     frame.addHeader("login", username);
     frame.addHeader("passcode", password);
 
-    if (!connectionHandler->sendFrameAscii(frame.toString(), '\0')) {
+    if (!sendFrame(frame, connectionHandler, protocol)) {
          std::cout << "Could not connect to server" << std::endl;
     }
 }
@@ -215,7 +231,7 @@ void handleJoin(std::shared_ptr<ConnectionHandler>& connectionHandler, const std
     frame.addHeader("id", std::to_string(subId));
     frame.addHeader("receipt", std::to_string(receiptId));
     
-    if (!connectionHandler || !connectionHandler->sendFrameAscii(frame.toString(), '\0')) {
+    if (!sendFrame(frame, connectionHandler, protocol)) {
          std::cout << "Could not join game" << std::endl;
          protocol.removeSubscription(game_name);
          return;
@@ -247,7 +263,7 @@ void handleExit(std::shared_ptr<ConnectionHandler>& connectionHandler, const std
     frame.addHeader("id", std::to_string(subId));
     frame.addHeader("receipt", std::to_string(receiptId));
     
-    if (!connectionHandler || !connectionHandler->sendFrameAscii(frame.toString(), '\0')) {
+    if (!sendFrame(frame, connectionHandler, protocol)) {
          std::cout << "Could not exit game" << std::endl;
     }
 }
@@ -298,7 +314,7 @@ void handleReport(std::shared_ptr<ConnectionHandler>& connectionHandler, const s
         
         frame.setBody(body);
              
-        if (!connectionHandler || !connectionHandler->sendFrameAscii(frame.toString(), '\0')) {
+        if (!sendFrame(frame, connectionHandler, protocol)) {
              std::cout << "Could not send report" << std::endl;
         }
     }
@@ -383,7 +399,7 @@ void handleStats(std::shared_ptr<ConnectionHandler>& connectionHandler, const st
     int receiptId = protocol.generateReceiptId();
     frame.addHeader("receipt", std::to_string(receiptId));
 
-    if (!connectionHandler || !connectionHandler->sendFrameAscii(frame.toString(), '\0')) {
+    if (!sendFrame(frame, connectionHandler, protocol)) {
          std::cout << "Could not send stats request" << std::endl;
     }
 }
@@ -400,7 +416,7 @@ void handleLogout(std::shared_ptr<ConnectionHandler>& connectionHandler, const s
     StompFrame frame("DISCONNECT");
     frame.addHeader("receipt", std::to_string(receiptId));
     
-    if (!connectionHandler || !connectionHandler->sendFrameAscii(frame.toString(), '\0')) {
+    if (!sendFrame(frame, connectionHandler, protocol)) {
          std::cout << "Could not send logout" << std::endl;
          return;
     }
@@ -411,6 +427,22 @@ void handleLogout(std::shared_ptr<ConnectionHandler>& connectionHandler, const s
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
     std::cout << "Logged out." << std::endl;
+}
+
+void handleDebug(const std::vector<std::string>& words, StompProtocol& protocol) {
+    if (words.size() < 2) {
+        std::cout << "Error: Invalid command format. Usage: debug <on/off>" << std::endl;
+        return;
+    }
+    if (words[1] == "on") {
+        protocol.setDebug(true);
+        std::cout << "Debug mode activated" << std::endl;
+    } else if (words[1] == "off") {
+        protocol.setDebug(false);
+        std::cout << "Debug mode deactivated" << std::endl;
+    } else {
+        std::cout << "Error: Invalid argument. Usage: debug <on/off>" << std::endl;
+    }
 }
 
 int handleInput(std::string& input, std::shared_ptr<ConnectionHandler>& connectionHandler, std::thread& reader,
@@ -446,6 +478,9 @@ int handleInput(std::string& input, std::shared_ptr<ConnectionHandler>& connecti
              break;
         case Command::STATS:
              handleStats(connectionHandler, words, protocol);
+             break;
+        case Command::DEBUG:
+             handleDebug(words, protocol);
              break;
         case Command::LOGOUT:
              handleLogout(connectionHandler, words, protocol);
