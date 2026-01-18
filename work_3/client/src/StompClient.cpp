@@ -28,6 +28,9 @@ std::string parseUserFromBody(const std::string& body) {
             while (!user.empty() && (user.front() == ' ' || user.front() == '\t')) {
                 user.erase(0, 1);
             }
+            while (!user.empty() && (user.back() == ' ' || user.back() == '\t' || user.back() == '\r')) {
+                user.pop_back();
+            }
             return user;
         }
     }
@@ -44,6 +47,7 @@ void readerThread(std::shared_ptr<ConnectionHandler> connectionHandler, StompPro
         }
         StompFrame frame = StompFrame::parse(answer);
         if (frame.getCommand() == "MESSAGE") {
+
             std::string reporter = parseUserFromBody(frame.getBody());
             if (reporter.empty()) {
                 reporter = "unknown";
@@ -356,7 +360,7 @@ void handleSummary(std::shared_ptr<ConnectionHandler>& connectionHandler, const 
     });
     for (const GameEvent& entry : sortedEvents) {
         const Event& e = entry.event;
-        outfile << e.get_time() << " - " << e.get_name() << ":\n\n";
+        outfile << e.get_time() << " - " << e.get_name() << ":\n";
         outfile << e.get_discription() << "\n\n";
     }
     outfile.close();
