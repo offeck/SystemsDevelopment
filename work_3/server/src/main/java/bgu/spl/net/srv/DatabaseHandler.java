@@ -50,4 +50,41 @@ public class DatabaseHandler {
 
         return response;
     }
+
+    public static void printReport() {
+        System.out.println("========================================");
+        System.out.println("[STOMP] SERVER REPORT");
+        System.out.println("========================================");
+
+        String users = sendSqlRequest("SELECT username FROM Users ORDER BY username ASC");
+        System.out.println("Registered Users:");
+        if (users == null || users.isEmpty()) {
+            System.out.println("  (none)");
+        } else {
+            for (String line : users.split("\n")) {
+                System.out.println("  " + line);
+            }
+        }
+
+        String logins = sendSqlRequest("SELECT username, login_datetime, logout_datetime FROM UserLogins ORDER BY username, login_datetime ASC");
+        System.out.println("\nLogin History:");
+        if (logins == null || logins.isEmpty()) {
+            System.out.println("  (none)");
+        } else {
+            for (String line : logins.split("\n")) {
+                System.out.println("  " + line);
+            }
+        }
+
+        String files = sendSqlRequest("SELECT uploader, filename, game_channel, upload_datetime FROM FileTracking ORDER BY uploader, upload_datetime ASC");
+        System.out.println("\nFile Uploads:");
+        if (files == null || files.isEmpty()) {
+            System.out.println("  (none)");
+        } else {
+            for (String line : files.split("\n")) {
+                System.out.println("  " + line);
+            }
+        }
+        System.out.println("========================================");
+    }
 }

@@ -7,15 +7,27 @@
 #include <atomic>
 #include "event.h"
 
+struct GameEvent {
+    Event event;
+    int halfIndex;
+    int sequence;
+
+    GameEvent(const Event& event, int halfIndex, int sequence)
+        : event(event), halfIndex(halfIndex), sequence(sequence) {}
+};
+
 struct GameState {
     std::string teamA;
     std::string teamB;
     std::map<std::string, std::string> generalStats;
     std::map<std::string, std::string> teamAStats;
     std::map<std::string, std::string> teamBStats;
-    std::vector<Event> events;
+    std::vector<GameEvent> events;
+    int currentHalfIndex;
+    int nextSequence;
 
-    GameState() : teamA(""), teamB(""), generalStats(), teamAStats(), teamBStats(), events() {}
+    GameState() : teamA(""), teamB(""), generalStats(), teamAStats(), teamBStats(), events(),
+                  currentHalfIndex(0), nextSequence(0) {}
 };
 
 class StompProtocol {
@@ -34,6 +46,8 @@ private:
     std::mutex reportMutex;
 
     int disconnectReceiptId;
+    std::map<int, std::pair<std::string, std::string>> receiptActions;
+    std::mutex receiptMutex;
 
 public:
     StompProtocol();
@@ -54,6 +68,9 @@ public:
 
     void setDisconnectReceiptId(int id);
     int getDisconnectReceiptId() const;
+
+    void addReceiptAction(int receiptId, const std::string& action, const std::string& gameName);
+    bool popReceiptAction(int receiptId, std::pair<std::string, std::string>& action);
 
     void addEvent(const Event& event, const std::string& username);
     bool getGameState(const std::string& gameName, const std::string& username, GameState& outState);

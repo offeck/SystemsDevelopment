@@ -3,7 +3,7 @@
 StompProtocol::StompProtocol() 
     : isLoggedIn(false), currentUserName(""), subscriptionIdCounter(0), receiptIdCounter(0), 
       topicToSubscriptionId(), subscriptionIdToTopic(), subscriptionMutex(), 
-      gameReports(), reportMutex(), disconnectReceiptId(-1) {}
+      gameReports(), reportMutex(), disconnectReceiptId(-1), receiptActions(), receiptMutex() {}
 
 void StompProtocol::setLoggedIn(bool status) {
     isLoggedIn = status;
@@ -67,6 +67,22 @@ int StompProtocol::getDisconnectReceiptId() const {
     return disconnectReceiptId;
 }
 
+void StompProtocol::addReceiptAction(int receiptId, const std::string& action, const std::string& gameName) {
+    std::lock_guard<std::mutex> lock(receiptMutex);
+    receiptActions[receiptId] = std::make_pair(action, gameName);
+}
+
+bool StompProtocol::popReceiptAction(int receiptId, std::pair<std::string, std::string>& action) {
+    std::lock_guard<std::mutex> lock(receiptMutex);
+    auto it = receiptActions.find(receiptId);
+    if (it == receiptActions.end()) {
+        return false;
+    }
+    action = it->second;
+    receiptActions.erase(it);
+    return true;
+}
+
 void StompProtocol::addEvent(const Event& event, const std::string& username) {
     std::lock_guard<std::mutex> lock(reportMutex);
     std::string gameName = event.get_team_a_name() + "_" + event.get_team_b_name();
@@ -85,8 +101,18 @@ void StompProtocol::addEvent(const Event& event, const std::string& username) {
     for (auto const& pair : event.get_team_b_updates()) {
         state.teamBStats[pair.first] = pair.second;
     }
-    
-    state.events.push_back(event);
+
+    auto halftimeFlag = event.get_game_updates().find("before halftime");
+    if (halftimeFlag != event.get_game_updates().end()) {
+        std::string value = halftimeFlag->second;
+        if (value == "false" || value == "False" || value == "0") {
+            state.currentHalfIndex = 1;
+        } else if (value == "true" || value == "True" || value == "1") {
+            state.currentHalfIndex = 0;
+        }
+    }
+
+    state.events.emplace_back(event, state.currentHalfIndex, state.nextSequence++);
 }
 
 bool StompProtocol::getGameState(const std::string& gameName, const std::string& username, GameState& outState) {

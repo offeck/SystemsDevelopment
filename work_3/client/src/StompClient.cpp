@@ -4,6 +4,9 @@
 #include <map>
 #include <thread>
 #include <atomic>
+#include <memory>
+#include <algorithm>
+#include <chrono>
 #include "../include/ConnectionHandler.h"
 #include "../include/StompFrame.h"
 #include "../include/StompProtocol.h"
@@ -13,31 +16,67 @@
 /**
 * This code assumes that the server replies the exact text the client sent it (as opposed to the practical session example)
 */
-int handleInput(std::string& input, ConnectionHandler& connectionHandler, StompProtocol& protocol);
+int handleInput(std::string& input, std::shared_ptr<ConnectionHandler>& connectionHandler, std::thread& reader,
+                std::atomic<bool>& readerRunning, StompProtocol& protocol);
 
-void readerThread(ConnectionHandler& connectionHandler, StompProtocol& protocol) {
+std::string parseUserFromBody(const std::string& body) {
+    std::istringstream iss(body);
+    std::string line;
+    while (std::getline(iss, line)) {
+        if (line.rfind("user:", 0) == 0) {
+            std::string user = line.substr(5);
+            while (!user.empty() && (user.front() == ' ' || user.front() == '\t')) {
+                user.erase(0, 1);
+            }
+            while (!user.empty() && (user.back() == ' ' || user.back() == '\t' || user.back() == '\r')) {
+                user.pop_back();
+            }
+            return user;
+        }
+    }
+    return "";
+}
+
+void readerThread(std::shared_ptr<ConnectionHandler> connectionHandler, StompProtocol& protocol, std::atomic<bool>& readerRunning) {
     while (true) {
         std::string answer;
-        if (!connectionHandler.getFrameAscii(answer, '\0')) {
+        if (!connectionHandler->getFrameAscii(answer, '\0')) {
              std::cout << "Disconnected from server." << std::endl;
              protocol.setLoggedIn(false);
              break;
         }
         StompFrame frame = StompFrame::parse(answer);
         if (frame.getCommand() == "MESSAGE") {
-            std::cout << "Received Message: " << frame.getBody() << std::endl;
+
+            std::string reporter = parseUserFromBody(frame.getBody());
+            if (reporter.empty()) {
+                reporter = "unknown";
+            }
+            if (protocol.getUserName() == reporter) continue;
+            Event event(frame.getBody());
+            protocol.addEvent(event, reporter);
         } else if (frame.getCommand() == "CONNECTED") {
              std::cout << "Login successful" << std::endl;
              protocol.setLoggedIn(true);
         } else if (frame.getCommand() == "ERROR") {
              std::cout << "Error: " << frame.getHeader("message") << "\n" << frame.getBody() << std::endl;
-             // protocol.setLoggedIn(false); // Depends on if ERROR disconnects or not, strictly speaking some errors might not disconnect but usually they do in this assignment
+             protocol.setLoggedIn(false);
+             connectionHandler->close();
+             break;
         } else if (frame.getCommand() == "RECEIPT") {
-             std::cout << "Receipt: " << frame.getHeader("receipt-id") << std::endl;
              try {
                 int receiptId = std::stoi(frame.getHeader("receipt-id"));
+                std::pair<std::string, std::string> action;
+                if (protocol.popReceiptAction(receiptId, action)) {
+                    if (action.first == "join") {
+                        std::cout << "Joined channel " << action.second << std::endl;
+                    } else if (action.first == "exit") {
+                        std::cout << "Exited channel " << action.second << std::endl;
+                    }
+                }
                 if (receiptId == protocol.getDisconnectReceiptId()) {
-                    connectionHandler.close();
+                    protocol.setLoggedIn(false);
+                    connectionHandler->close();
                     break;
                 }
              } catch (...) {}
@@ -45,24 +84,14 @@ void readerThread(ConnectionHandler& connectionHandler, StompProtocol& protocol)
              std::cout << answer << std::endl;
         }
     }
+    readerRunning.store(false);
 }
 
 int main (int argc, char *argv[]) {
-    if (argc < 3) {
-        std::cerr << "Usage: " << argv[0] << " host port" << std::endl << std::endl;
-        return -1;
-    }
-    std::string host = argv[1];
-    short port = atoi(argv[2]);
-    
-    ConnectionHandler connectionHandler(host, port);
-    if (!connectionHandler.connect()) {
-        std::cerr << "Cannot connect to " << host << ":" << port << std::endl;
-        return 1;
-    }
-
     StompProtocol protocol;
-    std::thread th1(readerThread, std::ref(connectionHandler), std::ref(protocol));
+    std::shared_ptr<ConnectionHandler> connectionHandler;
+    std::thread reader;
+    std::atomic<bool> readerRunning(false);
 	
 	//From here we will see the rest of the ehco client implementation:
     while (1) {
@@ -71,14 +100,16 @@ int main (int argc, char *argv[]) {
         std::cin.getline(buf, bufsize);
 		std::string line(buf);
 		
-        int status = handleInput(line, connectionHandler, protocol);
+        int status = handleInput(line, connectionHandler, reader, readerRunning, protocol);
         if (status == -1) {
             break;
         }
     }
     
-    connectionHandler.close();
-    if(th1.joinable()) th1.join();
+    if (connectionHandler) {
+        connectionHandler->close();
+    }
+    if(reader.joinable()) reader.join();
     return 0;
 }
 
@@ -102,7 +133,8 @@ Command getCommand(const std::string& commandStr) {
     return Command::UNKNOWN;
 }
 
-void handleLogin(ConnectionHandler& connectionHandler, const std::vector<std::string>& words, StompProtocol& protocol) {
+void handleLogin(std::shared_ptr<ConnectionHandler>& connectionHandler, std::thread& reader,
+                 std::atomic<bool>& readerRunning, const std::vector<std::string>& words, StompProtocol& protocol) {
     if (protocol.getLoggedIn()) {
         std::cout << "The client is already logged in, log out before trying again" << std::endl;
         return;
@@ -112,10 +144,41 @@ void handleLogin(ConnectionHandler& connectionHandler, const std::vector<std::st
         return;
     }
     
+    std::string hostPort = words[1];
+    size_t colonPos = hostPort.find(':');
+    if (colonPos == std::string::npos) {
+        std::cout << "Error: Invalid host:port format." << std::endl;
+        return;
+    }
+    std::string host = hostPort.substr(0, colonPos);
+    short port;
+    try {
+        port = static_cast<short>(std::stoi(hostPort.substr(colonPos + 1)));
+    } catch (...) {
+        std::cout << "Error: Invalid port." << std::endl;
+        return;
+    }
+
     std::string username = words[2];
     std::string password = words[3];
 
     protocol.setUserName(username);
+
+    if (!connectionHandler || !readerRunning.load()) {
+        if (reader.joinable()) {
+            reader.join();
+        }
+        connectionHandler = std::make_shared<ConnectionHandler>(host, port);
+        if (!connectionHandler->connect()) {
+            std::cout << "Could not connect to server" << std::endl;
+            connectionHandler.reset();
+            return;
+        }
+        if (!readerRunning.load()) {
+            readerRunning.store(true);
+            reader = std::thread(readerThread, connectionHandler, std::ref(protocol), std::ref(readerRunning));
+        }
+    }
 
     StompFrame frame("CONNECT");
     frame.addHeader("accept-version", "1.2");
@@ -123,12 +186,12 @@ void handleLogin(ConnectionHandler& connectionHandler, const std::vector<std::st
     frame.addHeader("login", username);
     frame.addHeader("passcode", password);
 
-    if (!connectionHandler.sendFrameAscii(frame.toString(), '\0')) {
+    if (!connectionHandler->sendFrameAscii(frame.toString(), '\0')) {
          std::cout << "Could not connect to server" << std::endl;
     }
 }
 
-void handleJoin(ConnectionHandler& connectionHandler, const std::vector<std::string>& words, StompProtocol& protocol) {
+void handleJoin(std::shared_ptr<ConnectionHandler>& connectionHandler, const std::vector<std::string>& words, StompProtocol& protocol) {
     if (!protocol.getLoggedIn()) {
         std::cout << "Not logged in" << std::endl;
         return;
@@ -142,20 +205,22 @@ void handleJoin(ConnectionHandler& connectionHandler, const std::vector<std::str
     int subId = protocol.generateSubscriptionId();
     protocol.addSubscription(game_name, subId);
     
+    int receiptId = protocol.generateReceiptId();
+    protocol.addReceiptAction(receiptId, "join", game_name);
+
     StompFrame frame("SUBSCRIBE");
     frame.addHeader("destination", "/" + game_name);
     frame.addHeader("id", std::to_string(subId));
-    frame.addHeader("receipt", std::to_string(subId)); 
+    frame.addHeader("receipt", std::to_string(receiptId));
     
-    if (!connectionHandler.sendFrameAscii(frame.toString(), '\0')) {
+    if (!connectionHandler || !connectionHandler->sendFrameAscii(frame.toString(), '\0')) {
          std::cout << "Could not join game" << std::endl;
          protocol.removeSubscription(game_name);
          return;
     }
-    std::cout << "Joined game " << game_name << std::endl;
 }
 
-void handleExit(ConnectionHandler& connectionHandler, const std::vector<std::string>& words, StompProtocol& protocol) {
+void handleExit(std::shared_ptr<ConnectionHandler>& connectionHandler, const std::vector<std::string>& words, StompProtocol& protocol) {
      if (!protocol.getLoggedIn()) {
         std::cout << "Not logged in" << std::endl;
         return;
@@ -173,17 +238,19 @@ void handleExit(ConnectionHandler& connectionHandler, const std::vector<std::str
     }
     protocol.removeSubscription(game_name);
     
+    int receiptId = protocol.generateReceiptId();
+    protocol.addReceiptAction(receiptId, "exit", game_name);
+
     StompFrame frame("UNSUBSCRIBE");
     frame.addHeader("id", std::to_string(subId));
-    frame.addHeader("receipt", std::to_string(subId)); 
+    frame.addHeader("receipt", std::to_string(receiptId));
     
-    if (!connectionHandler.sendFrameAscii(frame.toString(), '\0')) {
+    if (!connectionHandler || !connectionHandler->sendFrameAscii(frame.toString(), '\0')) {
          std::cout << "Could not exit game" << std::endl;
     }
-    std::cout << "Exited game " << game_name << std::endl;
 }
 
-void handleReport(ConnectionHandler& connectionHandler, const std::vector<std::string>& words, StompProtocol& protocol) {
+void handleReport(std::shared_ptr<ConnectionHandler>& connectionHandler, const std::vector<std::string>& words, StompProtocol& protocol) {
      if (!protocol.getLoggedIn()) {
         std::cout << "Not logged in" << std::endl;
         return;
@@ -196,12 +263,17 @@ void handleReport(ConnectionHandler& connectionHandler, const std::vector<std::s
     
     names_and_events data = parseEventsFile(file_path);
     std::string game_name = data.team_a_name + "_" + data.team_b_name;
+    if (!protocol.isSubscribed(game_name)) {
+        std::cout << "Not subscribed to " << game_name << std::endl;
+        return;
+    }
     
     for (const Event& event : data.events) {
         protocol.addEvent(event, protocol.getUserName());
         
         StompFrame frame("SEND");
         frame.addHeader("destination", "/" + game_name);
+        frame.addHeader("file", file_path);
         
         std::string body = "user: " + protocol.getUserName() + "\n";
         body += "team a: " + data.team_a_name + "\n";
@@ -224,14 +296,14 @@ void handleReport(ConnectionHandler& connectionHandler, const std::vector<std::s
         
         frame.setBody(body);
              
-        if (!connectionHandler.sendFrameAscii(frame.toString(), '\0')) {
+        if (!connectionHandler || !connectionHandler->sendFrameAscii(frame.toString(), '\0')) {
              std::cout << "Could not send report" << std::endl;
         }
     }
     std::cout << "Report sent" << std::endl;
 }
 
-void handleSummary(ConnectionHandler& connectionHandler, const std::vector<std::string>& words, StompProtocol& protocol) {
+void handleSummary(std::shared_ptr<ConnectionHandler>& connectionHandler, const std::vector<std::string>& words, StompProtocol& protocol) {
      if (!protocol.getLoggedIn()) {
         std::cout << "Not logged in" << std::endl;
         return;
@@ -277,27 +349,38 @@ void handleSummary(ConnectionHandler& connectionHandler, const std::vector<std::
         outfile << pair.first << ": " << pair.second << "\n";
     }
     outfile << "Game event reports:\n";
-    for (const Event& e : state.events) {
-        outfile << e.get_time() << " - " << e.get_name() << ":\n\n";
+    std::vector<GameEvent> sortedEvents = state.events;
+    std::sort(sortedEvents.begin(), sortedEvents.end(), [](const GameEvent& a, const GameEvent& b) {
+        if (a.halfIndex != b.halfIndex) {
+            return a.halfIndex < b.halfIndex;
+        }
+        if (a.event.get_time() != b.event.get_time()) {
+            return a.event.get_time() < b.event.get_time();
+        }
+        return a.sequence < b.sequence;
+    });
+    for (const GameEvent& entry : sortedEvents) {
+        const Event& e = entry.event;
+        outfile << e.get_time() << " - " << e.get_name() << ":\n";
         outfile << e.get_discription() << "\n\n";
     }
     outfile.close();
     std::cout << "Summary created" << std::endl;
 }
 
-void handleLogout(ConnectionHandler& connectionHandler, const std::vector<std::string>& words, StompProtocol& protocol) {
+void handleLogout(std::shared_ptr<ConnectionHandler>& connectionHandler, const std::vector<std::string>& words, StompProtocol& protocol) {
     if (!protocol.getLoggedIn()) {
         std::cout << "Not logged in" << std::endl;
         return;
     }
     
-    int receiptId = protocol.generateSubscriptionId(); 
+    int receiptId = protocol.generateReceiptId(); 
     protocol.setDisconnectReceiptId(receiptId);
     
     StompFrame frame("DISCONNECT");
     frame.addHeader("receipt", std::to_string(receiptId));
     
-    if (!connectionHandler.sendFrameAscii(frame.toString(), '\0')) {
+    if (!connectionHandler || !connectionHandler->sendFrameAscii(frame.toString(), '\0')) {
          std::cout << "Could not send logout" << std::endl;
          return;
     }
@@ -310,7 +393,8 @@ void handleLogout(ConnectionHandler& connectionHandler, const std::vector<std::s
     std::cout << "Logged out." << std::endl;
 }
 
-int handleInput(std::string& input, ConnectionHandler& connectionHandler, StompProtocol& protocol) {
+int handleInput(std::string& input, std::shared_ptr<ConnectionHandler>& connectionHandler, std::thread& reader,
+                std::atomic<bool>& readerRunning, StompProtocol& protocol) {
     // split input into words by spaces
     std::istringstream iss(input);
     std::vector<std::string> words;
@@ -326,7 +410,7 @@ int handleInput(std::string& input, ConnectionHandler& connectionHandler, StompP
     Command cmd = getCommand(words.at(0));
     switch(cmd){
         case Command::LOGIN:
-            handleLogin(connectionHandler, words, protocol);
+            handleLogin(connectionHandler, reader, readerRunning, words, protocol);
             break;
         case Command::JOIN:
              handleJoin(connectionHandler, words, protocol);
