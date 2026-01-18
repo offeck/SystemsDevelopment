@@ -36,7 +36,6 @@ std::string StompFrame::toString() const {
     }
     ss << "\n"; // End of headers
     ss << body;
-    ss << '\0'; // Null terminator
     return ss.str();
 }
 

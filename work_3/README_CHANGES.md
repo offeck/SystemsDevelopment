@@ -54,7 +54,27 @@ This document summarizes the changes made to the `work_3` project to implement t
 *   **Build**: The server project successfully compiles with `mvn compile`.
 *   **Sanity Check**: Verified that the existing Echo Server/Client infrastructure remains functional after environment updates.
 
-## 5. Leading Questions & Answers
+## 5. STOMP Compliance & Client Improvements (Post-Review Updates)
+*   **Server Authentication & Receipts**:
+    *   Added validation for `login`/`passcode` headers and enforced unique logged-in users.
+    *   Added wrong-password handling and missing-receipt validation for `DISCONNECT`.
+    *   Included `receipt-id` in `ERROR` frames when a receipt was requested.
+*   **Server SQL Integration**:
+    *   Logs user registrations in `UserRegistrations`, logins in `UserLogins`, and file uploads in `FileTracking`.
+    *   Escapes SQL inputs to avoid malformed queries.
+    *   Added a server-side `REPORT` STOMP command to print SQL-based summaries.
+*   **Frame Serialization**:
+    *   Removed explicit null terminators from `StompFrame.toString()` in both Java and C++ to avoid double terminators.
+*   **Client Protocol Behavior**:
+    *   Login now connects to the host/port specified in the `login` command instead of requiring CLI args.
+    *   Message reader parses incoming `MESSAGE` bodies into game events and stores them for summaries.
+    *   Join/exit success messages now emit only after corresponding `RECEIPT` frames.
+    *   Summaries order events using halftime-aware ordering and event time, with stable tie-breakers.
+    *   Reports require an active subscription before sending events.
+*   **SQL Schema Adjustment**:
+    *   Updated `FileTracking.game_channel` to `TEXT` to match stored channel values.
+
+## 6. Leading Questions & Answers
 
 ### 1. In the StompServer implementation, where do I fit the switch case that checks which protocol to use?
 You generally **do not** need a switch case inside the protocol logic itself to decide *which* protocol class to use.
@@ -101,4 +121,3 @@ You generally **do not** need a switch case inside the protocol logic itself to 
     *   Since `StompMessagingProtocolImpl` is created fresh for each client, you cannot store the DB *inside* the Protocol instance (unless it's static).
     *   **Best Practice**: Pass a reference to the shared DB/User object into the generic constructor of the `StompMessagingProtocolImpl`.
     *   **Current Code**: Currently, our `StompMessagingProtocolImpl::new` is a parameterless constructor reference. To support a DB, we would change the supplier to `() -> new StompMessagingProtocolImpl(myDatabaseInstance)`.
-

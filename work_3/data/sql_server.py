@@ -71,7 +71,7 @@ def init_database():
                     filename TEXT NOT NULL,
                     uploader TEXT NOT NULL,
                     upload_datetime DATETIME NOT NULL,
-                    game_channel INTEGER NOT NULL
+                    game_channel TEXT NOT NULL
                 )''')
     conn.commit()
     conn.close()

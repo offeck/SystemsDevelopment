@@ -141,7 +141,6 @@ public class StompFrame {
         }
         sb.append("\n");
         sb.append(body);
-        sb.append("\u0000");
         return sb.toString();
     }
 }
