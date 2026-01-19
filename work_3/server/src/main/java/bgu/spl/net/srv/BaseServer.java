@@ -43,12 +43,14 @@ public abstract class BaseServer<T> implements Server<T> {
                 Socket clientSock = serverSock.accept();
 
                 StompMessagingProtocol<T> protocol = protocolFactory.get();
+                int connectionId = connectionIdCounter++;
                 BlockingConnectionHandler<T> handler = new BlockingConnectionHandler<>(
                         clientSock,
                         encdecFactory.get(),
-                        protocol);
+                        protocol,
+                        connections,
+                        connectionId);
 
-                int connectionId = connectionIdCounter++;
                 connections.addConnectionHandler(connectionId, handler);
                 protocol.start(connectionId, connections);
 

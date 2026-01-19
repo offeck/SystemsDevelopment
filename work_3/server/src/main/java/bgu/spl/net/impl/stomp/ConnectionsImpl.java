@@ -14,12 +14,33 @@ public class ConnectionsImpl<T> implements Connections<T> {
     private final ConcurrentHashMap<String, ConcurrentHashMap<Integer, String>> channelSubscriptions;
     // Reverse mapping for efficient disconnect: connectionId -> Set<Channel>
     private final ConcurrentHashMap<Integer, Set<String>> connectionActiveSubscriptions;
+    // Map to track active users: ConnectionId -> Username
+    private final ConcurrentHashMap<Integer, String> activeConnectionUsers;
+    // Map to track active users: Username -> ConnectionId
+    private final ConcurrentHashMap<String, Integer> activeUsernames;
 
     // constructor
     public ConnectionsImpl() {
         this.connectionHandlers = new ConcurrentHashMap<>();
         this.channelSubscriptions = new ConcurrentHashMap<>();
         this.connectionActiveSubscriptions = new ConcurrentHashMap<>();
+        this.activeConnectionUsers = new ConcurrentHashMap<>();
+        this.activeUsernames = new ConcurrentHashMap<>();
+    }
+
+    public boolean registerUser(int connectionId, String username) {
+        Integer existing = activeUsernames.putIfAbsent(username, connectionId);
+        if (existing != null) {
+            // Username is already registered
+            return false;
+        }
+        // Successfully registered username; record reverse mapping
+        activeConnectionUsers.put(connectionId, username);
+        return true;
+    }
+
+    public boolean isUserConnected(String username) {
+        return activeUsernames.containsKey(username);
     }
 
     public void addConnectionHandler(int connectionId, ConnectionHandler<T> handler) {
@@ -36,12 +57,13 @@ public class ConnectionsImpl<T> implements Connections<T> {
     }
 
     public void removeChannelSubscription(String channel, int connectionId) {
-        // Atomic removal to avoid race condition where we remove a channel map that just got a new subscriber
+        // Atomic removal to avoid race condition where we remove a channel map that
+        // just got a new subscriber
         channelSubscriptions.computeIfPresent(channel, (k, v) -> {
             v.remove(connectionId);
             return v.isEmpty() ? null : v;
         });
-        
+
         // Clean up the reverse mapping
         connectionActiveSubscriptions.computeIfPresent(connectionId, (k, v) -> {
             v.remove(channel);
@@ -97,13 +119,21 @@ public class ConnectionsImpl<T> implements Connections<T> {
     @Override
     public void disconnect(int connectionId) {
         this.removeConnectionHandler(connectionId);
-        
+
+        // Remove active user if exists (synchronized with registerUser)
+        synchronized (this) {
+            String username = activeConnectionUsers.remove(connectionId);
+            if (username != null) {
+                activeUsernames.remove(username);
+            }
+        }
+
         // Efficiently remove only relevant subscriptions
         Set<String> channels = connectionActiveSubscriptions.remove(connectionId);
         if (channels != null) {
             for (String channel : channels) {
                 // We use the simpler logic for channelSubscriptions cleanup directly
-                // or just call removeChannelSubscription. 
+                // or just call removeChannelSubscription.
                 // Calling removeChannelSubscription is safe and handles the map cleanup.
                 removeChannelSubscription(channel, connectionId);
             }
