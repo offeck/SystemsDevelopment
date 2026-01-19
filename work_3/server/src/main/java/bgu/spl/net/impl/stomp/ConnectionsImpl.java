@@ -120,10 +120,12 @@ public class ConnectionsImpl<T> implements Connections<T> {
     public void disconnect(int connectionId) {
         this.removeConnectionHandler(connectionId);
 
-        // Remove active user if exists
-        String username = activeConnectionUsers.remove(connectionId);
-        if (username != null) {
-            activeUsernames.remove(username);
+        // Remove active user if exists (synchronized with registerUser)
+        synchronized (this) {
+            String username = activeConnectionUsers.remove(connectionId);
+            if (username != null) {
+                activeUsernames.remove(username);
+            }
         }
 
         // Efficiently remove only relevant subscriptions
