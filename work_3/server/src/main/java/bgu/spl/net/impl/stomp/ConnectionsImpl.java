@@ -28,16 +28,18 @@ public class ConnectionsImpl<T> implements Connections<T> {
         this.activeUsernames = new ConcurrentHashMap<>();
     }
 
-    public synchronized boolean registerUser(int connectionId, String username) {
-        if (activeUsernames.containsKey(username)) {
+    public boolean registerUser(int connectionId, String username) {
+        Integer existing = activeUsernames.putIfAbsent(username, connectionId);
+        if (existing != null) {
+            // Username is already registered
             return false;
         }
-        activeUsernames.put(username, connectionId);
+        // Successfully registered username; record reverse mapping
         activeConnectionUsers.put(connectionId, username);
         return true;
     }
 
-    public synchronized boolean isUserConnected(String username) {
+    public boolean isUserConnected(String username) {
         return activeUsernames.containsKey(username);
     }
 
