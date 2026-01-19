@@ -133,7 +133,6 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol<String
         DatabaseHandler.sendSqlRequest("INSERT INTO UserLogins (username, login_datetime) VALUES ('" + escapeSql(login)
                 + "', datetime('now'))");
 
-        this.loggedInUser = login;
         if (connections instanceof ConnectionsImpl) {
             if (!((ConnectionsImpl<String>) connections).registerUser(connectionId, login)) {
                 // Race condition hit: someone else registered in the split second between check and register?
@@ -141,6 +140,7 @@ public class StompMessagingProtocolImpl implements StompMessagingProtocol<String
                 return;
             }
         }
+        this.loggedInUser = login;
         isConnected = true;
 
         StompFrame connectedFrame = new StompFrame("CONNECTED");
