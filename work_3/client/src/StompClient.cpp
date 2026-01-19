@@ -180,6 +180,8 @@ void handleLogin(std::shared_ptr<ConnectionHandler>& connectionHandler, std::thr
     std::string username = words[2];
     std::string password = words[3];
 
+    // Clear previous session data/state before new login
+    protocol.clear();
     protocol.setUserName(username);
 
     if (!connectionHandler || !readerRunning.load()) {
@@ -279,7 +281,14 @@ void handleReport(std::shared_ptr<ConnectionHandler>& connectionHandler, const s
     }
     std::string file_path = words[1];
     
-    names_and_events data = parseEventsFile(file_path);
+    names_and_events data;
+    try {
+        data = parseEventsFile(file_path);
+    } catch (const std::exception& e) {
+        std::cout << "Error parsing file: " << e.what() << std::endl;
+        return;
+    }
+
     std::string game_name = data.team_a_name + "_" + data.team_b_name;
     if (!protocol.isSubscribed(game_name)) {
         std::cout << "Not subscribed to " << game_name << std::endl;
@@ -422,9 +431,15 @@ void handleLogout(std::shared_ptr<ConnectionHandler>& connectionHandler, const s
     }
     
     std::cout << "Logging out..." << std::endl;
-    // Basic busy wait loop
-    while(protocol.getLoggedIn()) {
+    // Timeout loop (approx 10 seconds)
+    int timeout = 100; 
+    while(protocol.getLoggedIn() && timeout > 0) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        timeout--;
+    }
+    if (timeout == 0) {
+        std::cout << "Logout timed out. Forcing disconnect." << std::endl;
+        protocol.setLoggedIn(false);
     }
     std::cout << "Logged out." << std::endl;
 }

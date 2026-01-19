@@ -63,6 +63,8 @@ public:
     void setUserName(const std::string& name);
     std::string getUserName() const;
 
+    void clear();
+
     int generateSubscriptionId();
     int generateReceiptId();
 
