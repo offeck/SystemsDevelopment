@@ -34,6 +34,7 @@ class StompProtocol {
 private:
     std::atomic<bool> isLoggedIn;
     std::string currentUserName;
+    mutable std::mutex userMutex; // Mutex for currentUserName
     std::atomic<int> subscriptionIdCounter;
     std::atomic<int> receiptIdCounter;
     
@@ -45,7 +46,7 @@ private:
     std::map<std::string, std::map<std::string, GameState>> gameReports;
     std::mutex reportMutex;
 
-    int disconnectReceiptId;
+    std::atomic<int> disconnectReceiptId;
     std::map<int, std::pair<std::string, std::string>> receiptActions;
     std::mutex receiptMutex;
     
@@ -62,6 +63,17 @@ public:
 
     void setUserName(const std::string& name);
     std::string getUserName() const;
+
+    // Resets all protocol/session-related state in this instance to initial values.
+    // Intended to be called before starting a new logical session or login flow.
+    //
+    // Thread-safety:
+    // - This function is NOT thread-safe.
+    // - The caller must ensure that no other thread is accessing this
+    //   StompProtocol instance (for reading or writing) while clear() runs.
+    // - In particular, stop/join any reader or worker thread that uses this
+    //   instance, or otherwise synchronize externally, before calling clear().
+    void clear();
 
     int generateSubscriptionId();
     int generateReceiptId();

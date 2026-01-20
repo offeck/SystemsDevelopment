@@ -180,23 +180,29 @@ void handleLogin(std::shared_ptr<ConnectionHandler>& connectionHandler, std::thr
     std::string username = words[2];
     std::string password = words[3];
 
+    // Ensure existing connection/thread is stopped to prevent race conditions during clear()
+    if (connectionHandler) {
+        connectionHandler->close();
+    }
+    if (reader.joinable()) {
+        reader.join();
+    }
+    readerRunning.store(false);
+    connectionHandler.reset();
+
+    // Clear previous session data/state before new login
+    protocol.clear();
     protocol.setUserName(username);
 
-    if (!connectionHandler || !readerRunning.load()) {
-        if (reader.joinable()) {
-            reader.join();
-        }
-        connectionHandler = std::make_shared<ConnectionHandler>(host, port);
-        if (!connectionHandler->connect()) {
-            std::cout << "Could not connect to server" << std::endl;
-            connectionHandler.reset();
-            return;
-        }
-        if (!readerRunning.load()) {
-            readerRunning.store(true);
-            reader = std::thread(readerThread, connectionHandler, std::ref(protocol), std::ref(readerRunning));
-        }
+    connectionHandler = std::make_shared<ConnectionHandler>(host, port);
+    if (!connectionHandler->connect()) {
+        std::cout << "Could not connect to server" << std::endl;
+        connectionHandler.reset();
+        return;
     }
+    
+    readerRunning.store(true);
+    reader = std::thread(readerThread, connectionHandler, std::ref(protocol), std::ref(readerRunning));
 
     StompFrame frame("CONNECT");
     frame.addHeader("accept-version", "1.2");
@@ -279,7 +285,14 @@ void handleReport(std::shared_ptr<ConnectionHandler>& connectionHandler, const s
     }
     std::string file_path = words[1];
     
-    names_and_events data = parseEventsFile(file_path);
+    names_and_events data;
+    try {
+        data = parseEventsFile(file_path);
+    } catch (const std::exception& e) {
+        std::cout << "Error: Failed to parse events file '" << file_path << "': " << e.what() << std::endl;
+        return;
+    }
+
     std::string game_name = data.team_a_name + "_" + data.team_b_name;
     if (!protocol.isSubscribed(game_name)) {
         std::cout << "Not subscribed to " << game_name << std::endl;
@@ -404,7 +417,7 @@ void handleStats(std::shared_ptr<ConnectionHandler>& connectionHandler, const st
     }
 }
 
-void handleLogout(std::shared_ptr<ConnectionHandler>& connectionHandler, const std::vector<std::string>& words, StompProtocol& protocol) {
+void handleLogout(std::shared_ptr<ConnectionHandler>& connectionHandler, std::thread& reader, std::atomic<bool>& readerRunning, const std::vector<std::string>& words, StompProtocol& protocol) {
     if (!protocol.getLoggedIn()) {
         std::cout << "Not logged in" << std::endl;
         return;
@@ -422,11 +435,27 @@ void handleLogout(std::shared_ptr<ConnectionHandler>& connectionHandler, const s
     }
     
     std::cout << "Logging out..." << std::endl;
-    // Basic busy wait loop
-    while(protocol.getLoggedIn()) {
+    // Timeout loop (10 seconds)
+    int timeout = 100; 
+    while(protocol.getLoggedIn() && timeout > 0) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        timeout--;
     }
-    std::cout << "Logged out." << std::endl;
+    if (timeout == 0) {
+        std::cout << "Logout timed out. Forcing disconnect." << std::endl;
+        protocol.setLoggedIn(false);
+        readerRunning.store(false);
+        // Ensure the underlying connection is cleaned up when forcing disconnect
+        if (connectionHandler) {
+            connectionHandler->close();
+            connectionHandler.reset();
+        }
+        if (reader.joinable()) {
+            reader.join();
+        }
+    } else {
+        std::cout << "Logged out." << std::endl;
+    }
 }
 
 void handleDebug(const std::vector<std::string>& words, StompProtocol& protocol) {
@@ -483,7 +512,7 @@ int handleInput(std::string& input, std::shared_ptr<ConnectionHandler>& connecti
              handleDebug(words, protocol);
              break;
         case Command::LOGOUT:
-             handleLogout(connectionHandler, words, protocol);
+             handleLogout(connectionHandler, reader, readerRunning, words, protocol);
              break;
         default:
             std::cout << "Unknown command: " << words.at(0) << std::endl;

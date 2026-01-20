@@ -83,6 +83,18 @@
             },
             "group": "build",
             "detail": "Compile the work_3 server"
+        },
+        {
+            "label": "work3: build client",
+            "type": "shell",
+            "command": "make",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/work_3/client"
+            },
+            "group": "build",
+            "problemMatcher": ["$gcc"],
+            "detail": "Build the StompWCIClient and EchoClient"
         }
     ]
 }
