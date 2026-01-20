@@ -66,8 +66,13 @@ public:
 
     // Resets all protocol/session-related state in this instance to initial values.
     // Intended to be called before starting a new logical session or login flow.
-    // Thread-safety: must not be invoked concurrently with other operations on
-    // the same StompProtocol instance.
+    //
+    // Thread-safety:
+    // - This function is NOT thread-safe.
+    // - The caller must ensure that no other thread is accessing this
+    //   StompProtocol instance (for reading or writing) while clear() runs.
+    // - In particular, stop/join any reader or worker thread that uses this
+    //   instance, or otherwise synchronize externally, before calling clear().
     void clear();
 
     int generateSubscriptionId();

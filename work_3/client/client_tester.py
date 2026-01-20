@@ -1,7 +1,7 @@
 import subprocess
 import time
 import os
-import signal
+
 
 CLIENT_PATH = "./bin/StompWCIClient"
 HOST = "127.0.0.1"

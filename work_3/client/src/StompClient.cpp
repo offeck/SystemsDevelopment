@@ -180,25 +180,29 @@ void handleLogin(std::shared_ptr<ConnectionHandler>& connectionHandler, std::thr
     std::string username = words[2];
     std::string password = words[3];
 
-    if (!connectionHandler || !readerRunning.load()) {
-        if (reader.joinable()) {
-            reader.join();
-        }
-        connectionHandler = std::make_shared<ConnectionHandler>(host, port);
-        if (!connectionHandler->connect()) {
-            std::cout << "Could not connect to server" << std::endl;
-            connectionHandler.reset();
-            return;
-        }
-        if (!readerRunning.load()) {
-            readerRunning.store(true);
-            reader = std::thread(readerThread, connectionHandler, std::ref(protocol), std::ref(readerRunning));
-        }
+    // Ensure existing connection/thread is stopped to prevent race conditions during clear()
+    if (connectionHandler) {
+        connectionHandler->close();
     }
+    if (reader.joinable()) {
+        reader.join();
+    }
+    readerRunning.store(false);
+    connectionHandler.reset();
 
     // Clear previous session data/state before new login
     protocol.clear();
     protocol.setUserName(username);
+
+    connectionHandler = std::make_shared<ConnectionHandler>(host, port);
+    if (!connectionHandler->connect()) {
+        std::cout << "Could not connect to server" << std::endl;
+        connectionHandler.reset();
+        return;
+    }
+    
+    readerRunning.store(true);
+    reader = std::thread(readerThread, connectionHandler, std::ref(protocol), std::ref(readerRunning));
 
     StompFrame frame("CONNECT");
     frame.addHeader("accept-version", "1.2");

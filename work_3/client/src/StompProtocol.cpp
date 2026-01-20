@@ -60,12 +60,10 @@ void StompProtocol::clear() {
 }
 
 int StompProtocol::generateSubscriptionId() {
-    std::lock_guard<std::mutex> lock(subscriptionMutex);
     return subscriptionIdCounter++;
 }
 
 int StompProtocol::generateReceiptId() {
-    std::lock_guard<std::mutex> lock(receiptMutex);
     return receiptIdCounter++;
 }
 
