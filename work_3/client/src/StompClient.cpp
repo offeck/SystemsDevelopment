@@ -180,10 +180,6 @@ void handleLogin(std::shared_ptr<ConnectionHandler>& connectionHandler, std::thr
     std::string username = words[2];
     std::string password = words[3];
 
-    // Clear previous session data/state before new login
-    protocol.clear();
-    protocol.setUserName(username);
-
     if (!connectionHandler || !readerRunning.load()) {
         if (reader.joinable()) {
             reader.join();
@@ -199,6 +195,10 @@ void handleLogin(std::shared_ptr<ConnectionHandler>& connectionHandler, std::thr
             reader = std::thread(readerThread, connectionHandler, std::ref(protocol), std::ref(readerRunning));
         }
     }
+
+    // Clear previous session data/state before new login
+    protocol.clear();
+    protocol.setUserName(username);
 
     StompFrame frame("CONNECT");
     frame.addHeader("accept-version", "1.2");
@@ -413,7 +413,7 @@ void handleStats(std::shared_ptr<ConnectionHandler>& connectionHandler, const st
     }
 }
 
-void handleLogout(std::shared_ptr<ConnectionHandler>& connectionHandler, const std::vector<std::string>& words, StompProtocol& protocol) {
+void handleLogout(std::shared_ptr<ConnectionHandler>& connectionHandler, std::thread& reader, std::atomic<bool>& readerRunning, const std::vector<std::string>& words, StompProtocol& protocol) {
     if (!protocol.getLoggedIn()) {
         std::cout << "Not logged in" << std::endl;
         return;
@@ -431,7 +431,7 @@ void handleLogout(std::shared_ptr<ConnectionHandler>& connectionHandler, const s
     }
     
     std::cout << "Logging out..." << std::endl;
-    // Timeout loop (approx 10 seconds)
+    // Timeout loop (10 seconds)
     int timeout = 100; 
     while(protocol.getLoggedIn() && timeout > 0) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -440,12 +440,18 @@ void handleLogout(std::shared_ptr<ConnectionHandler>& connectionHandler, const s
     if (timeout == 0) {
         std::cout << "Logout timed out. Forcing disconnect." << std::endl;
         protocol.setLoggedIn(false);
+        readerRunning.store(false);
         // Ensure the underlying connection is cleaned up when forcing disconnect
         if (connectionHandler) {
+            connectionHandler->close();
             connectionHandler.reset();
         }
+        if (reader.joinable()) {
+            reader.join();
+        }
+    } else {
+        std::cout << "Logged out." << std::endl;
     }
-    std::cout << "Logged out." << std::endl;
 }
 
 void handleDebug(const std::vector<std::string>& words, StompProtocol& protocol) {
@@ -502,7 +508,7 @@ int handleInput(std::string& input, std::shared_ptr<ConnectionHandler>& connecti
              handleDebug(words, protocol);
              break;
         case Command::LOGOUT:
-             handleLogout(connectionHandler, words, protocol);
+             handleLogout(connectionHandler, reader, readerRunning, words, protocol);
              break;
         default:
             std::cout << "Unknown command: " << words.at(0) << std::endl;

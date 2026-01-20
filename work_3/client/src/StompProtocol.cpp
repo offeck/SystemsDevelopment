@@ -1,7 +1,7 @@
 #include "../include/StompProtocol.h"
 
 StompProtocol::StompProtocol() 
-    : isLoggedIn(false), currentUserName(""), subscriptionIdCounter(0), receiptIdCounter(0), 
+    : isLoggedIn(false), currentUserName(""), userMutex(), subscriptionIdCounter(0), receiptIdCounter(0), 
       topicToSubscriptionId(), subscriptionIdToTopic(), subscriptionMutex(), 
       gameReports(), reportMutex(), disconnectReceiptId(-1), receiptActions(), receiptMutex(), debugMode(false) {}
 
@@ -22,23 +22,27 @@ bool StompProtocol::isDebug() const {
 }
 
 void StompProtocol::setUserName(const std::string& name) {
+    std::lock_guard<std::mutex> lock(userMutex);
     currentUserName = name;
 }
 
 std::string StompProtocol::getUserName() const {
+    std::lock_guard<std::mutex> lock(userMutex);
     return currentUserName;
 }
 
 void StompProtocol::clear() {
     isLoggedIn = false;
-    currentUserName = "";
-    subscriptionIdCounter = 0;
-    receiptIdCounter = 0;
+    {
+        std::lock_guard<std::mutex> lock(userMutex);
+        currentUserName = "";
+    }
     
     {
         std::lock_guard<std::mutex> lockSub(subscriptionMutex);
         topicToSubscriptionId.clear();
         subscriptionIdToTopic.clear();
+        subscriptionIdCounter = 0;
     }
 
     {
@@ -49,17 +53,20 @@ void StompProtocol::clear() {
     {
         std::lock_guard<std::mutex> lockRec(receiptMutex);
         receiptActions.clear();
+        receiptIdCounter = 0;
     }
     
     disconnectReceiptId = -1;
 }
 
 int StompProtocol::generateSubscriptionId() {
-    return subscriptionIdCounter++; // Atomic increment
+    std::lock_guard<std::mutex> lock(subscriptionMutex);
+    return subscriptionIdCounter++;
 }
 
 int StompProtocol::generateReceiptId() {
-    return receiptIdCounter++; // Atomic increment
+    std::lock_guard<std::mutex> lock(receiptMutex);
+    return receiptIdCounter++;
 }
 
 void StompProtocol::addSubscription(const std::string& topic, int id) {

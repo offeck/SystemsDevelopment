@@ -34,6 +34,7 @@ class StompProtocol {
 private:
     std::atomic<bool> isLoggedIn;
     std::string currentUserName;
+    mutable std::mutex userMutex; // Mutex for currentUserName
     std::atomic<int> subscriptionIdCounter;
     std::atomic<int> receiptIdCounter;
     
@@ -63,6 +64,10 @@ public:
     void setUserName(const std::string& name);
     std::string getUserName() const;
 
+    // Resets all protocol/session-related state in this instance to initial values.
+    // Intended to be called before starting a new logical session or login flow.
+    // Thread-safety: must not be invoked concurrently with other operations on
+    // the same StompProtocol instance.
     void clear();
 
     int generateSubscriptionId();
