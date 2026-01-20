@@ -1,0 +1,12 @@
+Brazil vs Argentina
+Game stats:
+General stats:
+active: true
+before halftime: true
+Brazil stats:
+Argentina stats:
+Game event reports:
+0 - kickoff:
+
+Samba time!
+

@@ -1,0 +1,21 @@
+{
+    "team a": "Japan",
+    "team b": "Germany",
+    "events": [
+        {
+            "event name": "goal",
+            "time": 5400,
+            "general game updates": {
+                "active": "true",
+                "before halftime": "false"
+            },
+            "team a updates": {
+                "goals": "2"
+            },
+            "team b updates": {
+                "goals": "1"
+            },
+            "description": "Germany pulls one back! 2-1."
+        }
+    ]
+}

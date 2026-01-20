@@ -121,6 +121,32 @@ class StompClientWrapper:
         self.stdout_log = []
         self.stderr_log = []
 
+def verify_summary_content(file_path, team_a, team_b, expected_snippets):
+    if not os.path.exists(file_path):
+        raise AssertionError(f"Summary file {file_path} does not exist")
+    
+    with open(file_path, 'r') as f:
+        content = f.read()
+    
+    # Check Header
+    # Format usually: TeamA vs TeamB
+    header1 = f"{team_a} vs {team_b}"
+    header2 = f"{team_b} vs {team_a}" 
+    
+    if header1 not in content and header2 not in content:
+        raise AssertionError(f"Summary header missing. Expected '{header1}' or '{header2}'.\nContent start: {content[:100]}")
+
+    # Check structure
+    if "Game stats:" not in content:
+        raise AssertionError("Missing 'Game stats:' section")
+    if "Game event reports:" not in content:
+        raise AssertionError("Missing 'Game event reports:' section")
+        
+    # Check specific expected snippets (event descriptions, stats, etc)
+    for snippet in expected_snippets:
+        if snippet not in content:
+            raise AssertionError(f"Expected content snippet not found: '{snippet}'")
+
 class TestEnv:
     def __init__(self, use_reactor=False, verbose=False):
         self.sql_process = None
@@ -300,12 +326,11 @@ def test_join_report_flow(env):
     if not os.path.exists(summary_file):
         raise AssertionError("Summary file not created by C2")
     
-    with open(summary_file, 'r') as f:
-        content = f.read()
-        # Events file contains "Japan" and "Germany" teams?
-        # Actually events.json has "team a": "Japan", "team b": "Germany"
-        if "Japan" not in content or "Germany" not in content:
-            raise AssertionError("Summary file content seems missing/wrong")
+    verify_summary_content(summary_file, "Japan", "Germany", [
+        "active: true",
+        "Kickoff! The match has begun.",
+        "Goal for Japan! A stunning strike."
+    ])
 
 def test_subscribe_unsubscribe(env):
     c1 = env.create_client("C1")
@@ -486,17 +511,22 @@ def test_complex_interaction(env):
     time.sleep(1)
     
     # Checks
-    if not os.path.exists(s_bob): raise AssertionError("Bob summary missing")
+    verify_summary_content(s_bob, "Japan", "Germany", [
+        "goals: 1",
+        "Kickoff! The match has begun."
+    ])
+    
+    # Verify Bob didn't get Brazil stuff
     with open(s_bob, 'r') as f:
-        content = f.read()
-        if "Japan" not in content: raise AssertionError("Bob missed Japan updates")
-        if "Brazil" in content: raise AssertionError("Bob received Brazil updates (Wrong channel)")
+        if "Brazil" in f.read(): raise AssertionError("Bob received Brazil updates (Wrong channel)")
 
-    if not os.path.exists(s_charlie): raise AssertionError("Charlie summary missing")
+    verify_summary_content(s_charlie, "Brazil", "Argentina", [
+        "Samba time!"
+    ])
+    
+    # Verify Charlie didn't get Japan stuff
     with open(s_charlie, 'r') as f:
-        content = f.read()
-        if "Brazil" not in content: raise AssertionError("Charlie missed Brazil updates")
-        if "Japan" in content: raise AssertionError("Charlie received Japan updates (Wrong channel)")
+        if "Japan" in f.read(): raise AssertionError("Charlie received Japan updates (Wrong channel)")
 
 def test_client_crash_reconnect(env):
     c1 = env.create_client("C1_Crash")
@@ -520,6 +550,155 @@ def test_client_crash_reconnect(env):
         # If server thinks user still logged in, it sends error.
         raise AssertionError("Could not login again after crash. Server likely didn't clean up connection.")
 
+def test_massive_simulation(env):
+    print(f"{Colors.OKBLUE}=== initializing massive simulation ==={Colors.ENDC}")
+    
+    # 1. Setup Clients
+    alice = env.create_client("Alice")    # Stable user, Channel A
+    bob = env.create_client("Bob")        # Stable user, Channel A
+    charlie = env.create_client("Charlie")# Stable user, Channel B
+    dave = env.create_client("Dave")      # Crasher, Channel B
+    eve = env.create_client("Eve")        # Leaver, Channel A & B
+
+    # 2. Login All
+    print(">> Logging in everyone...")
+    alice.write(f"login {HOST}:{PORT} alice 123"); time.sleep(0.2)
+    bob.write(f"login {HOST}:{PORT} bob 123"); time.sleep(0.2)
+    charlie.write(f"login {HOST}:{PORT} charlie 123"); time.sleep(0.2)
+    dave.write(f"login {HOST}:{PORT} dave 123"); time.sleep(0.2)
+    eve.write(f"login {HOST}:{PORT} eve 123"); time.sleep(0.2)
+    time.sleep(1) # Wait for connections
+
+    chan_A = "Japan_Germany"
+    chan_B = "Brazil_Argentina"
+
+    # 3. Join Channels
+    print(">> Joining channels...")
+    alice.write(f"join {chan_A}")
+    bob.write(f"join {chan_A}")
+    
+    charlie.write(f"join {chan_B}")
+    dave.write(f"join {chan_B}")
+    
+    eve.write(f"join {chan_A}")
+    eve.write(f"join {chan_B}")
+    time.sleep(1)
+
+    # 4. Phase 1: Initial Reports
+    print(">> Phase 1: Reporting events...")
+    alice.write(f"report events.json") # A -> Chan A (JP vs DE match start)
+    charlie.write(f"report events_2.json") # C -> Chan B (BR vs AR match start)
+    time.sleep(2)
+
+    # 5. Phase 2: Chaos (Crash & Logout)
+    print(">> Phase 2: Chaos (Crash Dave, Logout Eve)...")
+    # Dave crashes locally
+    dave.stop()
+    
+    # Eve logs out gracefully
+    eve.write("logout")
+    time.sleep(1)
+
+    # 6. Phase 3: Reporting during outage
+    print(">> Phase 3: Reporting while users are down...")
+    alice.write(f"report events_3.json") # A -> Chan A (JP vs DE update: 2-1)
+    # Charlie sends update to B (nobody else there except maybe server buffer? No)
+    # Sending same file events_2.json again just to generate traffic on B
+    charlie.write(f"report events_2.json") 
+    time.sleep(2)
+
+    # 7. Phase 4: Recovery
+    print(">> Phase 4: Recovery (Dave Returns, Eve Returns)...")
+    dave_reborn = env.create_client("Dave_Reborn")
+    dave_reborn.write(f"login {HOST}:{PORT} dave 123") # Re-login
+    time.sleep(1)
+    dave_reborn.write(f"join {chan_B}") # Re-join B
+    
+    # Eve logs back in, but ONLY joins A this time
+    eve.clear_logs() # Reset logs wrapper
+    eve.write(f"login {HOST}:{PORT} eve 123")
+    time.sleep(1)
+    eve.write(f"join {chan_A}")
+    time.sleep(1)
+
+    # 8. Phase 5: Final Reports
+    print(">> Phase 5: Final activity...")
+    # Dave reports on B (he is fresh process, only knows what he sends + future)
+    dave_reborn.write(f"report events_2.json") 
+    
+    # Alice reports again on A (reuse events 3)
+    alice.write(f"report events_3.json")
+    time.sleep(3)
+
+    # 9. Verification
+    print(">> Verifying state...")
+    
+    # --- Check Bob (Stable on A) ---
+    # Bob should have: JP_DE Start (Phase 1), JP_DE Update (Phase 3), JP_DE Update (Phase 5)
+    s_bob = "sim_bob.txt"
+    if os.path.exists(s_bob): os.remove(s_bob)
+    bob.write(f"summary {chan_A} alice {s_bob}") # ask for stats from user:alice?
+    # Note: Summary command `summary {game_name} {user} {file}`
+    # "user" arg filters events by reporter. 
+    # If we want ALL events, we might need multiple summaries or the command aggregates?
+    # Assignment says: "summary {game_name} {user} {file}" -> "prints the stats... and the reports received from {user}"
+    # So we check if he got Alice's reports.
+    time.sleep(1)
+    verify_summary_content(s_bob, "Japan", "Germany", [
+        "Kickoff",       # Phase 1
+        "Germany pulls", # Phase 3
+        "goals: 2",      # Phase 3 update
+    ])
+    
+    # --- Check Eve (The leaver) ---
+    # Eve logged out and logged back in. 
+    # If the C++ client clears state on logout (expected behavior for clean sessions),
+    # she essentially lost Phase 1 data.
+    # She missed Phase 3 (Update 1) because she was offline.
+    # She received Phase 5 (Update 2 - same as Update 1 content but re-sent).
+    s_eve = "sim_eve.txt"
+    if os.path.exists(s_eve): os.remove(s_eve)
+    eve.write(f"summary {chan_A} alice {s_eve}")
+    time.sleep(1)
+    
+    # Read manually to allow partial match
+    with open(s_eve, 'r') as f:
+        c = f.read()
+        # She SHOULD have the latest update
+        if "Germany pulls" not in c: raise AssertionError("Eve missing Phase 5 (Post-recovery update)")
+        
+        # She likely won't have Phase 1 if client clears memory on logout
+        # So we don't enforce "Kickoff" presence.
+        
+        # She MUST NOT have Brazil updates (she didn't re-join Brazil)
+        # Dave_Reborn reported "Samba time" in Phase 5
+        if "Samba time" in c: raise AssertionError("Eve received Brazil updates but wasn't subscribed!")
+    
+    # --- Check Dave_Reborn ---
+    # He crashed. He re-joined B.
+    # Phase 4 he joined. Phase 5 he reported.
+    # He missed Charlie's Phase 1 and Phase 3.
+    # He should have his OWN Phase 5 report.
+    s_dave = "sim_dave.txt"
+    if os.path.exists(s_dave): os.remove(s_dave)
+    dave_reborn.write(f"summary {chan_B} dave {s_dave}")
+    time.sleep(1)
+    
+    verify_summary_content(s_dave, "Brazil", "Argentina", [
+        "Samba time" # Since he reported it himself in Phase 5
+    ])
+    
+    # Check Charlie
+    # Charlie stayed on B. Should see Dave's new report.
+    s_charlie = "sim_charlie.txt"
+    if os.path.exists(s_charlie): os.remove(s_charlie)
+    charlie.write(f"summary {chan_B} dave {s_charlie}")
+    time.sleep(1)
+    verify_summary_content(s_charlie, "Brazil", "Argentina", [
+        "Samba time" # From Dave_Reborn
+    ])
+
+
 if __name__ == "__main__":
     tests = [
         test_login_success,
@@ -533,7 +712,8 @@ if __name__ == "__main__":
         test_broadcast_and_persistence,
         test_unsubscribe_stops_receiving,
         test_complex_interaction,
-        test_client_crash_reconnect
+        test_client_crash_reconnect,
+        test_massive_simulation
     ]
     
     print(f"Running {len(tests)} tests...")

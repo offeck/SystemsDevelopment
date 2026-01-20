@@ -1,0 +1,14 @@
+Japan vs Germany
+Game stats:
+General stats:
+active: true
+before halftime: false
+Japan stats:
+goals: 2
+Germany stats:
+goals: 1
+Game event reports:
+5400 - goal:
+
+Germany pulls one back! 2-1.
+
