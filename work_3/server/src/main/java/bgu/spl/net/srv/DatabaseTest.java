@@ -56,6 +56,34 @@ public class DatabaseTest {
             String res = DatabaseHandler.sendSqlRequest("INSERT INTO UserLogins (username, login_datetime) VALUES ('" + multiUser + "', '" + multiTime + "')");
             if (!"done".equals(res)) System.err.println("  FAILED for " + multiUser);
         }
+
+        // 6. Test User Logout
+        System.out.println("Test 6: User Logout");
+        String logoutUser = "logout_user_" + System.currentTimeMillis();
+        String logoutPass = "pass";
+        String logoutRegTime = "2023-01-03 10:00:00";
+        String logoutLoginTime = "2023-01-03 10:05:00";
+        String logoutLogoutTime = "2023-01-03 11:00:00";
+
+        // Register & Login first
+        DatabaseHandler.sendSqlRequest("INSERT INTO Users (username, password) VALUES ('" + logoutUser + "', '" + logoutPass + "')");
+        DatabaseHandler.sendSqlRequest("INSERT INTO UserRegistrations (username, registration_datetime) VALUES ('" + logoutUser + "', '" + logoutRegTime + "')");
+        DatabaseHandler.sendSqlRequest("INSERT INTO UserLogins (username, login_datetime) VALUES ('" + logoutUser + "', '" + logoutLoginTime + "')");
+
+        // Verify active login (expecting "None" or empty for logout_datetime)
+        String activeLoginCheck = DatabaseHandler.sendSqlRequest("SELECT logout_datetime FROM UserLogins WHERE username='" + logoutUser + "'");
+        System.out.println("  Active login check (expecting None): " + activeLoginCheck);
+
+        // Perform Logout Update
+        System.out.println("  Logging out " + logoutUser);
+        String logoutCmd = "UPDATE UserLogins SET logout_datetime='" + logoutLogoutTime + "' WHERE username='" + logoutUser + "' AND logout_datetime IS NULL";
+        String logoutRes = DatabaseHandler.sendSqlRequest(logoutCmd);
+        if (!"done".equals(logoutRes)) System.err.println("  FAILED: Logout command failed");
+
+        // Verify Logout Timestamp
+        String logoutVerify = DatabaseHandler.sendSqlRequest("SELECT logout_datetime FROM UserLogins WHERE username='" + logoutUser + "' AND login_datetime='" + logoutLoginTime + "'");
+        System.out.println("  Logout verification result: " + logoutVerify);
+        if (!logoutVerify.contains(logoutLogoutTime)) System.err.println("  FAILED: Logout time verification failed");
         
         // Print Report
         System.out.println("\nTesting Report Generation:");
