@@ -6,6 +6,7 @@
 #include <map>
 #include <vector>
 #include <sstream>
+#include <stdexcept>
 using json = nlohmann::json;
 
 Event::Event(std::string team_a_name, std::string team_b_name, std::string name, int time,
@@ -122,6 +123,9 @@ Event::Event(const std::string &frame_body) : team_a_name(""), team_b_name(""), 
 names_and_events parseEventsFile(std::string json_path)
 {
     std::ifstream f(json_path);
+    if (!f.is_open()) {
+        throw std::runtime_error("Could not open file: " + json_path);
+    }
     json data = json::parse(f);
 
     std::string team_a_name = data["team a"];
