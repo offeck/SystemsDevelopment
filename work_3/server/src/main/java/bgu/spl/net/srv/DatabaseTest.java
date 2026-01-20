@@ -40,6 +40,22 @@ public class DatabaseTest {
         String selectResult = DatabaseHandler.sendSqlRequest(query);
         System.out.println("  Result: " + selectResult);
         if (!selectResult.contains(username)) System.err.println("  FAILED");
+
+        // 5. Test Multiple Users Login
+        System.out.println("Test 5: Multiple Users Login");
+        for (int i = 1; i <= 3; i++) {
+            String multiUser = "multi_user_" + i + "_" + System.currentTimeMillis();
+            String multiPass = "pass" + i;
+            String multiTime = "2023-01-02 12:00:0" + i;
+
+            System.out.println("  Registering " + multiUser);
+            DatabaseHandler.sendSqlRequest("INSERT INTO Users (username, password) VALUES ('" + multiUser + "', '" + multiPass + "')");
+            DatabaseHandler.sendSqlRequest("INSERT INTO UserRegistrations (username, registration_datetime) VALUES ('" + multiUser + "', '" + multiTime + "')");
+            
+            System.out.println("  Logging in " + multiUser);
+            String res = DatabaseHandler.sendSqlRequest("INSERT INTO UserLogins (username, login_datetime) VALUES ('" + multiUser + "', '" + multiTime + "')");
+            if (!"done".equals(res)) System.err.println("  FAILED for " + multiUser);
+        }
         
         // Print Report
         System.out.println("\nTesting Report Generation:");
