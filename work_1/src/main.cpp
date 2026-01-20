@@ -157,6 +157,58 @@ void demonstrate_polymorphism() {
         std::cout << std::endl;
     }
 }
+
+void test_playlist_rule_of_5() {
+    std::cout << "\n======== CUSTOM TEST: PLAYLIST RULE OF 5 ========" << std::endl;
+    
+    // Create original playlist with tracks
+    std::cout << "Creating Original Playlist..." << std::endl;
+    Playlist* p1 = new Playlist("Original");
+    // Note: Playlist takes ownership
+    p1->add_track(new MP3Track("Track 1", {"Artist 1"}, 200, 120, 320));
+    p1->add_track(new WAVTrack("Track 2", {"Artist 2"}, 300, 128, 44100, 16));
+    
+    std::cout << "Created p1 with 2 tracks." << std::endl;
+
+    // Test Copy Constructor
+    std::cout << "Testing Copy Constructor (p2 = *p1)..." << std::endl;
+    {
+        Playlist p2 = *p1;
+        std::cout << "p2 created. Removing track from p2 to verify deep copy..." << std::endl;
+        // If shallow copy, removing from p2 affects p1 or causes double free later
+        p2.remove_track("Track 1");
+        // p2 now has 1 track. p1 should still have 2.
+    } // p2 destroyed here.
+    std::cout << "p2 destroyed." << std::endl;
+
+    // Test Copy Assignment
+    std::cout << "Testing Copy Assignment (p3 = *p1)..." << std::endl;
+    {
+        Playlist p3("Target");
+        p3.add_track(new MP3Track("Old Track", {}, 100, 100, 128));
+        p3 = *p1;
+        std::cout << "p3 assigned." << std::endl;
+    } // p3 destroyed.
+    std::cout << "p3 destroyed." << std::endl;
+
+    // Test Move Constructor
+    std::cout << "Testing Move Constructor (p4 = std::move(*p1))..." << std::endl;
+    Playlist* p4 = new Playlist(std::move(*p1));
+    // p1 should be empty now (if implemented correctly) or at least valid
+    std::cout << "p4 created from move." << std::endl;
+    delete p1; // p1 was moved from
+    std::cout << "p1 (moved-from) destroyed." << std::endl;
+
+    // Test Move Assignment
+    std::cout << "Testing Move Assignment (p5 = std::move(*p4))..." << std::endl;
+    Playlist p5("Dest");
+    p5 = std::move(*p4);
+    delete p4; // p4 was moved from
+    std::cout << "p4 (moved-from) destroyed." << std::endl;
+    
+    std::cout << "p5 destroyed (scope end)." << std::endl;
+}
+
 int main(int argc, char* argv[]) {    
     /**
      * Command-line argument parsing
@@ -189,6 +241,7 @@ int main(int argc, char* argv[]) {
         // Test each phase individually
         test_phase_1_memory_leaks();
         test_phase_2_rule_of_5();
+        test_playlist_rule_of_5();
         test_phase_3();
         demonstrate_polymorphism();
         std::cout << "\n(Set 'run_software' to true in main.cpp to run the full interactive session.)\n" << std::endl;

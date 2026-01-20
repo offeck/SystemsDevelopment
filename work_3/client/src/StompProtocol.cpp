@@ -35,15 +35,21 @@ void StompProtocol::clear() {
     subscriptionIdCounter = 0;
     receiptIdCounter = 0;
     
-    std::lock_guard<std::mutex> lockSub(subscriptionMutex);
-    topicToSubscriptionId.clear();
-    subscriptionIdToTopic.clear();
+    {
+        std::lock_guard<std::mutex> lockSub(subscriptionMutex);
+        topicToSubscriptionId.clear();
+        subscriptionIdToTopic.clear();
+    }
 
-    std::lock_guard<std::mutex> lockRep(reportMutex);
-    gameReports.clear();
+    {
+        std::lock_guard<std::mutex> lockRep(reportMutex);
+        gameReports.clear();
+    }
 
-    std::lock_guard<std::mutex> lockRec(receiptMutex);
-    receiptActions.clear();
+    {
+        std::lock_guard<std::mutex> lockRec(receiptMutex);
+        receiptActions.clear();
+    }
     
     disconnectReceiptId = -1;
 }

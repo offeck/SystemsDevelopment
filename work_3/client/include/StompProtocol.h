@@ -45,7 +45,7 @@ private:
     std::map<std::string, std::map<std::string, GameState>> gameReports;
     std::mutex reportMutex;
 
-    int disconnectReceiptId;
+    std::atomic<int> disconnectReceiptId;
     std::map<int, std::pair<std::string, std::string>> receiptActions;
     std::mutex receiptMutex;
     

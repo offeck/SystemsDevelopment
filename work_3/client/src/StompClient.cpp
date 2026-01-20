@@ -285,7 +285,7 @@ void handleReport(std::shared_ptr<ConnectionHandler>& connectionHandler, const s
     try {
         data = parseEventsFile(file_path);
     } catch (const std::exception& e) {
-        std::cout << "Error parsing file: " << e.what() << std::endl;
+        std::cout << "Error: Failed to parse events file '" << file_path << "': " << e.what() << std::endl;
         return;
     }
 
@@ -440,6 +440,10 @@ void handleLogout(std::shared_ptr<ConnectionHandler>& connectionHandler, const s
     if (timeout == 0) {
         std::cout << "Logout timed out. Forcing disconnect." << std::endl;
         protocol.setLoggedIn(false);
+        // Ensure the underlying connection is cleaned up when forcing disconnect
+        if (connectionHandler) {
+            connectionHandler.reset();
+        }
     }
     std::cout << "Logged out." << std::endl;
 }
