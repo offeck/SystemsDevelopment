@@ -1,0 +1,22 @@
+Japan vs Germany
+Game stats:
+General stats:
+active: true
+before halftime: false
+Japan stats:
+goals: 1
+Germany stats:
+goals: 0
+Game event reports:
+0 - kickoff:
+
+Kickoff! The match has begun.
+
+30 - goal:
+
+Goal for Japan! A stunning strike.
+
+2700 - halftime:
+
+Halftime whistle blows. Japan leads 1-0.
+

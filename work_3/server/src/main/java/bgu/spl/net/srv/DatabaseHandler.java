@@ -53,6 +53,10 @@ public class DatabaseHandler {
         return response;
     }
 
+    public static void printReport() {
+        System.out.println(getReport());
+    }
+
     public static String getReport() {
         StringBuilder report = new StringBuilder();
         report.append("========================================\n");
