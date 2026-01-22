@@ -21,6 +21,16 @@ SQL_SERVER_DIR = "../data"
 SQL_SERVER_CMD = ["python3", "sql_server.py"]
 DB_FILE_PATH = os.path.join(SQL_SERVER_DIR, "stomp_server.db")
 
+def build_artifacts():
+    print(">> Building Server...")
+    subprocess.run(["mvn", "compile"], cwd=SERVER_DIR, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+    print(">> Building Client...")
+    client_bin_dir = os.path.dirname(CLIENT_PATH)
+    if not os.path.exists(client_bin_dir):
+        os.makedirs(client_bin_dir)
+    subprocess.run(["make"], cwd=os.path.dirname(CLIENT_PATH) + "/..", check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
 class Colors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -192,17 +202,6 @@ class TestEnv:
         time.sleep(1)
 
     def _start_server(self):
-        # Build Server
-        print(">> Building Server...")
-        subprocess.run(["mvn", "compile"], cwd=SERVER_DIR, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-
-        # Build Client
-        print(">> Building Client...")
-        client_bin_dir = os.path.dirname(CLIENT_PATH)
-        if not os.path.exists(client_bin_dir):
-            os.makedirs(client_bin_dir)
-        subprocess.run(["make"], cwd=os.path.dirname(CLIENT_PATH) + "/..", check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-
         cmd = SERVER_CMD_REACTOR if self.use_reactor else SERVER_CMD_TPC
         self.server_process = subprocess.Popen(
             cmd, cwd=SERVER_DIR,
@@ -396,7 +395,10 @@ def test_broadcast_and_persistence(env):
     c1.write(f"login {HOST}:{PORT} user1 pass1")
     c2.write(f"login {HOST}:{PORT} user2 pass2")
     c3.write(f"login {HOST}:{PORT} user3 pass3")
-    time.sleep(1)
+    
+    assert c1.expect("Login successful"), "C1 failed to login"
+    assert c2.expect("Login successful"), "C2 failed to login"
+    assert c3.expect("Login successful"), "C3 failed to login"
 
     channel = "Japan_Germany"
     c1.write(f"join {channel}")
@@ -404,6 +406,9 @@ def test_broadcast_and_persistence(env):
     # C3 does NOT join
     
     time.sleep(1)
+    # Ensure joins worked
+    # Note: We rely on sleep here or could add expectations if clients print "Joined channel"
+    
     c1.clear_logs()
     c2.clear_logs()
     c3.clear_logs()
@@ -423,6 +428,11 @@ def test_broadcast_and_persistence(env):
     
     if not os.path.exists(summary_file):
         raise AssertionError("C2 did not generate summary - likely never received messages")
+        
+    verify_summary_content(summary_file, "Japan", "Germany", [
+        "Kickoff",
+        "goals: 1"
+    ])
 
     # C3 should NOT have received anything.
     summary_file_3 = "summary_c3.txt"
@@ -711,6 +721,7 @@ def test_massive_simulation(env):
 
 
 if __name__ == "__main__":
+    build_artifacts()
     tests = [
         test_login_success,
         test_double_login_same_client,
