@@ -192,6 +192,17 @@ class TestEnv:
         time.sleep(1)
 
     def _start_server(self):
+        # Build Server
+        print(">> Building Server...")
+        subprocess.run(["mvn", "compile"], cwd=SERVER_DIR, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+        # Build Client
+        print(">> Building Client...")
+        client_bin_dir = os.path.dirname(CLIENT_PATH)
+        if not os.path.exists(client_bin_dir):
+            os.makedirs(client_bin_dir)
+        subprocess.run(["make"], cwd=os.path.dirname(CLIENT_PATH) + "/..", check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
         cmd = SERVER_CMD_REACTOR if self.use_reactor else SERVER_CMD_TPC
         self.server_process = subprocess.Popen(
             cmd, cwd=SERVER_DIR,
