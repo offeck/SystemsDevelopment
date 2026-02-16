@@ -1,0 +1,24 @@
+# Config 4: Library with tracks that are not used in any playlist
+app_name=PartialLibraryTest
+version=2.2
+
+# System Settings
+controller_cache_size=3
+bpm_tolerance=5
+auto_sync=false
+
+# Track Library Definition
+library_track_1=MP3,Opener,{DJ Warmup;},200,120,320,1
+library_track_2=WAV,Peak Time,{Headliner;},300,125,96000,24
+library_track_3=MP3,Closer,{DJ Cooldown;},250,130,192,1
+library_track_4=WAV,UNUSED - Ambient,{Background;},600,80,44100,16
+library_track_5=MP3,UNUSED - Vocal Cut,{Acapella;},30,100,320,0
+library_track_6=MP3,The Middle,{Mixer;},180,128,320,1
+library_track_7=WAV,The Bridge,{Producer;},210,122,44100,16
+library_track_8=MP3,The Drop,{Buildup;},220,128,320,1
+library_track_9=MP3,UNUSED - Alt Version,{Remixer;},180,128,192,1
+library_track_10=WAV,UNUSED - Sound Effect,{SFX;},10,120,48000,24
+
+# Playlists
+main_mix=1,7,6,8,2,3
+short_set=6,8,2

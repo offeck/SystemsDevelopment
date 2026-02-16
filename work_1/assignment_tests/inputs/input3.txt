@@ -1,0 +1,18 @@
+# Config 3: Library defined, but no playlists
+app_name=LibraryLoader
+version=1.0
+
+# System Settings
+controller_cache_size=2
+bpm_tolerance=10
+auto_sync=true
+
+# Track Library Definition
+library_track_1=MP3,Test Track 1,{Test Artist;},60,100,192,0
+library_track_2=WAV,Test Track 2,{Test Artist;},60,110,44100,16
+library_track_3=MP3,Test Track 3,{Test Artist;},60,120,320,1
+library_track_4=WAV,Test Track 4,{Test Artist;},60,130,48000,24
+library_track_5=MP3,Test Track 5,{Test Artist;},60,140,192,1
+library_track_6=WAV,Test Track 6,{Test Artist;},60,150,96000,16
+
+# Playlists section is intentionally left blank / omitted

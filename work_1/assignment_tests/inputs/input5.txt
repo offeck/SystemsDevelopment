@@ -1,0 +1,47 @@
+# Configuration: Master Session - Complex Library and Multiple Playlists
+app_name=DJ_Pro_Master_Session
+version=5.0
+
+# --- System Settings ---
+# Large cache for a big session
+controller_cache_size=10
+# Strict mixing requirements
+bpm_tolerance=3
+auto_sync=false
+
+# --- Track Library Definition (18 Tracks) ---
+# --- MP3 Tracks (1-9) ---
+library_track_1=MP3,Solaris,{Synth Voyager;},320,128,320,1
+library_track_2=MP3,Dusty Roads,{The Drifters;A. Smith;},190,95,192,0
+library_track_3=MP3,Echo Chamber,{DJ Reverb;},410,120,320,1
+library_track_4=MP3,Midnight Drive,{Night Runner;},245,110,320,1
+library_track_5=MP3,City Lights (Remix),{Urban Electro;DJ K;},280,125,320,1
+library_track_6=MP3,Red Shift,{Galaxy Grooves;},300,128,192,1
+library_track_7=MP3,Low Fidelity,{Chill Beats Inc.;},180,85,320,1
+library_track_8=MP3,The Jump Off,{Big Boi;},220,100,320,1
+library_track_9=MP3,Floor Filler,{Dance Crew;},210,130,320,1
+# --- WAV Tracks (10-18) ---
+library_track_10=WAV,Deep Dive,{Aqua Bass;},500,122,44100,16
+library_track_11=WAV,The Core,{Techno Union;},450,135,96000,24
+library_track_12=WAV,Atmosphere,{Cloud Surfers;},600,90,48000,16
+library_track_13=WAV,Riser,{Build Up;},120,128,44100,16
+library_track_14=WAV,Hard Beat,{Industrial;},330,140,44100,16
+library_track_15=WAV,Breakdown,{The Finishers;},260,125,96000,24
+library_track_16=WAV,Ocean Front,{Tidal Wave;},310,115,44100,16
+# --- Unused Tracks ---
+library_track_17=WAV,Sample Pack 1 (FX),{Sound Designer;},15,120,44100,16
+library_track_18=MP3,Radio Jingle,{Station ID;},30,100,192,1
+
+# --- Playlists (6 Defined) ---
+# 1. Main Stage: A long mix of high-energy tracks
+main_stage=1,5,6,9,13,11,14,15
+# 2. Chill Out: A selection of low-BPM, ambient tracks
+chill_out_lounge=7,12,4,2,16
+# 3. Techno Set: High-BPM WAV tracks
+techno_bunker=11,14,11
+# 4. Opener: A short set to start the night
+warmup_set=4,7,3
+# 5. Repeat Test: Tests immediate repetition
+repeat_test=1,1,13,5,5
+# 6. Staging Area: An empty playlist, maybe for live additions
+staging_area=

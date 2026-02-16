@@ -1,0 +1,29 @@
+# Config 2: Large Library (15 tracks) / Single Long Playlist (1)
+app_name=MarathonDJ
+version=1.8
+
+# System Settings
+controller_cache_size=10
+bpm_tolerance=5
+auto_sync=false
+
+# Track Library Definition
+library_track_1=MP3,Track 01,{Artist A;},200,120,320,1
+library_track_2=MP3,Track 02,{Artist A;},200,120,320,1
+library_track_3=WAV,Track 03,{Artist B;},210,122,44100,16
+library_track_4=WAV,Track 04,{Artist C;},220,122,44100,16
+library_track_5=MP3,Track 05,{Artist D;},230,124,192,0
+library_track_6=MP3,Track 06,{Artist E;},240,124,320,1
+library_track_7=WAV,Track 07,{Artist F;},250,125,48000,24
+library_track_8=MP3,Track 08,{Artist G;},260,125,320,1
+library_track_9=WAV,Track 09,{Artist H;},270,128,96000,24
+library_track_10=MP3,Track 10,{Artist I;},280,128,320,1
+library_track_11=WAV,Track 11,{Artist J;},290,130,44100,16
+library_track_12=MP3,Track 12,{Artist K;},300,130,320,1
+library_track_13=MP3,Track 13,{Artist L;},310,132,192,1
+library_track_14=WAV,Track 14,{Artist M;},320,132,48000,24
+library_track_15=MP3,Track 15,{Artist N;},330,135,320,1
+
+# Playlists
+# Single long playlist
+main_event=1,3,5,7,9,11,13,15,14,12,10,8,6,4,2,1,5,9,13,2,6,10,14,3,7,11,15

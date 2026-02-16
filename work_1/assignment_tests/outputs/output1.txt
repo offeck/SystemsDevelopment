@@ -1,0 +1,804 @@
+
+============= RUNNING INTERACTIVE SOFTWARE =============
+Created playlist: 
+[MixingEngineService] Initialized with 2 empty decks.
+DJ Session System initialized: Interactive Session
+=== DJ Controller System ===
+Starting interactive DJ session...
+Loading configuration from: /workspaces/splHW1/inputs/input1.txt
+[WARNING] Unknown config key 'empty_session' at line 32
+Parsed config file: 12 tracks found, 3 playlists found
+Configuration loaded successfully.
+BPM Tolerance: 4 BPM
+Auto Sync: enabled
+Cache Size: 6 slots
+MP3Track created: 320 kbps
+WAVTrack created: 44100Hz/16bit
+MP3Track created: 320 kbps
+MP3Track created: 320 kbps
+WAVTrack created: 96000Hz/24bit
+MP3Track created: 320 kbps
+WAVTrack created: 48000Hz/16bit
+MP3Track created: 320 kbps
+MP3Track created: 192 kbps
+WAVTrack created: 44100Hz/16bit
+MP3Track created: 320 kbps
+WAVTrack created: 96000Hz/24bit
+[INFO] Track library built: 12 tracks loaded
+
+Starting DJ performance simulation...
+BPM Tolerance: 4 BPM
+Auto Sync: enabled
+Cache Capacity: 6 slots (LRU policy)
+
+--- Processing Tracks ---
+[System] Loading playlist: pop_mix
+[INFO] Loading playlist: pop_mix
+Created playlist: pop_mix
+[MP3Track::load] Loading MP3: "Uptown Funk" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Uptown Funk"
+  → Estimated beats: 517  → Compression precision factor: 1
+Added 'Uptown Funk' to playlist 'pop_mix'
+[MP3Track::load] Loading MP3: "Shape of You" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Shape of You"
+  → Estimated beats: 374  → Compression precision factor: 1
+Added 'Shape of You' to playlist 'pop_mix'
+[MP3Track::load] Loading MP3: "Blinding Lights" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Blinding Lights"
+  → Estimated beats: 570  → Compression precision factor: 1
+Added 'Blinding Lights' to playlist 'pop_mix'
+[MP3Track::load] Loading MP3: "Rolling in the Deep" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Rolling in the Deep"
+  → Estimated beats: 399  → Compression precision factor: 1
+Added 'Rolling in the Deep' to playlist 'pop_mix'
+[MP3Track::load] Loading MP3: "Get Lucky" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Get Lucky"
+  → Estimated beats: 479  → Compression precision factor: 1
+Added 'Get Lucky' to playlist 'pop_mix'
+[INFO] Playlist loaded: pop_mix (5 tracks)
+
+--- Processing: Uptown Funk ---
+[System] Loading track 'Uptown Funk' to controller...
+[MP3Track::load] Loading MP3: "Uptown Funk" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Uptown Funk"
+  → Estimated beats: 517  → Compression precision factor: 1
+
+=== Cache Status ===
+[LRUCache] Status: 1/6 slots used
+  Slot 0: Uptown Funk (last access: 1)
+  Slot 1: [EMPTY]
+  Slot 2: [EMPTY]
+  Slot 3: [EMPTY]
+  Slot 4: [EMPTY]
+  Slot 5: [EMPTY]
+====================
+[System] Delegating track transfer to MixingEngineService for: Uptown Funk
+
+=== Loading Track to Deck ===
+[Deck Switch] Target deck: 0
+[MP3Track::load] Loading MP3: "Uptown Funk" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Uptown Funk"
+  → Estimated beats: 517  → Compression precision factor: 1
+[Sync BPM] Cannot sync - one of the decks is empty.
+[Load Complete] 'Uptown Funk' is now loaded on deck 0
+[Active Deck] Switched to deck 0
+
+=== Deck Status ===
+Deck 0: Uptown Funk
+Deck 1: [EMPTY]
+Active Deck: 0
+===================
+
+--- Processing: Shape of You ---
+[System] Loading track 'Shape of You' to controller...
+[MP3Track::load] Loading MP3: "Shape of You" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Shape of You"
+  → Estimated beats: 374  → Compression precision factor: 1
+
+=== Cache Status ===
+[LRUCache] Status: 2/6 slots used
+  Slot 0: Uptown Funk (last access: 2)
+  Slot 1: Shape of You (last access: 3)
+  Slot 2: [EMPTY]
+  Slot 3: [EMPTY]
+  Slot 4: [EMPTY]
+  Slot 5: [EMPTY]
+====================
+[System] Delegating track transfer to MixingEngineService for: Shape of You
+
+=== Loading Track to Deck ===
+[Deck Switch] Target deck: 1
+[MP3Track::load] Loading MP3: "Shape of You" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Shape of You"
+  → Estimated beats: 374  → Compression precision factor: 1
+[Sync BPM] Syncing BPM from 96 to 105
+[Load Complete] 'Shape of You' is now loaded on deck 1
+[Active Deck] Switched to deck 1
+
+=== Deck Status ===
+Deck 0: Uptown Funk
+Deck 1: Shape of You
+Active Deck: 1
+===================
+
+--- Processing: Blinding Lights ---
+[System] Loading track 'Blinding Lights' to controller...
+[MP3Track::load] Loading MP3: "Blinding Lights" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Blinding Lights"
+  → Estimated beats: 570  → Compression precision factor: 1
+
+=== Cache Status ===
+[LRUCache] Status: 3/6 slots used
+  Slot 0: Uptown Funk (last access: 2)
+  Slot 1: Shape of You (last access: 4)
+  Slot 2: Blinding Lights (last access: 5)
+  Slot 3: [EMPTY]
+  Slot 4: [EMPTY]
+  Slot 5: [EMPTY]
+====================
+[System] Delegating track transfer to MixingEngineService for: Blinding Lights
+
+=== Loading Track to Deck ===
+[Deck Switch] Target deck: 0
+[MP3Track::load] Loading MP3: "Blinding Lights" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Blinding Lights"
+  → Estimated beats: 570  → Compression precision factor: 1
+[Sync BPM] Syncing BPM from 171 to 138
+[Load Complete] 'Blinding Lights' is now loaded on deck 0
+[Active Deck] Switched to deck 0
+
+=== Deck Status ===
+Deck 0: Blinding Lights
+Deck 1: Shape of You
+Active Deck: 0
+===================
+
+--- Processing: Rolling in the Deep ---
+[System] Loading track 'Rolling in the Deep' to controller...
+[MP3Track::load] Loading MP3: "Rolling in the Deep" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Rolling in the Deep"
+  → Estimated beats: 399  → Compression precision factor: 1
+
+=== Cache Status ===
+[LRUCache] Status: 4/6 slots used
+  Slot 0: Uptown Funk (last access: 2)
+  Slot 1: Shape of You (last access: 4)
+  Slot 2: Blinding Lights (last access: 6)
+  Slot 3: Rolling in the Deep (last access: 7)
+  Slot 4: [EMPTY]
+  Slot 5: [EMPTY]
+====================
+[System] Delegating track transfer to MixingEngineService for: Rolling in the Deep
+
+=== Loading Track to Deck ===
+[Deck Switch] Target deck: 1
+[MP3Track::load] Loading MP3: "Rolling in the Deep" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Rolling in the Deep"
+  → Estimated beats: 399  → Compression precision factor: 1
+[Sync BPM] Syncing BPM from 105 to 121
+[Load Complete] 'Rolling in the Deep' is now loaded on deck 1
+[Active Deck] Switched to deck 1
+
+=== Deck Status ===
+Deck 0: Blinding Lights
+Deck 1: Rolling in the Deep
+Active Deck: 1
+===================
+
+--- Processing: Get Lucky ---
+[System] Loading track 'Get Lucky' to controller...
+[MP3Track::load] Loading MP3: "Get Lucky" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Get Lucky"
+  → Estimated beats: 479  → Compression precision factor: 1
+
+=== Cache Status ===
+[LRUCache] Status: 5/6 slots used
+  Slot 0: Uptown Funk (last access: 2)
+  Slot 1: Shape of You (last access: 4)
+  Slot 2: Blinding Lights (last access: 6)
+  Slot 3: Rolling in the Deep (last access: 8)
+  Slot 4: Get Lucky (last access: 9)
+  Slot 5: [EMPTY]
+====================
+[System] Delegating track transfer to MixingEngineService for: Get Lucky
+
+=== Loading Track to Deck ===
+[Deck Switch] Target deck: 0
+[MP3Track::load] Loading MP3: "Get Lucky" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Get Lucky"
+  → Estimated beats: 479  → Compression precision factor: 1
+[Sync BPM] Syncing BPM from 116 to 118
+[Load Complete] 'Get Lucky' is now loaded on deck 0
+[Active Deck] Switched to deck 0
+
+=== Deck Status ===
+Deck 0: Get Lucky
+Deck 1: Rolling in the Deep
+Active Deck: 0
+===================
+
+=== DJ Session Summary ===
+Session: Interactive Session
+Tracks processed: 5
+Cache hits: 0
+Cache misses: 5
+Cache evictions: 0
+Deck A loads: 3
+Deck B loads: 2
+Transitions: 5
+Errors: 0
+=== Session Complete ===
+[System] Loading playlist: rock_classics
+[INFO] Loading playlist: rock_classics
+Created playlist: rock_classics
+[WAVTrack::load] Loading WAV: "Bohemian Rhapsody" at 44100Hz/16bit (uncompressed)...
+  → Estimated file size: 62622000 bytes
+  → Fast loading due to uncompressed format.
+[WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Bohemian Rhapsody"
+  → Estimated beats: 852  → Precision factor: 1 (uncompressed audio)
+Added 'Bohemian Rhapsody' to playlist 'rock_classics'
+[WAVTrack::load] Loading WAV: "Stairway to Heaven" at 96000Hz/24bit (uncompressed)...
+  → Estimated file size: 277632000 bytes
+  → Fast loading due to uncompressed format.
+[WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Stairway to Heaven"
+  → Estimated beats: 658  → Precision factor: 1 (uncompressed audio)
+Added 'Stairway to Heaven' to playlist 'rock_classics'
+[MP3Track::load] Loading MP3: "Don't Stop Me Now" at 192 kbps...
+  → No ID3 tags found.
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Don't Stop Me Now"
+  → Estimated beats: 543  → Compression precision factor: 0.6
+Added 'Don't Stop Me Now' to playlist 'rock_classics'
+[WAVTrack::load] Loading WAV: "Smells Like Teen Spirit" at 44100Hz/16bit (uncompressed)...
+  → Estimated file size: 53096400 bytes
+  → Fast loading due to uncompressed format.
+[WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Smells Like Teen Spirit"
+  → Estimated beats: 586  → Precision factor: 1 (uncompressed audio)
+Added 'Smells Like Teen Spirit' to playlist 'rock_classics'
+[MP3Track::load] Loading MP3: "Hotel California" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Hotel California"
+  → Estimated beats: 487  → Compression precision factor: 1
+Added 'Hotel California' to playlist 'rock_classics'
+[WAVTrack::load] Loading WAV: "Another Brick in the Wall" at 96000Hz/24bit (uncompressed)...
+  → Estimated file size: 135936000 bytes
+  → Fast loading due to uncompressed format.
+[WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Another Brick in the Wall"
+  → Estimated beats: 409  → Precision factor: 1 (uncompressed audio)
+Added 'Another Brick in the Wall' to playlist 'rock_classics'
+[INFO] Playlist loaded: rock_classics (6 tracks)
+
+--- Processing: Bohemian Rhapsody ---
+[System] Loading track 'Bohemian Rhapsody' to controller...
+[WAVTrack::load] Loading WAV: "Bohemian Rhapsody" at 44100Hz/16bit (uncompressed)...
+  → Estimated file size: 62622000 bytes
+  → Fast loading due to uncompressed format.
+[WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Bohemian Rhapsody"
+  → Estimated beats: 852  → Precision factor: 1 (uncompressed audio)
+
+=== Cache Status ===
+[LRUCache] Status: 6/6 slots used
+  Slot 0: Uptown Funk (last access: 2)
+  Slot 1: Shape of You (last access: 4)
+  Slot 2: Blinding Lights (last access: 6)
+  Slot 3: Rolling in the Deep (last access: 8)
+  Slot 4: Get Lucky (last access: 10)
+  Slot 5: Bohemian Rhapsody (last access: 11)
+====================
+[System] Delegating track transfer to MixingEngineService for: Bohemian Rhapsody
+
+=== Loading Track to Deck ===
+[Deck Switch] Target deck: 1
+[WAVTrack::load] Loading WAV: "Bohemian Rhapsody" at 44100Hz/16bit (uncompressed)...
+  → Estimated file size: 62622000 bytes
+  → Fast loading due to uncompressed format.
+[WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Bohemian Rhapsody"
+  → Estimated beats: 852  → Precision factor: 1 (uncompressed audio)
+[Sync BPM] Syncing BPM from 144 to 131
+[Load Complete] 'Bohemian Rhapsody' is now loaded on deck 1
+[Active Deck] Switched to deck 1
+
+=== Deck Status ===
+Deck 0: Get Lucky
+Deck 1: Bohemian Rhapsody
+Active Deck: 1
+===================
+
+--- Processing: Stairway to Heaven ---
+[System] Loading track 'Stairway to Heaven' to controller...
+[WAVTrack::load] Loading WAV: "Stairway to Heaven" at 96000Hz/24bit (uncompressed)...
+  → Estimated file size: 277632000 bytes
+  → Fast loading due to uncompressed format.
+[WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Stairway to Heaven"
+  → Estimated beats: 658  → Precision factor: 1 (uncompressed audio)
+
+=== Cache Status ===
+[LRUCache] Status: 6/6 slots used
+  Slot 0: Stairway to Heaven (last access: 13)
+  Slot 1: Shape of You (last access: 4)
+  Slot 2: Blinding Lights (last access: 6)
+  Slot 3: Rolling in the Deep (last access: 8)
+  Slot 4: Get Lucky (last access: 10)
+  Slot 5: Bohemian Rhapsody (last access: 12)
+====================
+[System] Delegating track transfer to MixingEngineService for: Stairway to Heaven
+
+=== Loading Track to Deck ===
+[Deck Switch] Target deck: 0
+[WAVTrack::load] Loading WAV: "Stairway to Heaven" at 96000Hz/24bit (uncompressed)...
+  → Estimated file size: 277632000 bytes
+  → Fast loading due to uncompressed format.
+[WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Stairway to Heaven"
+  → Estimated beats: 658  → Precision factor: 1 (uncompressed audio)
+[Sync BPM] Syncing BPM from 82 to 106
+[Load Complete] 'Stairway to Heaven' is now loaded on deck 0
+[Active Deck] Switched to deck 0
+
+=== Deck Status ===
+Deck 0: Stairway to Heaven
+Deck 1: Bohemian Rhapsody
+Active Deck: 0
+===================
+
+--- Processing: Don't Stop Me Now ---
+[System] Loading track 'Don't Stop Me Now' to controller...
+[MP3Track::load] Loading MP3: "Don't Stop Me Now" at 192 kbps...
+  → No ID3 tags found.
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Don't Stop Me Now"
+  → Estimated beats: 543  → Compression precision factor: 0.6
+
+=== Cache Status ===
+[LRUCache] Status: 6/6 slots used
+  Slot 0: Stairway to Heaven (last access: 14)
+  Slot 1: Don't Stop Me Now (last access: 15)
+  Slot 2: Blinding Lights (last access: 6)
+  Slot 3: Rolling in the Deep (last access: 8)
+  Slot 4: Get Lucky (last access: 10)
+  Slot 5: Bohemian Rhapsody (last access: 12)
+====================
+[System] Delegating track transfer to MixingEngineService for: Don't Stop Me Now
+
+=== Loading Track to Deck ===
+[Deck Switch] Target deck: 1
+[MP3Track::load] Loading MP3: "Don't Stop Me Now" at 192 kbps...
+  → No ID3 tags found.
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Don't Stop Me Now"
+  → Estimated beats: 543  → Compression precision factor: 0.6
+[Sync BPM] Syncing BPM from 156 to 131
+[Load Complete] 'Don't Stop Me Now' is now loaded on deck 1
+[Active Deck] Switched to deck 1
+
+=== Deck Status ===
+Deck 0: Stairway to Heaven
+Deck 1: Don't Stop Me Now
+Active Deck: 1
+===================
+
+--- Processing: Smells Like Teen Spirit ---
+[System] Loading track 'Smells Like Teen Spirit' to controller...
+[WAVTrack::load] Loading WAV: "Smells Like Teen Spirit" at 44100Hz/16bit (uncompressed)...
+  → Estimated file size: 53096400 bytes
+  → Fast loading due to uncompressed format.
+[WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Smells Like Teen Spirit"
+  → Estimated beats: 586  → Precision factor: 1 (uncompressed audio)
+
+=== Cache Status ===
+[LRUCache] Status: 6/6 slots used
+  Slot 0: Stairway to Heaven (last access: 14)
+  Slot 1: Don't Stop Me Now (last access: 16)
+  Slot 2: Smells Like Teen Spirit (last access: 17)
+  Slot 3: Rolling in the Deep (last access: 8)
+  Slot 4: Get Lucky (last access: 10)
+  Slot 5: Bohemian Rhapsody (last access: 12)
+====================
+[System] Delegating track transfer to MixingEngineService for: Smells Like Teen Spirit
+
+=== Loading Track to Deck ===
+[Deck Switch] Target deck: 0
+[WAVTrack::load] Loading WAV: "Smells Like Teen Spirit" at 44100Hz/16bit (uncompressed)...
+  → Estimated file size: 53096400 bytes
+  → Fast loading due to uncompressed format.
+[WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Smells Like Teen Spirit"
+  → Estimated beats: 586  → Precision factor: 1 (uncompressed audio)
+[Sync BPM] Syncing BPM from 117 to 124
+[Load Complete] 'Smells Like Teen Spirit' is now loaded on deck 0
+[Active Deck] Switched to deck 0
+
+=== Deck Status ===
+Deck 0: Smells Like Teen Spirit
+Deck 1: Don't Stop Me Now
+Active Deck: 0
+===================
+
+--- Processing: Hotel California ---
+[System] Loading track 'Hotel California' to controller...
+[MP3Track::load] Loading MP3: "Hotel California" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Hotel California"
+  → Estimated beats: 487  → Compression precision factor: 1
+
+=== Cache Status ===
+[LRUCache] Status: 6/6 slots used
+  Slot 0: Stairway to Heaven (last access: 14)
+  Slot 1: Don't Stop Me Now (last access: 16)
+  Slot 2: Smells Like Teen Spirit (last access: 18)
+  Slot 3: Hotel California (last access: 19)
+  Slot 4: Get Lucky (last access: 10)
+  Slot 5: Bohemian Rhapsody (last access: 12)
+====================
+[System] Delegating track transfer to MixingEngineService for: Hotel California
+
+=== Loading Track to Deck ===
+[Deck Switch] Target deck: 1
+[MP3Track::load] Loading MP3: "Hotel California" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Hotel California"
+  → Estimated beats: 487  → Compression precision factor: 1
+[Sync BPM] Syncing BPM from 75 to 99
+[Load Complete] 'Hotel California' is now loaded on deck 1
+[Active Deck] Switched to deck 1
+
+=== Deck Status ===
+Deck 0: Smells Like Teen Spirit
+Deck 1: Hotel California
+Active Deck: 1
+===================
+
+--- Processing: Another Brick in the Wall ---
+[System] Loading track 'Another Brick in the Wall' to controller...
+[WAVTrack::load] Loading WAV: "Another Brick in the Wall" at 96000Hz/24bit (uncompressed)...
+  → Estimated file size: 135936000 bytes
+  → Fast loading due to uncompressed format.
+[WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Another Brick in the Wall"
+  → Estimated beats: 409  → Precision factor: 1 (uncompressed audio)
+
+=== Cache Status ===
+[LRUCache] Status: 6/6 slots used
+  Slot 0: Stairway to Heaven (last access: 14)
+  Slot 1: Don't Stop Me Now (last access: 16)
+  Slot 2: Smells Like Teen Spirit (last access: 18)
+  Slot 3: Hotel California (last access: 20)
+  Slot 4: Another Brick in the Wall (last access: 21)
+  Slot 5: Bohemian Rhapsody (last access: 12)
+====================
+[System] Delegating track transfer to MixingEngineService for: Another Brick in the Wall
+
+=== Loading Track to Deck ===
+[Deck Switch] Target deck: 0
+[WAVTrack::load] Loading WAV: "Another Brick in the Wall" at 96000Hz/24bit (uncompressed)...
+  → Estimated file size: 135936000 bytes
+  → Fast loading due to uncompressed format.
+[WAVTrack::analyze_beatgrid] Analyzing beat grid for: "Another Brick in the Wall"
+  → Estimated beats: 409  → Precision factor: 1 (uncompressed audio)
+[Sync BPM] Syncing BPM from 104 to 101
+[Load Complete] 'Another Brick in the Wall' is now loaded on deck 0
+[Active Deck] Switched to deck 0
+
+=== Deck Status ===
+Deck 0: Another Brick in the Wall
+Deck 1: Hotel California
+Active Deck: 0
+===================
+
+=== DJ Session Summary ===
+Session: Interactive Session
+Tracks processed: 11
+Cache hits: 0
+Cache misses: 11
+Cache evictions: 5
+Deck A loads: 6
+Deck B loads: 5
+Transitions: 11
+Errors: 0
+=== Session Complete ===
+[System] Loading playlist: test_loop
+[INFO] Loading playlist: test_loop
+Created playlist: test_loop
+[MP3Track::load] Loading MP3: "Uptown Funk" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Uptown Funk"
+  → Estimated beats: 517  → Compression precision factor: 1
+Added 'Uptown Funk' to playlist 'test_loop'
+[MP3Track::load] Loading MP3: "Get Lucky" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Get Lucky"
+  → Estimated beats: 479  → Compression precision factor: 1
+Added 'Get Lucky' to playlist 'test_loop'
+[MP3Track::load] Loading MP3: "Uptown Funk" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Uptown Funk"
+  → Estimated beats: 517  → Compression precision factor: 1
+Added 'Uptown Funk' to playlist 'test_loop'
+[MP3Track::load] Loading MP3: "Get Lucky" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Get Lucky"
+  → Estimated beats: 479  → Compression precision factor: 1
+Added 'Get Lucky' to playlist 'test_loop'
+[MP3Track::load] Loading MP3: "Uptown Funk" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Uptown Funk"
+  → Estimated beats: 517  → Compression precision factor: 1
+Added 'Uptown Funk' to playlist 'test_loop'
+[INFO] Playlist loaded: test_loop (5 tracks)
+
+--- Processing: Uptown Funk ---
+[System] Loading track 'Uptown Funk' to controller...
+[MP3Track::load] Loading MP3: "Uptown Funk" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Uptown Funk"
+  → Estimated beats: 517  → Compression precision factor: 1
+
+=== Cache Status ===
+[LRUCache] Status: 6/6 slots used
+  Slot 0: Stairway to Heaven (last access: 14)
+  Slot 1: Don't Stop Me Now (last access: 16)
+  Slot 2: Smells Like Teen Spirit (last access: 18)
+  Slot 3: Hotel California (last access: 20)
+  Slot 4: Another Brick in the Wall (last access: 22)
+  Slot 5: Uptown Funk (last access: 23)
+====================
+[System] Delegating track transfer to MixingEngineService for: Uptown Funk
+
+=== Loading Track to Deck ===
+[Deck Switch] Target deck: 1
+[MP3Track::load] Loading MP3: "Uptown Funk" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Uptown Funk"
+  → Estimated beats: 517  → Compression precision factor: 1
+[Sync BPM] Syncing BPM from 115 to 108
+[Load Complete] 'Uptown Funk' is now loaded on deck 1
+[Active Deck] Switched to deck 1
+
+=== Deck Status ===
+Deck 0: Another Brick in the Wall
+Deck 1: Uptown Funk
+Active Deck: 1
+===================
+
+--- Processing: Get Lucky ---
+[System] Loading track 'Get Lucky' to controller...
+[MP3Track::load] Loading MP3: "Get Lucky" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Get Lucky"
+  → Estimated beats: 479  → Compression precision factor: 1
+
+=== Cache Status ===
+[LRUCache] Status: 6/6 slots used
+  Slot 0: Get Lucky (last access: 25)
+  Slot 1: Don't Stop Me Now (last access: 16)
+  Slot 2: Smells Like Teen Spirit (last access: 18)
+  Slot 3: Hotel California (last access: 20)
+  Slot 4: Another Brick in the Wall (last access: 22)
+  Slot 5: Uptown Funk (last access: 24)
+====================
+[System] Delegating track transfer to MixingEngineService for: Get Lucky
+
+=== Loading Track to Deck ===
+[Deck Switch] Target deck: 0
+[MP3Track::load] Loading MP3: "Get Lucky" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Get Lucky"
+  → Estimated beats: 479  → Compression precision factor: 1
+[Sync BPM] Syncing BPM from 116 to 112
+[Load Complete] 'Get Lucky' is now loaded on deck 0
+[Active Deck] Switched to deck 0
+
+=== Deck Status ===
+Deck 0: Get Lucky
+Deck 1: Uptown Funk
+Active Deck: 0
+===================
+
+--- Processing: Uptown Funk ---
+[System] Loading track 'Uptown Funk' to controller...
+
+=== Cache Status ===
+[LRUCache] Status: 6/6 slots used
+  Slot 0: Get Lucky (last access: 26)
+  Slot 1: Don't Stop Me Now (last access: 16)
+  Slot 2: Smells Like Teen Spirit (last access: 18)
+  Slot 3: Hotel California (last access: 20)
+  Slot 4: Another Brick in the Wall (last access: 22)
+  Slot 5: Uptown Funk (last access: 27)
+====================
+[System] Delegating track transfer to MixingEngineService for: Uptown Funk
+
+=== Loading Track to Deck ===
+[Deck Switch] Target deck: 1
+[MP3Track::load] Loading MP3: "Uptown Funk" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Uptown Funk"
+  → Estimated beats: 517  → Compression precision factor: 1
+[Load Complete] 'Uptown Funk' is now loaded on deck 1
+[Active Deck] Switched to deck 1
+
+=== Deck Status ===
+Deck 0: Get Lucky
+Deck 1: Uptown Funk
+Active Deck: 1
+===================
+
+--- Processing: Get Lucky ---
+[System] Loading track 'Get Lucky' to controller...
+
+=== Cache Status ===
+[LRUCache] Status: 6/6 slots used
+  Slot 0: Get Lucky (last access: 29)
+  Slot 1: Don't Stop Me Now (last access: 16)
+  Slot 2: Smells Like Teen Spirit (last access: 18)
+  Slot 3: Hotel California (last access: 20)
+  Slot 4: Another Brick in the Wall (last access: 22)
+  Slot 5: Uptown Funk (last access: 28)
+====================
+[System] Delegating track transfer to MixingEngineService for: Get Lucky
+
+=== Loading Track to Deck ===
+[Deck Switch] Target deck: 0
+[MP3Track::load] Loading MP3: "Get Lucky" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Get Lucky"
+  → Estimated beats: 479  → Compression precision factor: 1
+[Load Complete] 'Get Lucky' is now loaded on deck 0
+[Active Deck] Switched to deck 0
+
+=== Deck Status ===
+Deck 0: Get Lucky
+Deck 1: Uptown Funk
+Active Deck: 0
+===================
+
+--- Processing: Uptown Funk ---
+[System] Loading track 'Uptown Funk' to controller...
+
+=== Cache Status ===
+[LRUCache] Status: 6/6 slots used
+  Slot 0: Get Lucky (last access: 30)
+  Slot 1: Don't Stop Me Now (last access: 16)
+  Slot 2: Smells Like Teen Spirit (last access: 18)
+  Slot 3: Hotel California (last access: 20)
+  Slot 4: Another Brick in the Wall (last access: 22)
+  Slot 5: Uptown Funk (last access: 31)
+====================
+[System] Delegating track transfer to MixingEngineService for: Uptown Funk
+
+=== Loading Track to Deck ===
+[Deck Switch] Target deck: 1
+[MP3Track::load] Loading MP3: "Uptown Funk" at 320 kbps...
+  → Processing ID3 metadata (artist info, album art, etc.)...
+  → Decoding MP3 frames...
+  → Load complete.
+[MP3Track::analyze_beatgrid] Analyzing beat grid for: "Uptown Funk"
+  → Estimated beats: 517  → Compression precision factor: 1
+[Load Complete] 'Uptown Funk' is now loaded on deck 1
+[Active Deck] Switched to deck 1
+
+=== Deck Status ===
+Deck 0: Get Lucky
+Deck 1: Uptown Funk
+Active Deck: 1
+===================
+
+=== DJ Session Summary ===
+Session: Interactive Session
+Tracks processed: 16
+Cache hits: 3
+Cache misses: 13
+Cache evictions: 7
+Deck A loads: 8
+Deck B loads: 8
+Transitions: 16
+Errors: 0
+=== Session Complete ===
+Session cancelled by user or all playlists played.
+============= INTERACTIVE SESSION ENDED =============
+
+Shutting down DJ Session System: Interactive Session
+[MixingEngineService] Cleaning up decks...
+
+--- STDERR ---
+==81656== Memcheck, a memory error detector
+==81656== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==81656== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==81656== Command: /workspaces/splHW1/Implementation/bin/dj_manager -I -A
+==81656== 
+==81656== 
+==81656== HEAP SUMMARY:
+==81656==     in use at exit: 40,836 bytes in 17 blocks
+==81656==   total heap usage: 527 allocs, 510 frees, 571,945 bytes allocated
+==81656== 
+==81656== 40,836 (480 direct, 40,356 indirect) bytes in 5 blocks are definitely lost in loss record 4 of 4
+==81656==    at 0x48859FC: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-arm64-linux.so)
+==81656==    by 0x11B3B3: MP3Track::clone() const (MP3Track.cpp:83)
+==81656==    by 0x116153: DJLibraryService::loadPlaylistFromIndices(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<int, std::allocator<int> > const&) (DJLibraryService.cpp:88)
+==81656==    by 0x110F73: DJSession::load_playlist(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (DJSession.cpp:41)
+==81656==    by 0x11134F: DJSession::select_next_playlist() (DJSession.cpp:102)
+==81656==    by 0x11165F: DJSession::simulate_dj_performance() (DJSession.cpp:139)
+==81656==    by 0x12E2D7: main (main.cpp:183)
+==81656== 
+==81656== LEAK SUMMARY:
+==81656==    definitely lost: 480 bytes in 5 blocks
+==81656==    indirectly lost: 40,356 bytes in 12 blocks
+==81656==      possibly lost: 0 bytes in 0 blocks
+==81656==    still reachable: 0 bytes in 0 blocks
+==81656==         suppressed: 0 bytes in 0 blocks
+==81656== 
+==81656== For lists of detected and suppressed errors, rerun with: -s
+==81656== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)

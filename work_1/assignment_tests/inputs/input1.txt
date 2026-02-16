@@ -1,0 +1,32 @@
+# Config 1: Large Library (12 tracks) / Multiple Playlists (4)
+app_name=MegaMixer Pro
+version=4.0
+
+# System Settings
+controller_cache_size=6
+bpm_tolerance=4
+auto_sync=true
+
+# Track Library Definition
+library_track_1=MP3,Uptown Funk,{Mark Ronson;Bruno Mars;},270,115,320,1
+library_track_2=WAV,Bohemian Rhapsody,{Queen;},355,144,44100,16
+library_track_3=MP3,Shape of You,{Ed Sheeran;},234,96,320,1
+library_track_4=MP3,Blinding Lights,{The Weeknd;},200,171,320,1
+library_track_5=WAV,Stairway to Heaven,{Led Zeppelin;},482,82,96000,24
+library_track_6=MP3,Rolling in the Deep,{Adele;},228,105,320,1
+library_track_7=WAV,Take Five,{Dave Brubeck Quartet;},324,174,48000,16
+library_track_8=MP3,Get Lucky,{Daft Punk;Pharrell Williams;},248,116,320,1
+library_track_9=MP3,Don't Stop Me Now,{Queen;},209,156,192,0
+library_track_10=WAV,Smells Like Teen Spirit,{Nirvana;},301,117,44100,16
+library_track_11=MP3,Hotel California,{Eagles;},390,75,320,1
+library_track_12=WAV,Another Brick in the Wall,{Pink Floyd;},236,104,96000,24
+
+# Playlists
+# Playlist 1: Pop/Funk mix
+pop_mix=1,3,4,6,8
+# Playlist 2: Classic Rock
+rock_classics=2,5,9,10,11,12
+# Playlist 3: A test with repeats
+test_loop=1,8,1,8,1
+# Playlist 4: An empty playlist
+empty_session=
